@@ -39,7 +39,7 @@ const HowItWorksSection = () => {
                 </div>
                 
                 {/* Icon Circle */}
-                <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-hover rounded-full flex items-center justify-center mx-auto shadow-brand group-hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-hover rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <step.icon className="w-10 h-10 text-primary-foreground" />
                 </div>
               </div>

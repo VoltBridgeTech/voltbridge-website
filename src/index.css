@@ -147,7 +147,7 @@
 @layer components {
   /* Button Variants */
   .btn-hero {
-    @apply bg-gradient-to-r from-primary to-primary-hover text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-brand hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300;
+    @apply bg-gradient-to-r from-primary to-primary-hover text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300;
   }
   
   .btn-secondary {

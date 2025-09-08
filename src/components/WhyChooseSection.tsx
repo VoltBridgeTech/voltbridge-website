@@ -28,7 +28,7 @@ const WhyChooseSection = () => {
               ))}
             </div>
             
-            <div className="bg-gradient-to-br from-primary to-primary-hover p-8 rounded-2xl text-white shadow-brand">
+            <div className="bg-gradient-to-br from-primary to-primary-hover p-8 rounded-2xl text-white shadow-xl">
               <h3 className="text-2xl font-bold mb-4">Ready to Start Saving?</h3>
               <p className="text-lg mb-6 text-gray-100">
                 Join thousands of satisfied customers who have switched to better energy deals with VoltBridge.
