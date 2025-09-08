@@ -2,41 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* VoltBridge UK Design System - All colors in HSL format */
 
 @layer base {
   :root {
+    /* Brand Colors */
+    --brand-navy: 231 100% 9%;
+    --brand-blue: 216 97% 52%;
+    --brand-blue-light: 215 97% 54%;
+    --brand-shadow-1: 231 90% 12%;
+    --brand-shadow-2: 231 85% 13%;
+    --brand-shadow-3: 231 95% 14%;
+    
+    /* Background & Surfaces */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 231 100% 9%;
+    --surface: 0 0% 98%;
+    --surface-hover: 0 0% 96%;
 
+    /* Cards & Components */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 231 100% 9%;
+    --card-border: 220 13% 91%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 231 100% 9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary Brand Colors */
+    --primary: 216 97% 52%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 97% 54%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary Colors */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 231 100% 9%;
+    --secondary-hover: 0 0% 94%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted & Text */
+    --muted: 220 13% 91%;
+    --muted-foreground: 215 16% 47%;
+    --text-light: 215 16% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent Colors */
+    --accent: 216 97% 52%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Form Elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --input-focus: 216 97% 52%;
+    --ring: 216 97% 52%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(216 97% 52%), hsl(215 97% 54%));
+    --gradient-hero: linear-gradient(135deg, hsl(231 100% 9%), hsl(216 97% 52%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 13% 98%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(231 90% 12% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(231 90% 12% / 0.1), 0 2px 4px -1px hsl(231 90% 12% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(231 90% 12% / 0.1), 0 4px 6px -2px hsl(231 90% 12% / 0.05);
+    --shadow-brand: 0 10px 25px -5px hsl(216 97% 52% / 0.25);
+    --shadow-hero: 0 25px 50px -12px hsl(231 100% 9% / 0.4);
+
+    /* Border Radius */
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +140,64 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-primary-hover text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-brand hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground border border-border px-6 py-3 rounded-lg font-medium hover:bg-secondary-hover transition-all duration-200;
+  }
+
+  /* Section Containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card Styles */
+  .service-card {
+    @apply bg-card border border-card-border rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+  }
+
+  /* Feature List */
+  .feature-check {
+    @apply flex items-center text-foreground mb-3;
+  }
+
+  .feature-check::before {
+    content: "✅";
+    @apply mr-3 text-lg;
+  }
+
+  /* Form Styles */
+  .form-input {
+    @apply w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-input-focus transition-colors duration-200;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-2;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    @apply w-full bg-muted rounded-full h-2 mb-6;
+  }
+
+  .progress-fill {
+    @apply bg-gradient-to-r from-primary to-primary-hover h-2 rounded-full transition-all duration-500;
+  }
+
+  /* Animations */
+  .fade-in {
+    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out;
+  }
+
+  .fade-in.visible {
+    @apply opacity-100 translate-y-0;
   }
 }
