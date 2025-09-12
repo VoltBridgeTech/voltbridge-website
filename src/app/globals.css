@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Animation defaults */
+    --animation-duration: 300ms;
+    --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Apply reduced motion by default if user prefers it */
+    @media (prefers-reduced-motion: reduce) {
+      :root:not([data-motion="allow"]) {
+        --animation-duration: 0.001ms;
+        --animation-easing: step-end;
+      }
+    }
+    
+    /* Apply reduced motion when data-motion="reduce" is set */
+    :root[data-motion="reduce"] {
+      --animation-duration: 0.001ms;
+      --animation-easing: step-end;
+    }
+  }
+  
+  /* Smooth scrolling for the whole app */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Reduced motion styles */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Focus styles for better accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-vb-electric-1 ring-offset-2 ring-offset-vb-dark-1;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-vb-dark-2;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-vb-dark-3 rounded-full hover:bg-vb-dark-4 transition-colors;
+  }
+  
+  /* Selection styles */
+  ::selection {
+    @apply bg-vb-electric-1/30 text-white;
+  }
+}
+
+@layer components {
+  /* Base transition class for consistent animations */
+  .transition-base {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* Button focus styles */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vb-electric-1 focus-visible:ring-offset-2 focus-visible:ring-offset-vb-dark-1;
+  }
+  
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-vb-electric-1 to-vb-electric-2;
+  }
+  
+  /* Custom animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+  
+  /* Reduced motion overrides */
+  .motion-safe .motion-reduce\:animate-none {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: none;
+    }
+  }
+  
+  /* Skip to main content link */
+  .skip-to-content {
+    @apply absolute -top-12 left-0 bg-vb-electric-1 text-white px-4 py-2 z-50 transition-transform duration-200 focus:top-4 focus:left-4 rounded-md;
+  }
+}
+
+/* Custom animations for framer-motion */
+.motion-spring {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reduced motion overrides for framer-motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-framer-motion] {
+    animation: none !important;
+    transition: none !important;
+  }
+}

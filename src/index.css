@@ -1,52 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* VoltBridge UK Design System - All colors in HSL format */
+/* VoltBridge Design System - Modern & Futuristic */
 
 @layer base {
   :root {
-    /* Brand Colors */
-    --brand-navy: 231 100% 9%;
-    --brand-blue: 216 97% 52%;
-    --brand-blue-light: 215 97% 54%;
-    --brand-shadow-1: 231 90% 12%;
-    --brand-shadow-2: 231 85% 13%;
-    --brand-shadow-3: 231 95% 14%;
+    /* Font families */
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-display: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     
-    /* Background & Surfaces */
-    --background: 0 0% 100%;
-    --foreground: 231 100% 9%;
-    --surface: 0 0% 98%;
-    --surface-hover: 0 0% 96%;
-
-    /* Cards & Components */
-    --card: 0 0% 100%;
-    --card-foreground: 231 100% 9%;
-    --card-border: 220 13% 91%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 231 100% 9%;
-
-    /* Primary Brand Colors */
-    --primary: 216 97% 52%;
+    /* VoltBridge Color Palette */
+    --vb-navy: 231 100% 9%;
+    --vb-dark-1: 231 100% 11%;
+    --vb-dark-2: 231 100% 10%;
+    --vb-dark-3: 231 100% 11.5%;
+    --vb-electric-1: 214 98% 51%;
+    --vb-electric-2: 213 98% 52%;
+    
+    /* Base Colors */
+    --background: var(--vb-navy);
+    --foreground: 0 0% 100%;
+    --card: var(--vb-dark-1);
+    --card-foreground: 0 0% 100%;
+    --popover: var(--vb-dark-2);
+    --popover-foreground: 0 0% 100%;
+    
+    /* Primary Colors */
+    --primary: var(--vb-electric-1);
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 215 97% 54%;
-
+    --primary-hover: var(--vb-electric-2);
+    
     /* Secondary Colors */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 231 100% 9%;
-    --secondary-hover: 0 0% 94%;
-
+    --secondary: 0 0% 100% / 0.1;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 0 0% 100% / 0.15;
+    
     /* Muted & Text */
-    --muted: 220 13% 91%;
-    --muted-foreground: 215 16% 47%;
-    --text-light: 215 16% 65%;
-
+    --muted: 0 0% 100% / 0.2;
+    --muted-foreground: 0 0% 100% / 0.7;
+    --text-light: 0 0% 100% / 0.8;
+    
     /* Accent Colors */
-    --accent: 216 97% 52%;
+    --accent: var(--vb-electric-2);
     --accent-foreground: 0 0% 100%;
-
+    
     /* Status Colors */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
@@ -140,14 +140,81 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  }
+  
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+  }
+  
+  body {
+    @apply bg-vb-navy text-white antialiased;
+    font-feature-settings: 'ss01' 1, 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  
+  /* Smooth scrolling for the entire app */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-vb-dark-2;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-vb-electric-1/50 rounded-full hover:bg-vb-electric-1/70 transition-colors;
+  }
+  
+  /* Selection styles */
+  ::selection {
+    @apply bg-vb-electric-1/30 text-white;
   }
 }
 
 @layer components {
   /* Button Variants */
-  .btn-hero {
-    @apply bg-gradient-to-r from-primary to-primary-hover text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300;
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vb-electric-1 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 text-white hover:opacity-90 hover:shadow-glow-md;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30;
+  }
+  
+  .btn-outline {
+    @apply border border-white/20 text-white hover:bg-white/5 hover:border-white/30;
+  }
+  
+  .btn-ghost {
+    @apply text-white/80 hover:text-white hover:bg-white/5;
+  }
+  
+  .btn-link {
+    @apply text-vb-electric-1 hover:text-vb-electric-2 hover:underline underline-offset-4;
   }
   
   .btn-secondary {
