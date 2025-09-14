@@ -30,7 +30,7 @@ const Header = () => {
 
   const moreItems = [
     { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Compliance Policy', href: '/compliance-policy' },
+    { name: 'Complaints Policy', href: '/compliance-policy' },
     { name: 'ICO Registration', href: '/ico-registration' },
   ];
 

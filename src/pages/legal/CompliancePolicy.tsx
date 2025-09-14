@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const CompliancePolicy = () => {
+const ComplaintsPolicy = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Navigation Breadcrumb */}
@@ -11,7 +11,7 @@ const CompliancePolicy = () => {
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
           </li>
           <li className="text-vb-electric-1/50">/</li>
-          <li className="text-white font-medium">Compliance Policy</li>
+          <li className="text-white font-medium">Complaints Policy</li>
         </ol>
       </nav>
 
@@ -20,12 +20,12 @@ const CompliancePolicy = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src="/images/compliance/web_banner.jpeg" 
-            alt="Compliance Policy"
+            alt="Complaints Policy"
             className="w-full h-full object-cover"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               console.error('Error loading image:', target.src);
-              target.src = 'https://via.placeholder.com/1920x500/1a1a2e/ffffff?text=VoltBridge+Compliance';
+              target.src = 'https://via.placeholder.com/1920x500/1a1a2e/ffffff?text=VoltBridge+Complaints';
             }}
           />
         </div>
@@ -38,7 +38,7 @@ const CompliancePolicy = () => {
             className="max-w-3xl"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-              Compliance &<br />Dispute Resolution
+              Complaints &<br />Dispute Resolution
             </h1>
             <p className="text-xl text-vb-electric-2 max-w-2xl">
               Our commitment to transparency and customer satisfaction in all our services
@@ -139,4 +139,4 @@ const CompliancePolicy = () => {
   );
 };
 
-export default CompliancePolicy;
+export default ComplaintsPolicy;

@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
-import CompliancePolicy from "./pages/legal/CompliancePolicy";
+import ComplaintsPolicy from "./pages/legal/CompliancePolicy";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
 import CookiesPolicy from "./pages/legal/CookiesPolicy";
@@ -23,7 +23,7 @@ const App = () => (
         <Route path="contact" element={<Contact />} />
         <Route path="blog" element={<Blog />} />
         {/* Legal Pages */}
-        <Route path="compliance-policy" element={<CompliancePolicy />} />
+        <Route path="compliance-policy" element={<ComplaintsPolicy />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="terms-of-service" element={<TermsOfService />} />
         <Route path="cookies-policy" element={<CookiesPolicy />} />

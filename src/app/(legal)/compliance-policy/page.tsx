@@ -1,7 +1,7 @@
 import { LegalPageTemplate } from '../template';
 
 // Set document title and meta description
-const title = 'Compliance & Dispute Resolution';
+const title = 'Complaints & Dispute Resolution';
 const description = 'Our commitment to transparency and customer satisfaction in all our services.';
 
 if (typeof document !== 'undefined') {
@@ -23,7 +23,7 @@ const content = `
     <div class="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-12 bg-gradient-to-r from-vb-electric-1/20 to-vb-dark-2/50">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-center px-6">
-          <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Compliance & Dispute Resolution</h1>
+          <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Complaints & Dispute Resolution</h1>
           <p class="text-vb-electric-1 text-lg">Our commitment to transparency and customer satisfaction in all our services</p>
         </div>
       </div>
@@ -136,7 +136,7 @@ const content = `
   </div>
 `;
 
-export default function CompliancePolicy() {
+export default function ComplaintsPolicy() {
   return (
     <LegalPageTemplate
       title={title}
