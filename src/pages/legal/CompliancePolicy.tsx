@@ -86,7 +86,7 @@ const ComplaintsPolicy = () => {
           <ol className="list-decimal pl-6 space-y-4">
             <li>
               <p className="font-medium">Initial Contact</p>
-              <p>The fastest way to discuss a complaint is to email <a href="mailto:support@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">legal@voltbridge.co.uk</a>. Our team will investigate the details and try to help resolve the complaint in the first instance.</p>
+              <p>The fastest way to discuss a complaint is to email <a href="mailto:support@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">support@voltbridge.co.uk</a>. Our team will investigate the details and try to help resolve the complaint in the first instance.</p>
             </li>
             
             <li>
