@@ -20,8 +20,18 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
-  const scrollToForm = () => {
-    document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const currentPath = window.location.pathname;
+    if (currentPath !== '/contact') {
+      navigate('/contact');
+      // Small delay to ensure the page has loaded before scrolling
+      setTimeout(() => {
+        document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
+    }
     setMobileMenuOpen(false);
   };
 
@@ -30,7 +40,7 @@ const Header = () => {
 
   const moreItems = [
     { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Complaints Policy', href: '/compliance-policy' },
+    { name: 'Complaints Policy', href: '/complaints-policy' },
     { name: 'ICO Registration', href: '/ico-registration' },
   ];
 

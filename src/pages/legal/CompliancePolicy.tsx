@@ -86,12 +86,12 @@ const ComplaintsPolicy = () => {
           <ol className="list-decimal pl-6 space-y-4">
             <li>
               <p className="font-medium">Initial Contact</p>
-              <p>The fastest way to discuss a complaint is to email or call VoltBridge Ltd. Our team will investigate the details and try to help resolve the complaint in the first instance.</p>
+              <p>The fastest way to discuss a complaint is to email <a href="mailto:legal@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">legal@voltbridge.co.uk</a>. Our team will investigate the details and try to help resolve the complaint in the first instance.</p>
             </li>
             
             <li>
               <p className="font-medium">Escalation to Complaints Manager</p>
-              <p>If you feel the solution offered does not satisfy your complaint, the next step is to escalate the matter to the Complaints Manager at VoltBridge. To do so, you should email <a href="mailto:support@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">support@voltbridge.co.uk</a> or call <a href="tel:+447424912117" className="text-vb-electric-1 hover:underline">+44 (0)7424912117</a> providing your name, your business name, and a brief description of your complaint. We will issue a complaint reference number to ensure your complaint is registered and can be tracked.</p>
+              <p>If you feel the solution offered does not satisfy your complaint, the next step is to escalate the matter to the Complaints Manager at VoltBridge. To do so, you should email <a href="mailto:legal@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">legal@voltbridge.co.uk</a> or call <a href="tel:+447424912117" className="text-vb-electric-1 hover:underline">+44 (0)7424912117</a> providing your name, your business name, and a brief description of your complaint. We will issue a complaint reference number to ensure your complaint is registered and can be tracked.</p>
               <p className="mt-2">The Complaints Manager will contact you within 5 working days to discuss your complaint directly and will make every reasonable effort to agree a suitable solution within 10 working days.</p>
             </li>
             

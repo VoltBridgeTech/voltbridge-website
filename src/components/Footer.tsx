@@ -47,7 +47,7 @@ const Footer = () => {
     {
       title: 'Legal',
       links: [
-        { name: 'Complaints Policy', href: '/compliance-policy' },
+        { name: 'Complaints Policy', href: '/complaints-policy' },
         { name: 'Privacy Policy', href: '/privacy-policy' },
         { name: 'ICO Registration', href: '/ico-registration' },
       ],

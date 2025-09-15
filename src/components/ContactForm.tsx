@@ -3,7 +3,7 @@ import { motion, AnimatePresence, Transition } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup } from "@/components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalendarIcon, ArrowRight, ArrowLeft, Loader2, CheckCircle, Zap, Lock, ShieldCheck, ChevronRight } from "lucide-react";
@@ -209,345 +209,244 @@ const ContactForm = () => {
   }
 
   return (
-    <section id="quote-form" className="py-20 bg-surface">
-      <div className="section-container">
-        <div className="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block px-4 py-2 text-sm font-medium text-vb-electric-1 bg-vb-electric-1/10 rounded-full border border-vb-electric-1/30 mb-4">
-              Get Your Quote
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Start <span className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 bg-clip-text text-transparent">Saving Today</span>
-            </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Complete the form below and we'll find you the best energy deal in just 2 minutes.
-            </p>
-            
-            <div className="flex justify-center mt-12 mb-6">
-              <div className="flex items-center">
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full text-lg font-semibold transition-all duration-300 ${
-                  step >= 1 
-                    ? 'bg-gradient-to-br from-vb-electric-1 to-vb-electric-2 text-white shadow-lg shadow-vb-electric-1/30' 
-                    : 'bg-vb-dark-3 text-white/40 border border-white/10'
-                }`}>
-                  1
-                </div>
-                <div className={`w-32 h-1 transition-all duration-500 ${
-                  step >= 2 
-                    ? 'bg-gradient-to-r from-vb-electric-1 to-vb-electric-2' 
-                    : 'bg-vb-dark-3'
-                }`}></div>
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full text-lg font-semibold transition-all duration-300 ${
-                  step >= 2 
-                    ? 'bg-gradient-to-br from-vb-electric-1 to-vb-electric-2 text-white shadow-lg shadow-vb-electric-1/30' 
-                    : 'bg-vb-dark-3 text-white/40 border border-white/10'
-                }`}>
-                  2
-                </div>
+    <section id="quote-form" className="py-12 sm:py-16">
+      <div className="w-full">
+        <motion.div 
+          className="text-center mb-8 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Get Your Free Quote</h1>
+          <p className="text-lg text-white/80 mb-8 max-w-lg mx-auto">
+            Fill out the form below to get a personalized quote from our energy experts.
+          </p>
+          <div className="flex justify-center mb-6">
+            <div className="flex items-center">
+              <div className={`flex items-center justify-center w-12 h-12 rounded-full text-lg font-semibold transition-all duration-300 ${
+                step >= 1 
+                  ? 'bg-gradient-to-br from-vb-electric-1 to-vb-electric-2 text-white shadow-lg shadow-vb-electric-1/30' 
+                  : 'bg-vb-dark-3 text-white/40 border border-white/10'
+              }`}>
+                1
+              </div>
+              <div className={`w-32 h-1 transition-all duration-500 ${
+                step >= 2 
+                  ? 'bg-gradient-to-r from-vb-electric-1 to-vb-electric-2' 
+                  : 'bg-vb-dark-3'
+              }`}></div>
+              <div className={`flex items-center justify-center w-12 h-12 rounded-full text-lg font-semibold transition-all duration-300 ${
+                step >= 2 
+                  ? 'bg-gradient-to-br from-vb-electric-1 to-vb-electric-2 text-white shadow-lg shadow-vb-electric-1/30' 
+                  : 'bg-vb-dark-3 text-white/40 border border-white/10'
+              }`}>
+                2
               </div>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          <div className="mb-6">
-            <p className="text-sm text-muted-foreground">
-              Step {step} of 2
-            </p>
+        <div className="bg-vb-dark-2/90 backdrop-blur-sm rounded-2xl border border-vb-electric-1/10 shadow-xl overflow-hidden">
+          <div className="p-6 sm:p-8">
+            <div className="text-center mb-6">
+              <p className="text-sm font-medium text-vb-electric-1 mb-1">
+                Step {step} of 2
+              </p>
+              <div className="h-1 bg-vb-dark-3 rounded-full overflow-hidden mt-2">
+                <div 
+                  className="h-full bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 transition-all duration-500"
+                  style={{ width: step === 1 ? '50%' : '100%' }}
+                ></div>
+              </div>
+            </div>
+            <AnimatePresence mode="wait">
+              {step === 1 ? (
+                <motion.div 
+                  key="step1"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={formTransition}
+                  className="space-y-8"
+                >
+                  <motion.div variants={itemVariants}>
+                    <Label htmlFor="postcode" className="block text-sm font-medium text-white/80 mb-2">
+                      Your Postcode
+                    </Label>
+                    <Input
+                      id="postcode"
+                      type="text"
+                      value={formData.postcode}
+                      onChange={(e) => handleInputChange('postcode', e.target.value)}
+                      placeholder="e.g. SW1A 1AA"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
+                    <Label htmlFor="monthlySpend" className="block text-sm font-medium text-white/80 mb-2">
+                      Your current monthly energy spend (£)
+                    </Label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 text-base">£</span>
+                      <Input
+                        id="monthlySpend"
+                        type="number"
+                        value={formData.monthlySpend}
+                        onChange={(e) => handleInputChange('monthlySpend', e.target.value)}
+                        placeholder="e.g. 150"
+                        className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 pl-10 pr-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                      />
+                    </div>
+                    <p className="text-xs text-white/60 mt-1">
+                      Enter your approximate monthly energy bill amount
+                    </p>
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
+                    <Label className="block text-sm font-medium text-white/80 mb-2">
+                      Your current contract status
+                    </Label>
+                    <RadioGroup
+                      value={formData.contractStatus}
+                      onValueChange={(value) => handleInputChange('contractStatus', value)}
+                      className="space-y-3"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <RadioGroupItem value="out-of-contract" id="out-of-contract" className="w-5 h-5" />
+                        <label htmlFor="out-of-contract" className="text-white cursor-pointer">
+                          Out of contract
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <RadioGroupItem value="in-contract" id="in-contract" className="w-5 h-5" />
+                        <label htmlFor="in-contract" className="text-white cursor-pointer">
+                          In contract (ending soon)
+                        </label>
+                      </div>
+                    </RadioGroup>
+                  </motion.div>
+
+                  <div className="flex justify-end">
+                    <Button
+                      disabled={!isStep1Valid()}
+                      onClick={() => setStep(2)}
+                      className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                    >
+                      Continue to Step 2
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div 
+                  key="step2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={formTransition}
+                  className="space-y-8"
+                >
+                  <motion.div variants={itemVariants}>
+                    <Label htmlFor="firstName" className="block text-sm font-medium text-white/80 mb-2">
+                      First Name
+                    </Label>
+                    <Input
+                      id="firstName"
+                      type="text"
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      placeholder="Your first name"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
+                    <Label htmlFor="lastName" className="block text-sm font-medium text-white/80 mb-2">
+                      Last Name
+                    </Label>
+                    <Input
+                      id="lastName"
+                      type="text"
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      placeholder="Your last name"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
+                    <Label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                      Email Address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="your@email.com"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
+                    <Label htmlFor="whatsapp" className="block text-sm font-medium text-white/80 mb-2">
+                      WhatsApp Number
+                    </Label>
+                    <Input
+                      id="whatsapp"
+                      type="text"
+                      value={formData.whatsapp}
+                      onChange={(e) => handleInputChange('whatsapp', e.target.value)}
+                      placeholder="Your WhatsApp number"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                    />
+                  </motion.div>
+
+                  <div className="flex justify-between items-center">
+                    <Button
+                      variant="outline"
+                      onClick={() => setStep(1)}
+                      className="py-4 px-6 rounded-xl font-semibold text-white/80 hover:text-white transition-all duration-300"
+                    >
+                      <ArrowLeft className="mr-2 h-5 w-5" />
+                      Back
+                    </Button>
+                    <Button
+                      disabled={!isStep2Valid()}
+                      onClick={handleSubmit}
+                      className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        "Get My Free Quote"
+                      )}
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          <div className="bg-vb-dark-2/50 backdrop-blur-sm rounded-2xl border border-white/5 shadow-xl overflow-hidden">
-            <div className="p-8 md:p-10">
-              <AnimatePresence mode="wait">
-                {step === 1 ? (
-                  <motion.div 
-                    key="step1"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={formTransition}
-                    className="space-y-8"
-                  >
-                    <motion.div variants={itemVariants}>
-                      <Label htmlFor="postcode" className="block text-sm font-medium text-white/80 mb-2">
-                        Your Postcode
-                      </Label>
-                      <Input
-                        id="postcode"
-                        type="text"
-                        value={formData.postcode}
-                        onChange={(e) => handleInputChange('postcode', e.target.value)}
-                        placeholder="e.g. SW1A 1AA"
-                        className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
-                      />
-                    </motion.div>
-
-                    <motion.div variants={itemVariants}>
-                      <Label htmlFor="monthlySpend" className="block text-sm font-medium text-white/80 mb-2">
-                        Your current monthly energy spend (£)
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 text-base">£</span>
-                        <Input
-                          id="monthlySpend"
-                          type="number"
-                          value={formData.monthlySpend}
-                          onChange={(e) => handleInputChange('monthlySpend', e.target.value)}
-                          placeholder="e.g. 150"
-                          className="w-full bg-vb-dark-3/50 border-white/10 text-white pl-10 pr-4 placeholder:text-white/40 h-14 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                        />
-                      </div>
-                      <p className="mt-2 text-sm text-white/60">Enter your approximate monthly energy bill amount</p>
-                    </motion.div>
-
-                    <motion.div variants={itemVariants}>
-                      <Label className="block text-sm font-medium text-white/80 mb-3">
-                        Your current contract status
-                      </Label>
-                      <RadioGroup 
-                        value={formData.contractStatus} 
-                        onValueChange={(value) => handleInputChange('contractStatus', value)}
-                        className="space-y-3"
-                      >
-                        {[
-                          { id: 'out-of-contract', label: 'Out of contract' },
-                          { id: 'in-contract', label: 'In contract (ending soon)' }
-                        ].map((option) => (
-                          <div key={option.id} className="flex items-center space-x-2 group">
-                            <div 
-                              onClick={() => handleInputChange('contractStatus', option.id)}
-                              className={`flex items-center justify-center w-5 h-5 rounded-full border-2 transition-colors cursor-pointer ${
-                                formData.contractStatus === option.id 
-                                  ? 'border-vb-electric-1 bg-vb-electric-1' 
-                                  : 'border-white/30 group-hover:border-vb-electric-1/70'
-                              }`}
-                            >
-                              {formData.contractStatus === option.id && (
-                                <div className="w-2 h-2 rounded-full bg-white"></div>
-                              )}
-                            </div>
-                            <Label htmlFor={option.id} className="cursor-pointer text-white/90 font-normal">
-                              {option.label}
-                            </Label>
-                            <input 
-                              type="radio" 
-                              id={option.id}
-                              value={option.id}
-                              checked={formData.contractStatus === option.id}
-                              onChange={() => handleInputChange('contractStatus', option.id)}
-                              className="sr-only"
-                            />
-                          </div>
-                        ))}
-                      </RadioGroup>
-                    </motion.div>
-
-                    <AnimatePresence>
-                      {formData.contractStatus === 'in-contract' && (
-                        <motion.div 
-                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                          animate={{ opacity: 1, height: 'auto', marginTop: '1.5rem' }}
-                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <Label htmlFor="contractEndDate" className="block text-sm font-medium text-white/80 mb-2">
-                            Contract end date
-                          </Label>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant={"outline"}
-                                className={cn(
-                                  "w-full justify-start text-left font-normal h-14 px-5 bg-vb-dark-3/50 border-white/10 text-white hover:bg-vb-dark-3/70 hover:border-vb-electric-1/30 hover:text-white",
-                                  !formData.contractEndDate && "text-white/40"
-                                )}
-                              >
-                                <CalendarIcon className="mr-3 h-5 w-5 text-vb-electric-1" />
-                                {formData.contractEndDate ? (
-                                  format(formData.contractEndDate, "PPP")
-                                ) : (
-                                  <span>Select your contract end date</span>
-                                )}
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0 border-vb-dark-3 bg-vb-dark-2 text-white" align="start">
-                              <Calendar
-                                mode="single"
-                                selected={formData.contractEndDate}
-                                onSelect={(date) => date && handleInputChange('contractEndDate', date)}
-                                initialFocus
-                                disabled={(date) => date < new Date()}
-                                className="bg-vb-dark-2 border-vb-dark-3"
-                                classNames={{
-                                  day_selected: "bg-vb-electric-1 text-white hover:bg-vb-electric-1/90",
-                                  day_today: "border border-vb-electric-1/50",
-                                }}
-                              />
-                            </PopoverContent>
-                          </Popover>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    <motion.div variants={itemVariants} className="pt-4">
-                      <Button 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (isStep1Valid()) setStep(2);
-                        }}
-                        disabled={!isStep1Valid()}
-                        className={`w-full h-14 text-base font-semibold rounded-xl transition-all duration-300 flex items-center justify-center ${
-                          isStep1Valid()
-                            ? 'bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white'
-                            : 'bg-gray-500/50 text-white/50 cursor-not-allowed'
-                        }`}
-                      >
-                        Continue to Step 2
-                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </motion.div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="step2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={formTransition}
-                    className="space-y-6"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <motion.div variants={itemVariants}>
-                        <Label htmlFor="firstName" className="block text-sm font-medium text-white/80 mb-2">
-                          First Name
-                        </Label>
-                        <Input
-                          id="firstName"
-                          type="text"
-                          value={formData.firstName}
-                          onChange={(e) => handleInputChange('firstName', e.target.value)}
-                          placeholder="John"
-                          className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
-                        />
-                      </motion.div>
-
-                      <motion.div variants={itemVariants}>
-                        <Label htmlFor="lastName" className="block text-sm font-medium text-white/80 mb-2">
-                          Last Name
-                        </Label>
-                        <Input
-                          id="lastName"
-                          type="text"
-                          value={formData.lastName}
-                          onChange={(e) => handleInputChange('lastName', e.target.value)}
-                          placeholder="Doe"
-                          className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
-                        />
-                      </motion.div>
-
-                      <motion.div variants={itemVariants} className="md:col-span-2">
-                        <Label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
-                          Email Address
-                        </Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange('email', e.target.value)}
-                          placeholder="you@example.com"
-                          className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
-                        />
-                      </motion.div>
-
-                      <motion.div variants={itemVariants} className="md:col-span-2">
-                        <Label htmlFor="whatsapp" className="block text-sm font-medium text-white/80 mb-2">
-                          WhatsApp Number
-                        </Label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <span className="text-white/70 text-base">+44</span>
-                          </div>
-                          <Input
-                            id="whatsapp"
-                            name="whatsapp"
-                            type="tel"
-                            inputMode="numeric"
-                            value={formData.whatsapp}
-                            onChange={(e) => {
-                              // Allow only numbers and spaces
-                              const value = e.target.value.replace(/[^0-9 ]/g, '');
-                              handleInputChange('whatsapp', value);
-                            }}
-                            placeholder="e.g. 1234 567890"
-                            className="pl-16 pr-4 w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
-                          />
-                        </div>
-                        <p className="mt-2 text-sm text-white/60">Include your country code if not UK</p>
-                      </motion.div>
-                    </div>
-
-                    <motion.div variants={itemVariants} className="pt-2 flex flex-col sm:flex-row gap-4">
-                      <Button 
-                        variant="outline" 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setStep(1);
-                        }}
-                        className="h-14 text-base font-medium border-white/10 bg-vb-dark-3/50 hover:bg-vb-dark-3/70 hover:border-vb-electric-1/30 text-white flex items-center justify-center"
-                      >
-                        <ArrowLeft className="mr-2 h-5 w-5" />
-                        Back
-                      </Button>
-                      <Button 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (isStep2Valid() && !isSubmitting) handleSubmit();
-                        }}
-                        disabled={isSubmitting || !isStep2Valid()}
-                        className={`h-14 text-base font-semibold rounded-xl transition-all duration-300 flex-1 flex items-center justify-center ${
-                          isStep2Valid() && !isSubmitting
-                            ? 'bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white'
-                            : 'bg-gray-500/50 text-white/50 cursor-not-allowed'
-                        }`}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                            Processing...
-                          </>
-                        ) : (
-                          <>
-                            <Zap className="mr-2 h-5 w-5" />
-                            Get My Free Quote
-                          </>
-                        )}
-                      </Button>
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            
-            <div className="bg-vb-dark-3/50 p-6 border-t border-white/5">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-vb-electric-1/10 text-vb-electric-1">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">Your data is secure</p>
-                    <p className="text-xs text-white/60">We'll never share your information</p>
-                  </div>
+          <div className="mt-8 pt-6 border-t border-white/5">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-vb-electric-1/10 text-vb-electric-1">
+                  <ShieldCheck className="w-5 h-5" />
                 </div>
-                <div className="flex items-center space-x-2 text-xs text-white/60">
-                  <Lock className="w-3.5 h-3.5" />
-                  <span>256-bit SSL encryption</span>
+                <div>
+                  <p className="text-sm font-medium text-white">Your data is secure</p>
+                  <p className="text-xs text-white/60">We'll never share your information</p>
                 </div>
+              </div>
+              <div className="flex items-center space-x-2 text-xs text-white/60">
+                <Lock className="w-3.5 h-3.5" />
+                <span>256-bit SSL encryption</span>
               </div>
             </div>
           </div>

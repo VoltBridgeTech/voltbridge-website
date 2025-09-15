@@ -1,22 +1,13 @@
 import { motion } from 'framer-motion';
+import ContactForm from "@/components/ContactForm";
 
 const Contact = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
-        <p className="text-xl text-vb-electric-2">Get in touch with our team</p>
-      </motion.div>
-      
-      <div className="prose prose-invert max-w-4xl mx-auto">
-        <p className="text-lg">
-          [Contact form and information will go here]
-        </p>
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-b from-vb-dark-1 to-vb-dark-2">
+      <div className="w-full max-w-2xl mx-4 sm:mx-6 lg:mx-auto">
+        <div id="quote-form" className="bg-vb-dark-2/90 backdrop-blur-sm rounded-2xl shadow-xl border border-vb-electric-1/10 overflow-hidden">
+          <ContactForm />
+        </div>
       </div>
     </div>
   );
