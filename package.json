@@ -10,10 +10,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:vercel": "vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint .",
-    "start": "vite preview --port 3000"
+    "start": "vite preview --host --port 3000",
+    "vercel-build": "vite build"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
