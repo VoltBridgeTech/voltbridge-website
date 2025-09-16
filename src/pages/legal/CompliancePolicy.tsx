@@ -97,13 +97,16 @@ const ComplaintsPolicy = () => {
             
             <li>
               <p className="font-medium">Ombudsman Services</p>
-              <p>If after this time you are not happy with how your complaint has been handled, if we are not able to resolve your problem, or if 8 full weeks have passed since your initial complaint, you may engage with the Ombudsman Services: Energy Broker ADR (Alternative Dispute Resolution) Scheme who will open a complaints case on your behalf and engage directly with VoltBridge.</p>
+              <p>If after this time you are not happy with how your complaint has been handled, if we are not able to resolve your problem, or if 8 full weeks have passed since your initial complaint, you may refer your complaint to the independent Energy Ombudsman.</p>
+              <p className="mt-2">The energy Ombudsman is approved by Ofgem to provide a free and impartial Alternative Dispute Resolution (ADR) service for energy brokers and their customers.</p>
               <div className="mt-3 bg-vb-dark-3 p-4 rounded-lg">
-                <p className="font-medium">You can contact the Ombudsman by:</p>
+                <p className="font-medium">You can contact the Energy Ombudsman by:</p>
                 <ul className="list-disc pl-6 mt-2 space-y-1">
+                  <li>Name: Energy Ombudsman</li>
+                  <li>Website: <a href="https://www.energyombudsman.org" target="_blank" rel="noopener noreferrer" className="text-vb-electric-1 hover:underline">www.energyombudsman.org</a></li>
+                  <li>Email: <a href="mailto:enquiry@energyombudsman.org" className="text-vb-electric-1 hover:underline">enquiry@energyombudsman.org</a></li>
                   <li>Phone: <a href="tel:03304401624" className="text-vb-electric-1 hover:underline">0330 440 1624</a></li>
-                  <li>Email: <a href="mailto:enquiry@ombudsman-services.org" className="text-vb-electric-1 hover:underline">enquiry@ombudsman-services.org</a></li>
-                  <li>Post: Ombudsman Services: Energy, PO Box 966, Warrington, WA4 9DF</li>
+                  <li>Post: Energy Ombudsman, PO Box 966, Warrington, WA4 9DF</li>
                 </ul>
               </div>
             </li>

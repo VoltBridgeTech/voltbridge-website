@@ -113,12 +113,12 @@ const HeroSection = () => {
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight text-white"
               variants={item}
             >
-              Smart Moves,
+              Smart moves,
               <motion.span 
                 className="block bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 bg-clip-text text-transparent mt-2"
                 variants={item}
               >
-                Slow Bills
+                low bills
               </motion.span>
             </motion.h1>
             
