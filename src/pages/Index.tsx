@@ -10,6 +10,7 @@ const ServicesSection = lazy(() => import("@/components/ServicesSection"));
 const ProcessSection = lazy(() => import("@/components/ProcessSection"));
 const WhyChooseSection = lazy(() => import("@/components/WhyChooseSection"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
+const EnergyOmbudsmanSection = lazy(() => import("@/components/EnergyOmbudsmanSection"));
 
 // Loading component for suspense fallback
 const SectionLoading = () => (
@@ -32,6 +33,7 @@ const Index = () => {
           <ProcessSection />
           <WhyChooseSection />
           <ContactForm />
+          <EnergyOmbudsmanSection />
         </Suspense>
       </main>
       
