@@ -15,7 +15,7 @@ const Chatbot = () => {
       import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
       createChat({
-        webhookUrl: 'https://cardiacandvascular.app.n8n.cloud/webhook/ddf4ea5b-94fc-4fbf-b856-95d39a04eb59/chat',
+        webhookUrl: 'https://cardiacandvascular.app.n8n.cloud/webhook/cb0a2072-5af0-4cfa-bee2-3a024449e6a1/chat',
         config: {
           headerTitle: '¿En qué podemos ayudarte?',
           welcomeMessage: '¡Hola! Soy el asistente virtual de VoltBridge. ¿En qué puedo ayudarte hoy?',
