@@ -22,7 +22,7 @@ const Chatbot: React.FC = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const webhookUrl = 'https://cardiacandvascular.app.n8n.cloud/webhook/6f530718-21ae-4a94-84e0-6b63e856b6be/chat';
+  const webhookUrl = 'https://cardiacandvascular.app.n8n.cloud/webhook/5414ea8c-e2d3-422d-a173-51911bc7e781/chat';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -52,49 +52,122 @@ const Chatbot: React.FC = () => {
 
     try {
       console.log('Realizando petición a:', webhookUrl);
+      
+      // Agregamos un estado de carga
+      const loadingMessage: Message = {
+        id: Date.now() + 0.5, // ID fraccionario para mantener el orden
+        text: 'Procesando tu solicitud...',
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      
+      setMessages(prev => [...prev, loadingMessage]);
+
+      const requestBody = { 
+        message: messageToSend,
+        // Agregamos información adicional que podría necesitar el backend
+        metadata: {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+        }
+      };
+
+      console.log('Cuerpo de la solicitud:', JSON.stringify(requestBody, null, 2));
+      
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify({ message: messageToSend }),
+        body: JSON.stringify(requestBody),
       });
 
       console.log('Respuesta recibida, status:', response.status);
       
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Error en la respuesta:', response.status, errorText);
-        throw new Error(`Error ${response.status}: ${errorText}`);
-      }
-
-      const data: ChatResponse = await response.json();
-      console.log('Datos recibidos del backend:', JSON.stringify(data, null, 2));
+      // Eliminar el mensaje de carga
+      setMessages(prev => prev.filter(msg => msg.id !== loadingMessage.id));
       
-      if (!data || typeof data !== 'object') {
-        console.error('Formato de respuesta inválido:', data);
+      // Intentar obtener el contenido de la respuesta de diferentes maneras
+      let responseData;
+      const contentType = response.headers.get('content-type');
+      
+      try {
+        if (contentType && contentType.includes('application/json')) {
+          responseData = await response.json();
+        } else {
+          const text = await response.text();
+          console.log('Respuesta en texto plano:', text);
+          // Intentar parsear como JSON aunque el header no lo indique
+          try {
+            responseData = JSON.parse(text);
+          } catch (e) {
+            responseData = { reply: text };
+          }
+        }
+      } catch (parseError) {
+        console.error('Error al analizar la respuesta:', parseError);
+        throw new Error(`Error al procesar la respuesta del servidor: ${parseError.message}`);
+      }
+      
+      console.log('Datos de respuesta procesados:', responseData);
+      
+      if (!response.ok) {
+        console.error('Error en la respuesta:', response.status, response.statusText, responseData);
+        throw new Error(
+          responseData.message || 
+          responseData.error || 
+          `Error ${response.status}: ${response.statusText}`
+        );
+      }
+      
+      if (!responseData || typeof responseData !== 'object') {
+        console.error('Formato de respuesta inválido:', responseData);
         throw new Error('Formato de respuesta inválido del servidor');
       }
       
       const botMessage: Message = {
         id: Date.now() + 1,
-        text: data.reply || 'Gracias por tu mensaje. Estoy aquí para ayudarte.',
+        text: responseData.reply || responseData.message || 'Gracias por tu mensaje. Estoy aquí para ayudarte.',
         sender: 'bot',
         timestamp: new Date(),
-        suggestedActions: data.suggestedActions
+        suggestedActions: responseData.suggestedActions
       };
 
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages(prev => [...prev.filter(msg => msg.id !== loadingMessage.id), botMessage]);
     } catch (error) {
-      console.error('Error al enviar mensaje:', error);
-      const errorText = error instanceof Error ? error.message : 'Error desconocido';
+      console.error('Error completo:', error);
+      
+      // Mostrar mensaje de error más detallado
+      let errorMessageText = 'Lo siento, hubo un error al procesar tu mensaje.';
+      
+      if (error instanceof Error) {
+        console.error('Mensaje de error:', error.message);
+        console.error('Stack trace:', error.stack);
+        
+        if (error.message.includes('Failed to fetch')) {
+          errorMessageText = 'No se pudo conectar con el servidor. Por favor, verifica tu conexión a internet.';
+        } else if (error.message.includes('500')) {
+          errorMessageText = 'Error interno del servidor. Por favor, inténtalo de nuevo más tarde.';
+        } else if (error.message.includes('404')) {
+          errorMessageText = 'No se encontró el recurso solicitado. Por favor, verifica la configuración.';
+        } else if (error.message) {
+          errorMessageText = `Error: ${error.message}`;
+        }
+      }
+      
       const errorMessage: Message = {
         id: Date.now() + 1,
-        text: `Lo siento, hubo un error al procesar tu mensaje: ${errorText}`,
+        text: errorMessageText,
         sender: 'bot',
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, errorMessage]);
+      
+      // Eliminar el mensaje de carga si existe
+      setMessages(prev => [
+        ...prev.filter(msg => !msg.text.includes('Procesando')),
+        errorMessage
+      ]);
     }
   };
 
