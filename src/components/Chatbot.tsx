@@ -50,22 +50,23 @@ const Chatbot: React.FC = () => {
     setMessages((prev) => [...prev, userMessage]);
     if (!customMessage) setMessage('');
 
-    try {
-      console.log('Realizando petición a:', webhookUrl);
-      
-      // Agregamos un estado de carga
-      const loadingMessage: Message = {
-        id: Date.now() + 0.5, // ID fraccionario para mantener el orden
-        text: 'Procesando tu solicitud...',
-        sender: 'bot',
-        timestamp: new Date(),
-      };
-      
-      setMessages(prev => [...prev, loadingMessage]);
+    // Agregamos un estado de carga
+    const loadingMessage: Message = {
+      id: Date.now() + 0.5, // ID fraccionario para mantener el orden
+      text: 'Procesando tu solicitud...',
+      sender: 'bot',
+      timestamp: new Date(),
+    };
+    
+    setMessages(prev => [...prev, loadingMessage]);
 
+    // Crear un controlador de aborto para el timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos de timeout
+
+    try {
       const requestBody = { 
         message: messageToSend,
-        // Agregamos información adicional que podría necesitar el backend
         metadata: {
           timestamp: new Date().toISOString(),
           userAgent: navigator.userAgent,
@@ -79,48 +80,48 @@ const Chatbot: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+          'Origin': window.location.origin,
         },
         body: JSON.stringify(requestBody),
+        signal: controller.signal,
+        mode: 'cors',
+        credentials: 'same-origin',
+        referrerPolicy: 'no-referrer',
       });
-
+      
+      clearTimeout(timeoutId);
       console.log('Respuesta recibida, status:', response.status);
       
       // Eliminar el mensaje de carga
       setMessages(prev => prev.filter(msg => msg.id !== loadingMessage.id));
       
-      // Intentar obtener el contenido de la respuesta de diferentes maneras
+      // Verificar si la respuesta es exitosa
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error en la respuesta:', response.status, errorText);
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
+      
+      // Intentar obtener el contenido de la respuesta
       let responseData;
       const contentType = response.headers.get('content-type');
       
-      try {
-        if (contentType && contentType.includes('application/json')) {
-          responseData = await response.json();
-        } else {
-          const text = await response.text();
-          console.log('Respuesta en texto plano:', text);
-          // Intentar parsear como JSON aunque el header no lo indique
-          try {
-            responseData = JSON.parse(text);
-          } catch (e) {
-            responseData = { reply: text };
-          }
+      if (contentType && contentType.includes('application/json')) {
+        responseData = await response.json();
+      } else {
+        const text = await response.text();
+        console.log('Respuesta en texto plano:', text);
+        // Intentar parsear como JSON aunque el header no lo indique
+        try {
+          responseData = JSON.parse(text);
+        } catch (e) {
+          responseData = { reply: text };
         }
-      } catch (parseError) {
-        console.error('Error al analizar la respuesta:', parseError);
-        throw new Error(`Error al procesar la respuesta del servidor: ${parseError.message}`);
       }
       
       console.log('Datos de respuesta procesados:', responseData);
       
-      if (!response.ok) {
-        console.error('Error en la respuesta:', response.status, response.statusText, responseData);
-        throw new Error(
-          responseData.message || 
-          responseData.error || 
-          `Error ${response.status}: ${response.statusText}`
-        );
-      }
-      
+      // Verificar si la respuesta tiene el formato esperado
       if (!responseData || typeof responseData !== 'object') {
         console.error('Formato de respuesta inválido:', responseData);
         throw new Error('Formato de respuesta inválido del servidor');
@@ -135,7 +136,8 @@ const Chatbot: React.FC = () => {
       };
 
       setMessages(prev => [...prev.filter(msg => msg.id !== loadingMessage.id), botMessage]);
-    } catch (error) {
+    } catch (error: unknown) {
+      clearTimeout(timeoutId); // Asegurarse de limpiar el timeout en caso de error
       console.error('Error completo:', error);
       
       // Mostrar mensaje de error más detallado
@@ -145,7 +147,9 @@ const Chatbot: React.FC = () => {
         console.error('Mensaje de error:', error.message);
         console.error('Stack trace:', error.stack);
         
-        if (error.message.includes('Failed to fetch')) {
+        if (error.name === 'AbortError') {
+          errorMessageText = 'La solicitud está tardando demasiado. Por favor, inténtalo de nuevo.';
+        } else if (error.message.includes('Failed to fetch')) {
           errorMessageText = 'No se pudo conectar con el servidor. Por favor, verifica tu conexión a internet.';
         } else if (error.message.includes('500')) {
           errorMessageText = 'Error interno del servidor. Por favor, inténtalo de nuevo más tarde.';
