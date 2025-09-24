@@ -87,9 +87,10 @@ const Chatbot: React.FC = () => {
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error('Error al enviar mensaje:', error);
+      const errorText = error instanceof Error ? error.message : 'Error desconocido';
       const errorMessage: Message = {
         id: Date.now() + 1,
-        text: `Lo siento, hubo un error al procesar tu mensaje: ${error.message}`,
+        text: `Lo siento, hubo un error al procesar tu mensaje: ${errorText}`,
         sender: 'bot',
         timestamp: new Date(),
       };
@@ -287,7 +288,7 @@ const Chatbot: React.FC = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleSendMessage}
+            onClick={() => handleSendMessage()}
             disabled={!message.trim()}
             sx={{
               minWidth: 'auto',
