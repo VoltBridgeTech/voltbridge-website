@@ -36,76 +36,67 @@ const Chatbot: React.FC = () => {
     const messageToSend = customMessage || message;
     if (!messageToSend.trim()) return;
 
-    console.log('Enviando mensaje al backend:', messageToSend);
-    console.log('URL del webhook:', webhookUrl);
-
     // Agregar mensaje del usuario
-    const userMessage: Message = {
+    const userMessage = {
       id: Date.now(),
       text: messageToSend,
-      sender: 'user',
+      sender: 'user' as const,
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     if (!customMessage) setMessage('');
 
-    // Agregamos un estado de carga
-    const loadingMessage: Message = {
-      id: Date.now() + 0.5, // ID fraccionario para mantener el orden
+    // Agregar mensaje de carga
+    const loadingMessage = {
+      id: Date.now() + 0.5,
       text: 'Procesando tu solicitud...',
-      sender: 'bot',
+      sender: 'bot' as const,
       timestamp: new Date(),
     };
     
     setMessages(prev => [...prev, loadingMessage]);
 
-    // Crear un controlador de aborto para el timeout
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos de timeout
-
     try {
-      const requestBody = { 
-        message: messageToSend,
-        metadata: {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent,
-        }
-      };
-
-      console.log('Cuerpo de la solicitud:', JSON.stringify(requestBody, null, 2));
+      console.log('Enviando mensaje al backend:', messageToSend);
+      console.log('URL del webhook:', webhookUrl);
       
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos de timeout
+
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Origin': window.location.origin,
         },
-        body: JSON.stringify(requestBody),
-        signal: controller.signal,
-        mode: 'cors',
-        credentials: 'same-origin',
-        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({ 
+          message: messageToSend,
+          chatKey: 'website-chat',
+          metadata: {
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+          }
+        }),
+        signal: controller.signal
       });
-      
+
       clearTimeout(timeoutId);
       console.log('Respuesta recibida, status:', response.status);
       
-      // Eliminar el mensaje de carga
+      // Eliminar mensaje de carga
       setMessages(prev => prev.filter(msg => msg.id !== loadingMessage.id));
-      
-      // Verificar si la respuesta es exitosa
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error en la respuesta:', response.status, errorText);
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
-      
-      // Intentar obtener el contenido de la respuesta
-      let responseData;
+
+      // Obtener el tipo de contenido de la respuesta
       const contentType = response.headers.get('content-type');
-      
+      let responseData;
+
       if (contentType && contentType.includes('application/json')) {
         responseData = await response.json();
       } else {
@@ -135,9 +126,8 @@ const Chatbot: React.FC = () => {
         suggestedActions: responseData.suggestedActions
       };
 
-      setMessages(prev => [...prev.filter(msg => msg.id !== loadingMessage.id), botMessage]);
+      setMessages(prev => [...prev, botMessage]);
     } catch (error: unknown) {
-      clearTimeout(timeoutId); // Asegurarse de limpiar el timeout en caso de error
       console.error('Error completo:', error);
       
       // Mostrar mensaje de error más detallado
