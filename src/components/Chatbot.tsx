@@ -9,6 +9,12 @@ interface Message {
   text: string;
   sender: 'user' | 'bot';
   timestamp: Date;
+  suggestedActions?: string[];
+}
+
+interface ChatResponse {
+  reply: string;
+  suggestedActions?: string[];
 }
 
 const Chatbot: React.FC = () => {
@@ -26,42 +32,56 @@ const Chatbot: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSendMessage = async () => {
-    if (!message.trim()) return;
+  const handleSendMessage = async (customMessage?: string) => {
+    const messageToSend = customMessage || message;
+    if (!messageToSend.trim()) return;
+
+    console.log('Enviando mensaje al backend:', messageToSend);
+    console.log('URL del webhook:', webhookUrl);
 
     // Agregar mensaje del usuario
     const userMessage: Message = {
       id: Date.now(),
-      text: message,
+      text: messageToSend,
       sender: 'user',
       timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    const currentMessage = message;
-    setMessage('');
+    if (!customMessage) setMessage('');
 
     try {
+      console.log('Realizando petición a:', webhookUrl);
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: currentMessage }),
+        body: JSON.stringify({ message: messageToSend }),
       });
 
+      console.log('Respuesta recibida, status:', response.status);
+      
       if (!response.ok) {
-        throw new Error('Error al enviar el mensaje');
+        const errorText = await response.text();
+        console.error('Error en la respuesta:', response.status, errorText);
+        throw new Error(`Error ${response.status}: ${errorText}`);
       }
 
-      const data = await response.json();
+      const data: ChatResponse = await response.json();
+      console.log('Datos recibidos del backend:', JSON.stringify(data, null, 2));
       
-      // Ajusta esta parte según la estructura de respuesta de tu webhook
+      if (!data || typeof data !== 'object') {
+        console.error('Formato de respuesta inválido:', data);
+        throw new Error('Formato de respuesta inválido del servidor');
+      }
+      
       const botMessage: Message = {
         id: Date.now() + 1,
-        text: data.response || 'Gracias por tu mensaje. Estoy aquí para ayudarte.',
+        text: data.reply || 'Gracias por tu mensaje. Estoy aquí para ayudarte.',
         sender: 'bot',
         timestamp: new Date(),
+        suggestedActions: data.suggestedActions
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -69,7 +89,7 @@ const Chatbot: React.FC = () => {
       console.error('Error al enviar mensaje:', error);
       const errorMessage: Message = {
         id: Date.now() + 1,
-        text: 'Lo siento, hubo un error al procesar tu mensaje. Por favor, inténtalo de nuevo más tarde.',
+        text: `Lo siento, hubo un error al procesar tu mensaje: ${error.message}`,
         sender: 'bot',
         timestamp: new Date(),
       };
@@ -193,13 +213,38 @@ const Chatbot: React.FC = () => {
                   borderTopRightRadius: msg.sender === 'user' ? 2 : 12,
                 }}
               >
-                <Typography variant="body2">{msg.text}</Typography>
+                <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>{msg.text}</Typography>
+                {msg.suggestedActions && msg.suggestedActions.length > 0 && (
+                  <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                    {msg.suggestedActions.map((action, index) => (
+                      <Button
+                        key={index}
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handleSendMessage(action)}
+                        sx={{
+                          fontSize: '0.7rem',
+                          textTransform: 'none',
+                          borderRadius: 4,
+                          borderColor: 'primary.main',
+                          color: 'primary.main',
+                          '&:hover': {
+                            backgroundColor: 'action.hover',
+                            borderColor: 'primary.dark',
+                          },
+                        }}
+                      >
+                        {action}
+                      </Button>
+                    ))}
+                  </Box>
+                )}
                 <Typography
                   variant="caption"
                   sx={{
                     display: 'block',
                     textAlign: 'right',
-                    mt: 0.5,
+                    mt: 1,
                     color: msg.sender === 'user' ? 'rgba(255, 255, 255, 0.7)' : 'text.secondary',
                     fontSize: '0.6rem',
                   }}
