@@ -6,52 +6,34 @@ const ICORegistration = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Navigation Breadcrumb */}
       <nav className="mb-6">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-vb-electric-1/80">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-[#0D76FA]/80">
           <li className="flex items-center">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
           </li>
-          <li className="text-vb-electric-1/50">/</li>
+          <li className="text-[#0D76FA]/50">/</li>
           <li className="text-white font-medium">ICO Registration</li>
         </ol>
       </nav>
 
-      {/* Hero Section with Background Image */}
-      <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12 shadow-xl">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/compliance/web_banner.jpeg" 
-            alt="ICO Registration"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              console.error('Error loading image:', target.src);
-              target.src = 'https://via.placeholder.com/1920x500/1a1a2e/ffffff?text=VoltBridge+ICO+Registration';
-            }}
-          />
+      {/* Hero tarjeta (sin imagen), coherente con el resto del sitio */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[#07070D]/88 px-8 py-12 text-center shadow-[0_40px_130px_-80px_rgba(0,0,0,0.85)] backdrop-blur-xl mb-12"
+      >
+        <div className="absolute inset-0 opacity-60" style={{ background: 'radial-gradient(60% 60% at 20% 15%, rgba(13,118,250,0.18), transparent 70%), radial-gradient(70% 70% at 80% 85%, rgba(177,0,205,0.12), transparent 75%)' }} />
+        <div className="relative mx-auto max-w-3xl space-y-4">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white">ICO Registration</h1>
+          <p className="text-[#0D76FA]">Information about our ICO registration</p>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-vb-navy/90 via-vb-navy/70 to-vb-electric-1/60 z-10"></div>
-        <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-              ICO Registration
-            </h1>
-            <p className="text-xl text-vb-electric-2 max-w-2xl">
-              Information about our ICO registration
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      </motion.section>
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto mb-20">
         <div className="bg-vb-dark-3/50 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-vb-electric-1/20">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-vb-electric-1 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0D76FA] mb-4">
               ICO Registration Document
             </h2>
             <p className="text-lg text-vb-gray-100 max-w-3xl mx-auto">
@@ -61,7 +43,7 @@ const ICORegistration = () => {
           
           <div className="bg-vb-dark-2/50 border border-vb-electric-1/20 rounded-xl p-6 md:p-8 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-vb-electric-1/10 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vb-electric-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#0D76FA]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
@@ -89,7 +71,7 @@ const ICORegistration = () => {
           <div className="mt-12 text-center text-vb-gray-300">
             <p>
               Having trouble downloading? Email us at{' '}
-              <a href="mailto:compliance@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">
+              <a href="mailto:compliance@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">
                 compliance@voltbridge.co.uk
               </a>
             </p>

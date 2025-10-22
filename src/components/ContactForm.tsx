@@ -197,7 +197,7 @@ const ContactForm = () => {
             </p>
             <Button 
               onClick={() => setIsSuccess(false)}
-              className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white font-semibold py-6 px-8 rounded-xl transition-all duration-300 group"
+              className="bg-gradient-to-r from-[#0D76FA] to-[#b100cd] hover:opacity-90 text-white font-semibold py-6 px-8 rounded-xl transition-all duration-300 group"
             >
               Submit Another Request
               <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -226,19 +226,19 @@ const ContactForm = () => {
             <div className="flex items-center">
               <div className={`flex items-center justify-center w-12 h-12 rounded-full text-lg font-semibold transition-all duration-300 ${
                 step >= 1 
-                  ? 'bg-gradient-to-br from-vb-electric-1 to-vb-electric-2 text-white shadow-lg shadow-vb-electric-1/30' 
+                  ? 'bg-gradient-to-br from-[#0D76FA] to-[#b100cd] text-white shadow-lg shadow-[#0D76FA]/30' 
                   : 'bg-vb-dark-3 text-white/40 border border-white/10'
               }`}>
                 1
               </div>
               <div className={`w-32 h-1 transition-all duration-500 ${
                 step >= 2 
-                  ? 'bg-gradient-to-r from-vb-electric-1 to-vb-electric-2' 
+                  ? 'bg-gradient-to-r from-[#0D76FA] to-[#b100cd]' 
                   : 'bg-vb-dark-3'
               }`}></div>
               <div className={`flex items-center justify-center w-12 h-12 rounded-full text-lg font-semibold transition-all duration-300 ${
                 step >= 2 
-                  ? 'bg-gradient-to-br from-vb-electric-1 to-vb-electric-2 text-white shadow-lg shadow-vb-electric-1/30' 
+                  ? 'bg-gradient-to-br from-[#0D76FA] to-[#b100cd] text-white shadow-lg shadow-[#0D76FA]/30' 
                   : 'bg-vb-dark-3 text-white/40 border border-white/10'
               }`}>
                 2
@@ -247,15 +247,16 @@ const ContactForm = () => {
           </div>
         </motion.div>
 
-        <div className="bg-vb-dark-2/90 backdrop-blur-sm rounded-2xl border border-vb-electric-1/10 shadow-xl overflow-hidden">
-          <div className="p-6 sm:p-8">
+        <div className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[#07070D]/88 backdrop-blur-xl shadow-[0_40px_130px_-80px_rgba(0,0,0,0.85)]">
+          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(60% 60% at 20% 15%, rgba(13,118,250,0.18), transparent 70%), radial-gradient(70% 70% at 80% 85%, rgba(177,0,205,0.12), transparent 75%)' }} />
+          <div className="relative p-6 sm:p-8">
             <div className="text-center mb-6">
-              <p className="text-sm font-medium text-vb-electric-1 mb-1">
+              <p className="text-sm font-medium text-[#0D76FA] mb-1">
                 Step {step} of 2
               </p>
               <div className="h-1 bg-vb-dark-3 rounded-full overflow-hidden mt-2">
                 <div 
-                  className="h-full bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] transition-all duration-500"
                   style={{ width: step === 1 ? '50%' : '100%' }}
                 ></div>
               </div>
@@ -280,7 +281,7 @@ const ContactForm = () => {
                       value={formData.postcode}
                       onChange={(e) => handleInputChange('postcode', e.target.value)}
                       placeholder="e.g. SW1A 1AA"
-                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                     />
                   </motion.div>
 
@@ -296,7 +297,7 @@ const ContactForm = () => {
                         value={formData.monthlySpend}
                         onChange={(e) => handleInputChange('monthlySpend', e.target.value)}
                         placeholder="e.g. 150"
-                        className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 pl-10 pr-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                        className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 pl-10 pr-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                       />
                     </div>
                     <p className="text-xs text-white/60 mt-1">
@@ -332,7 +333,7 @@ const ContactForm = () => {
                     <Button
                       disabled={!isStep1Valid()}
                       onClick={() => setStep(2)}
-                      className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                      className="bg-gradient-to-r from-[#0D76FA] to-[#b100cd] hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300"
                     >
                       Continue to Step 2
                       <ArrowRight className="ml-2 h-5 w-5" />
@@ -358,7 +359,7 @@ const ContactForm = () => {
                       value={formData.firstName}
                       onChange={(e) => handleInputChange('firstName', e.target.value)}
                       placeholder="Your first name"
-                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                     />
                   </motion.div>
 
@@ -372,7 +373,7 @@ const ContactForm = () => {
                       value={formData.lastName}
                       onChange={(e) => handleInputChange('lastName', e.target.value)}
                       placeholder="Your last name"
-                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                     />
                   </motion.div>
 
@@ -386,7 +387,7 @@ const ContactForm = () => {
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       placeholder="your@email.com"
-                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                     />
                   </motion.div>
 
@@ -400,7 +401,7 @@ const ContactForm = () => {
                       value={formData.whatsapp}
                       onChange={(e) => handleInputChange('whatsapp', e.target.value)}
                       placeholder="Your WhatsApp number"
-                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-vb-electric-1/50 focus:border-vb-electric-1/30"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                     />
                   </motion.div>
 
@@ -416,7 +417,7 @@ const ContactForm = () => {
                     <Button
                       disabled={!isStep2Valid()}
                       onClick={handleSubmit}
-                      className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                      className="bg-gradient-to-r from-[#0D76FA] to-[#b100cd] hover:opacity-90 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300"
                     >
                       {isSubmitting ? (
                         <>
@@ -436,7 +437,7 @@ const ContactForm = () => {
           <div className="mt-8 pt-6 border-t border-white/5">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center space-x-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-vb-electric-1/10 text-vb-electric-1">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0D76FA]/10 text-[#0D76FA]">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>

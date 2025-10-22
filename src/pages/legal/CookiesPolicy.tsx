@@ -6,11 +6,11 @@ const CookiesPolicy = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Navigation Breadcrumb */}
       <nav className="mb-6">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-vb-electric-1/80">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-[#0D76FA]/80">
           <li className="flex items-center">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
           </li>
-          <li className="text-vb-electric-1/50">/</li>
+          <li className="text-[#0D76FA]/50">/</li>
           <li className="text-white font-medium">Cookie Policy</li>
         </ol>
       </nav>
@@ -72,37 +72,37 @@ const CookiesPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">1. What Are Cookies?</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">1. What Are Cookies?</h2>
             <p className="mb-4">
               Cookies are small text files that are placed on your device (computer, tablet, or mobile) when you visit a website. They allow the website to recognise your device and store certain information about your preferences or past actions.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">2. Types of Cookies We Use</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">2. Types of Cookies We Use</h2>
             <p className="mb-4">
               We use the following categories of cookies on our Site:
             </p>
-            <h3 className="text-xl font-semibold mt-4 mb-2 text-vb-electric-1">Strictly Necessary Cookies</h3>
+            <h3 className="text-xl font-semibold mt-4 mb-2 text-[#0D76FA]">Strictly Necessary Cookies</h3>
             <p className="mb-4">
               These cookies are essential for the proper functioning of the Site (e.g., enabling navigation, security, and access to secure areas). Without these cookies, some services cannot be provided.
             </p>
-            <h3 className="text-xl font-semibold mt-4 mb-2 text-vb-electric-1">Performance & Analytics Cookies</h3>
+            <h3 className="text-xl font-semibold mt-4 mb-2 text-[#0D76FA]">Performance & Analytics Cookies</h3>
             <p className="mb-4">
               These cookies collect information about how visitors use the Site, such as which pages are visited most often. We use this data to improve Site functionality and user experience.
             </p>
-            <h3 className="text-xl font-semibold mt-4 mb-2 text-vb-electric-1">Functional Cookies</h3>
+            <h3 className="text-xl font-semibold mt-4 mb-2 text-[#0D76FA]">Functional Cookies</h3>
             <p className="mb-4">
               These cookies enable the Site to remember choices you make (such as language or region) and provide enhanced, personalised features.
             </p>
-            <h3 className="text-xl font-semibold mt-4 mb-2 text-vb-electric-1">Advertising & Targeting Cookies</h3>
+            <h3 className="text-xl font-semibold mt-4 mb-2 text-[#0D76FA]">Advertising & Targeting Cookies</h3>
             <p className="mb-4">
               These cookies may be used to deliver relevant adverts to you and measure the effectiveness of advertising campaigns. They may also be placed by third parties (such as Google or LinkedIn).
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">3. Third-Party Cookies</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">3. Third-Party Cookies</h2>
             <p className="mb-4">
               Some cookies on our Site are placed by third-party service providers, including but not limited to:<br/>
               • Google Analytics (for performance and traffic analysis).<br/>
@@ -112,7 +112,7 @@ const CookiesPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">4. How We Use Cookies</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">4. How We Use Cookies</h2>
             <p className="mb-4">
               We use cookies to:<br/>
               • Operate and secure the Site.<br/>
@@ -124,7 +124,7 @@ const CookiesPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">5. Your Choices</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">5. Your Choices</h2>
             <p className="mb-4">
               When you first visit our Site, you will be presented with a cookie banner asking for your consent to non-essential cookies. You can:<br/>
               • Accept all cookies.<br/>
@@ -136,14 +136,14 @@ const CookiesPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">6. Legal Basis for Processing</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">6. Legal Basis for Processing</h2>
             <p className="mb-4">
               The use of strictly necessary cookies is based on our legitimate interest in operating a secure and functional website. For all other cookies, we rely on your consent under the Privacy and Electronic Communications Regulations (PECR) and UK GDPR.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">7. Retention of Cookies</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">7. Retention of Cookies</h2>
             <p className="mb-4">
               Cookies may remain on your device for different periods:<br/>
               • Session cookies are deleted automatically once you close your browser.<br/>
@@ -152,17 +152,17 @@ const CookiesPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">8. Changes to This Policy</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">8. Changes to This Policy</h2>
             <p className="mb-4">
               We may update this Cookie Policy from time to time. Updates will be posted on this page with the "Last Updated" date revised.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-vb-electric-1">9. Contact Us</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">9. Contact Us</h2>
             <p className="mb-4">
               If you have any questions regarding this Cookie Policy, please contact us:<br/>
-              📧 Email: <a href="mailto:legal@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">legal@voltbridge.co.uk</a><br/>
+              📧 Email: <a href="mailto:legal@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">legal@voltbridge.co.uk</a><br/>
               📍 Address: VoltBridge UK LTD, Flat 1, 67 Kingsland Road, London E2 8FN, United Kingdom
             </p>
           </section>

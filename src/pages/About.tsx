@@ -50,40 +50,19 @@ const About = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      {/* Hero Section */}
-      <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-16 shadow-xl">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/compliance/web_banner.jpeg" 
-            alt="About VoltBridge"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              console.error('Error loading image:', target.src);
-              target.src = 'https://via.placeholder.com/1920x500/1a1a2e/ffffff?text=VoltBridge+About+Us';
-            }}
-          />
+      {/* Hero tarjeta (sin imagen) */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[#07070D]/88 px-8 py-12 text-center shadow-[0_40px_130px_-80px_rgba(0,0,0,0.85)] backdrop-blur-xl mb-16"
+      >
+        <div className="absolute inset-0 opacity-60" style={{ background: 'radial-gradient(60% 60% at 20% 15%, rgba(13,118,250,0.18), transparent 70%), radial-gradient(70% 70% at 80% 85%, rgba(177,0,205,0.12), transparent 75%)' }} />
+        <div className="relative mx-auto max-w-3xl space-y-4">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white">About VoltBridge</h1>
+          <p className="text-[#0D76FA]">Pioneering the future of cross-border financial solutions</p>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-vb-navy/90 via-vb-navy/70 to-vb-electric-1/60 z-10"></div>
-        <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-16 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-4"
-          >
-            About VoltBridge
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-vb-electric-2 max-w-2xl"
-          >
-            Pioneering the future of cross-border financial solutions
-          </motion.p>
-        </div>
-      </div>
+      </motion.section>
 
       {/* Our Story */}
       <section className="mb-20">
@@ -117,21 +96,21 @@ const About = () => {
         <motion.div
           className="bg-gradient-to-r from-vb-electric-1/20 to-vb-navy/50 rounded-2xl p-8 border border-vb-electric-1/30"
         >
-          <h3 className="text-2xl font-bold text-vb-electric-1 mb-4">Trust to Choose, Savings to Grow</h3>
+          <h3 className="text-2xl font-bold text-[#0D76FA] mb-4">Trust to Choose, Savings to Grow</h3>
           <p className="text-lg text-gray-300 mb-4">
             At VoltBridge, we empower businesses to pay the right price for their energy through:
           </p>
           <ul className="text-left text-gray-300 space-y-2 max-w-xl mx-auto">
             <li className="flex items-start">
-              <span className="text-vb-electric-1 mr-2">✓</span>
+              <span className="text-[#0D76FA] mr-2">✓</span>
               <span>Comprehensive market analysis comparing 50+ suppliers</span>
             </li>
             <li className="flex items-start">
-              <span className="text-vb-electric-1 mr-2">✓</span>
+              <span className="text-[#0D76FA] mr-2">✓</span>
               <span>Streamlined digital onboarding with 80% faster contract setup</span>
             </li>
             <li className="flex items-start">
-              <span className="text-vb-electric-1 mr-2">✓</span>
+              <span className="text-[#0D76FA] mr-2">✓</span>
               <span>Dedicated account managers providing personalised support</span>
             </li>
           </ul>
@@ -148,7 +127,7 @@ const About = () => {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-vb-dark-2 rounded-xl p-6 border border-vb-dark-3">
-            <h3 className="text-xl font-bold text-vb-electric-1 mb-4">Mission</h3>
+            <h3 className="text-xl font-bold text-[#0D76FA] mb-4">Mission</h3>
             <p className="text-gray-400 mb-3">
               To help businesses reduce energy costs and make confident decisions through transparent, technology-driven services.
             </p>
@@ -157,7 +136,7 @@ const About = () => {
             </p>
           </div>
           <div className="bg-vb-dark-2 rounded-xl p-6 border border-vb-dark-3">
-            <h3 className="text-xl font-bold text-vb-electric-1 mb-4">Vision</h3>
+            <h3 className="text-xl font-bold text-[#0D76FA] mb-4">Vision</h3>
             <p className="text-gray-400 mb-3">
               To become the UK's leading energy broker, recognised for transparency, trustworthiness, and digital solutions that simplify business operations.
             </p>

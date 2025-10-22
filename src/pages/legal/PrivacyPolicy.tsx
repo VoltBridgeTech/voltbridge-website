@@ -6,46 +6,28 @@ const PrivacyPolicy = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Navigation Breadcrumb */}
       <nav className="mb-6">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-vb-electric-1/80">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-[#0D76FA]/80">
           <li className="flex items-center">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
           </li>
-          <li className="text-vb-electric-1/50">/</li>
+          <li className="text-[#0D76FA]/50">/</li>
           <li className="text-white font-medium">Privacy Policy</li>
         </ol>
       </nav>
 
-      {/* Hero Section with Background Image */}
-      <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12 shadow-xl">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/compliance/web_banner.jpeg" 
-            alt="Privacy Policy"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              console.error('Error loading image:', target.src);
-              target.src = 'https://via.placeholder.com/1920x500/1a1a2e/ffffff?text=VoltBridge+Privacy+Policy';
-            }}
-          />
+      {/* Hero tarjeta (sin imagen), coherente con el resto del sitio) */}
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[#07070D]/88 px-8 py-12 text-center shadow-[0_40px_130px_-80px_rgba(0,0,0,0.85)] backdrop-blur-xl mb-12"
+      >
+        <div className="absolute inset-0 opacity-60" style={{ background: 'radial-gradient(60% 60% at 20% 15%, rgba(13,118,250,0.18), transparent 70%), radial-gradient(70% 70% at 80% 85%, rgba(177,0,205,0.12), transparent 75%)' }} />
+        <div className="relative mx-auto max-w-3xl space-y-4">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white">Privacy Policy (UK GDPR)</h1>
+          <p className="text-[#0D76FA]">Your privacy is important to us</p>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-vb-navy/90 via-vb-navy/70 to-vb-electric-1/60 z-10"></div>
-        <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-              Privacy Policy (UK GDPR)
-            </h1>
-            <p className="text-xl text-vb-electric-2 max-w-2xl">
-              Your privacy is important to us
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      </motion.section>
 
       {/* Main Content */}
       <motion.div 
@@ -59,7 +41,7 @@ const PrivacyPolicy = () => {
             Privacy Policy (UK GDPR)
           </h1>
           <div className="h-1 w-20 bg-vb-electric-1 rounded-full mb-6"></div>
-          <p className="text-vb-electric-2 text-lg">
+          <p className="text-[#0D76FA] text-lg">
             Last Updated: September 10th 2025
           </p>
         </div>
@@ -69,20 +51,20 @@ const PrivacyPolicy = () => {
             VoltBridge Ltd ("VoltBridge", "we", "us", "our") is committed to protecting your personal data and respecting your privacy.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">1. Who we are</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">1. Who we are</h2>
           
           <div className="bg-vb-dark-3 p-6 rounded-lg mb-8">
             <ul className="space-y-3">
               <li className="flex">
-                <span className="text-vb-electric-1 mr-2">•</span>
+                <span className="text-[#0D76FA] mr-2">•</span>
                 <span><span className="font-medium">Controller:</span> VoltBridge Ltd (Company No. 16574977)</span>
               </li>
               <li className="flex">
-                <span className="text-vb-electric-1 mr-2">•</span>
+                <span className="text-[#0D76FA] mr-2">•</span>
                 <span><span className="font-medium">ICO Registration:</span> ZB968646</span>
               </li>
               <li className="flex">
-                <span className="text-vb-electric-1 mr-2">•</span>
+                <span className="text-[#0D76FA] mr-2">•</span>
                 <span>
                   <span className="font-medium">Registered Office:</span> Voltbridge Ltd<br />
                   Flat 1, 67 Kingsland Road<br />
@@ -91,13 +73,13 @@ const PrivacyPolicy = () => {
                 </span>
               </li>
               <li className="flex">
-                <span className="text-vb-electric-1 mr-2">•</span>
-                <span><span className="font-medium">Contact for privacy matters:</span> <a href="mailto:privacy@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">privacy@voltbridge.co.uk</a></span>
+                <span className="text-[#0D76FA] mr-2">•</span>
+                <span><span className="font-medium">Contact for privacy matters:</span> <a href="mailto:privacy@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">privacy@voltbridge.co.uk</a></span>
               </li>
             </ul>
           </div>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">2. What data we collect</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">2. What data we collect</h2>
           <p className="text-lg leading-relaxed">
             We may collect and process the following categories of personal data (primarily B2B):
           </p>
@@ -113,30 +95,30 @@ const PrivacyPolicy = () => {
             We may collect data directly from you, from your colleagues/representatives, from public sources (e.g., Companies House), from brokers/partners you authorise, and from suppliers in connection with quotes/contracts.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">3. Purposes & lawful bases</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">3. Purposes & lawful bases</h2>
           <p className="text-lg leading-relaxed">
             We use your data for:
           </p>
           <ol className="list-decimal pl-6 space-y-4 mt-4">
             <li>
               <span className="font-medium">Providing quotes and brokering energy contracts with licensed suppliers.</span><br />
-              <span className="text-vb-electric-2">Lawful bases:</span> Contract, Legitimate Interests (to respond to B2B enquiries and source competitive rates).
+              <span className="text-[#0D76FA]">Lawful bases:</span> Contract, Legitimate Interests (to respond to B2B enquiries and source competitive rates).
             </li>
             <li>
               <span className="font-medium">Customer service, account management & complaint handling.</span><br />
-              <span className="text-vb-electric-2">Lawful bases:</span> Contract, Legitimate Interests, Legal Obligation.
+              <span className="text-[#0D76FA]">Lawful bases:</span> Contract, Legitimate Interests, Legal Obligation.
             </li>
             <li>
               <span className="font-medium">Business communications & B2B marketing about similar services (you can opt out anytime).</span><br />
-              <span className="text-vb-electric-2">Lawful bases:</span> Legitimate Interests and PECR compliance for corporate subscribers.
+              <span className="text-[#0D76FA]">Lawful bases:</span> Legitimate Interests and PECR compliance for corporate subscribers.
             </li>
             <li>
               <span className="font-medium">Security, fraud prevention, audit & legal compliance (including Ombudsman, ADR, and regulatory requests).</span><br />
-              <span className="text-vb-electric-2">Lawful bases:</span> Legal Obligation, Legitimate Interests.
+              <span className="text-[#0D76FA]">Lawful bases:</span> Legal Obligation, Legitimate Interests.
             </li>
             <li>
               <span className="font-medium">Analytics and service improvement (including training our human team and AI assistants).</span><br />
-              <span className="text-vb-electric-2">Lawful bases:</span> Legitimate Interests.
+              <span className="text-[#0D76FA]">Lawful bases:</span> Legitimate Interests.
             </li>
           </ol>
           
@@ -144,7 +126,7 @@ const PrivacyPolicy = () => {
             Where we rely on consent (e.g., certain cookies or optional marketing), you can withdraw it at any time.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">4. Sharing your data</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">4. Sharing your data</h2>
           <p className="text-lg leading-relaxed">
             We share data where necessary with:
           </p>
@@ -159,12 +141,12 @@ const PrivacyPolicy = () => {
             We do not sell your personal data.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">5. International transfers</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">5. International transfers</h2>
           <p className="text-lg leading-relaxed">
             Some providers may process data outside the UK. Where this occurs, we use appropriate safeguards (e.g., the UK International Data Transfer Agreement (IDTA), UK Addendum to the EU SCCs, or an adequacy decision) to protect your rights.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">6. Retention</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">6. Retention</h2>
           <p className="text-lg leading-relaxed">
             We keep data only as long as necessary for the purposes above:
           </p>
@@ -179,7 +161,7 @@ const PrivacyPolicy = () => {
             We may retain data longer if required by law, to resolve disputes, or enforce agreements.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">7. Your rights</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">7. Your rights</h2>
           <p className="text-lg leading-relaxed">
             Under the UK GDPR you have rights to:
           </p>
@@ -193,18 +175,18 @@ const PrivacyPolicy = () => {
           </ul>
           
           <p className="text-lg leading-relaxed mt-6">
-            To exercise your rights, contact <a href="mailto:privacy@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">privacy@voltbridge.co.uk</a>. We may need to verify your identity. You also have the right to complain to the Information Commissioner's Office (ICO) if you are unhappy with how we handle your data.
+            To exercise your rights, contact <a href="mailto:privacy@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">privacy@voltbridge.co.uk</a>. We may need to verify your identity. You also have the right to complain to the Information Commissioner's Office (ICO) if you are unhappy with how we handle your data.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-vb-electric-1">8. Security</h2>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-[#0D76FA]">8. Security</h2>
           <p className="text-lg leading-relaxed">
             We implement technical and organisational measures appropriate to the risk, including access controls, encryption in transit where supported, least‑privilege permissions, logging, and staff training.
           </p>
 
           <div className="mt-12 pt-8 border-t border-vb-dark-3">
-            <p className="text-vb-electric-1/80 text-sm">
+            <p className="text-[#0D76FA]/80 text-sm">
               If you have any questions about this privacy policy, please contact us at{' '}
-              <a href="mailto:privacy@voltbridge.co.uk" className="text-vb-electric-1 hover:underline">
+              <a href="mailto:privacy@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">
                 privacy@voltbridge.co.uk
               </a>
             </p>

@@ -1,233 +1,123 @@
-import { Button } from "@/components/ui/button";
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+const navLinks = [
+  { label: 'Services', href: '/services' },
+  { label: 'About Us', href: '/about' },
+];
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
-
-  const scrollToForm = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const currentPath = window.location.pathname;
-    if (currentPath !== '/contact') {
-      navigate('/contact');
-      // Small delay to ensure the page has loaded before scrolling
-      setTimeout(() => {
-        document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-    }
-    setMobileMenuOpen(false);
-  };
-
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
-  const [isMobileMoreOpen, setIsMobileMoreOpen] = useState(false);
-
-  const moreItems = [
-    { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Complaints Policy', href: '/complaints-policy' },
-    { name: 'ICO Registration', href: '/ico-registration' },
-  ];
-
-  const navLinks = [
-    { name: 'About Us', href: '/about' },
-    { 
-      name: 'More', 
-      href: '#',
-      items: moreItems
-    },
-    { name: 'Blog', href: '/blog', className: 'md:hidden' },
-  ];
-  
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const handleContact = () => {
+    navigate('/contact');
+    setMobileOpen(false);
+    setTimeout(() => {
+      document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  };
+
   return (
-    <motion.header 
-      initial={{ y: -100, opacity: 0 }}
+    <motion.header
+      initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'py-2 bg-vb-navy/95 shadow-glow-md backdrop-blur-md border-b border-vb-electric-1/20' 
-          : 'py-4 bg-gradient-to-b from-vb-navy/95 to-transparent backdrop-blur-sm border-b border-transparent'
+      className={`fixed inset-x-0 top-0 z-40 flex justify-center px-4 transition-all duration-300 ${
+        scrolled ? 'backdrop-blur-xl' : 'backdrop-blur-0'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18 md:h-20">
-          <motion.div 
-            className="flex items-center"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Link to="/" className="flex-shrink-0">
-              <img 
-                src="/logo_sinfondo.png" 
-                alt="VoltBridge Logo" 
-                className={`transition-all duration-300 ${
-                  scrolled ? 'h-16' : 'h-20'
-                } w-auto drop-shadow-glow`} 
-              />
-            </Link>
-          </motion.div>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 relative">
-            {navLinks.map((link) => (
-              <div key={link.name} className="relative group">
-                {link.items ? (
-                  <button
-                    className={`px-4 py-2 text-sm font-medium text-white/90 hover:text-vb-electric-1 transition-colors duration-200 flex items-center ${
-                      link.items ? 'pr-6' : ''
+      <div className="relative w-full max-w-6xl">
+        <div
+          className={`relative mt-2 flex items-center justify-between rounded-full border border-white/10 bg-[#090912]/80 px-5 py-3 text-white shadow-[0_25px_80px_-40px_rgba(0,0,0,0.65)] transition-all duration-500 ${
+            scrolled ? 'shadow-[0_20px_70px_-40px_rgba(0,0,0,0.7)]' : ''
+          }`}
+        >
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/isotipo_SF.png" alt="VoltBridge isotipo" className="h-8 w-auto" />
+            <img src="/logotipo_sf.png" alt="VoltBridge logotipo" className="hidden h-20 w-auto object-contain sm:inline" />
+          </Link>
+
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((item) => {
+              const active = location.pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={`relative text-sm font-medium uppercase tracking-[0.3em] transition duration-300 ${
+                    active ? 'text-white' : 'text-white/45 hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute -bottom-2 left-0 h-[2px] w-full origin-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] transition-transform duration-300 ${
+                      active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
-                    onClick={() => setIsMoreOpen(!isMoreOpen)}
-                  >
-                    {link.name}
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                ) : (
-                  <Link
-                    to={link.href}
-                    className={`px-4 py-2 text-sm font-medium text-white/90 hover:text-vb-electric-1 transition-colors duration-200 flex items-center ${
-                      link.className || ''
-                    }`}
-                    onClick={() => mobileMenuOpen && setMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                )}
-                {link.items && isMoreOpen && (
-                  <div className="absolute left-0 mt-2 w-64 rounded-lg shadow-lg bg-vb-navy/95 backdrop-blur-md border border-vb-electric-1/20 overflow-hidden z-50">
-                    {link.items.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className="block px-4 py-3 text-sm text-white/90 hover:bg-vb-electric-1/10 hover:text-vb-electric-1 transition-colors"
-                        onClick={() => {
-                          setIsMoreOpen(false);
-                          setMobileMenuOpen(false);
-                        }}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <Button 
-              onClick={scrollToForm}
-              className="ml-4 bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:from-vb-electric-2 hover:to-vb-electric-1 text-vb-navy font-semibold shadow-lg shadow-vb-electric-1/20 hover:shadow-vb-electric-1/30 transition-all duration-300 transform hover:-translate-y-0.5"
-            >
-              Get Free Quote
-            </Button>
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <Button 
-              onClick={scrollToForm}
-              className="mr-2 bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 hover:from-vb-electric-2 hover:to-vb-electric-1 text-vb-navy font-semibold text-sm py-1.5 px-3"
-            >
-              Get Quote
-            </Button>
+          <div className="flex items-center gap-3">
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-white hover:bg-vb-dark-2 focus:outline-none focus:ring-2 focus:ring-vb-electric-1/50"
-              aria-label="Toggle menu"
+              onClick={handleContact}
+              className="hidden rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-5 py-2 text-sm font-semibold text-white shadow-[0_20px_60px_-30px_rgba(177,0,205,0.6)] transition hover:scale-105 sm:inline-flex"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              Get a free quote
+            </button>
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 md:hidden"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-label="Abrir menú"
+            >
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navLinks.map((link) => (
-                <div key={link.name}>
-                  {link.items ? (
-                    <button
-                      className={`w-full text-left px-4 py-3 text-base font-medium text-white/90 hover:text-vb-electric-1 transition-colors ${
-                        link.className || ''
-                      }`}
-                      onClick={() => setIsMobileMoreOpen(!isMobileMoreOpen)}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span>{link.name}</span>
-                        <svg 
-                          className={`w-4 h-4 transition-transform duration-200 ${isMobileMoreOpen ? 'transform rotate-180' : ''}`} 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </button>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className={`block px-4 py-3 text-base font-medium text-white/90 hover:text-vb-electric-1 transition-colors ${
-                        link.className || ''
-                      }`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                  {link.items && isMobileMoreOpen && (
-                    <div className="ml-4 mt-1 space-y-1">
-                      {link.items.map((item) => (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className="block px-4 py-3 text-sm text-white/80 hover:bg-vb-dark-2/80 hover:text-vb-electric-1 rounded-md"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <a
-                href="/blog"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white/90 hover:bg-vb-dark-2 hover:text-vb-electric-1 md:hidden"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden absolute left-0 right-0 mt-4 rounded-3xl border border-white/10 bg-[#090912]/95 p-5 text-center shadow-[0_25px_80px_-50px_rgba(0,0,0,0.75)]"
+            >
+              <div className="flex flex-col gap-3">
+                {navLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium uppercase tracking-[0.35em] text-white/70"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <button
+                  onClick={handleContact}
+                  className="rounded-full bg-gradient-to-r from-[#2F6BFF] via-[#7F5CFF] to-[#9DFF00] px-5 py-3 text-sm font-semibold text-[#05050A]"
+                >
+                  Get a free quote
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.header>
   );
 };

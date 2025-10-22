@@ -7,7 +7,7 @@ const Contact = () => {
       {/* Sección del Formulario */}
       <div className="py-12">
         <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div id="quote-form" className="bg-vb-dark-2/90 backdrop-blur-sm rounded-2xl shadow-xl border border-vb-electric-1/10 overflow-hidden">
+          <div id="quote-form">
             <ContactForm />
           </div>
         </div>
