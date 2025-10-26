@@ -72,11 +72,18 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-3">
             <picture>
               <source srcSet="/isotipo_SF.webp" type="image/webp" />
-              <img src="/isotipo_SF.png" alt="VoltBridge isotipo" loading="lazy" className="h-8 w-auto" />
+              <img src="/isotipo_SF.png" alt="VoltBridge isotipo" loading="eager" className="h-8 w-auto" />
             </picture>
             <picture className="hidden sm:inline">
               <source srcSet="/logotipo_sf.webp" type="image/webp" />
-              <img src="/logotipo_sf.png" alt="VoltBridge logotipo" loading="lazy" className="h-20 w-auto object-contain" />
+              <img 
+                src="/logotipo_sf.png" 
+                alt="VoltBridge logotipo" 
+                loading="eager" 
+                width="180"
+                height="40"
+                className="h-auto w-auto max-w-[180px] object-contain" 
+              />
             </picture>
           </Link>
 
