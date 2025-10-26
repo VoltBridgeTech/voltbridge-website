@@ -38,13 +38,21 @@ export default defineConfig({
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          // Mueve todos los assets a la carpeta assets
           return `assets/[name]-[hash][extname]`;
         },
       },
     },
+    // Habilitar soporte para navegadores antiguos
+    target: 'es2015',
+    // Generar manifest.json para el precaché
+    manifest: true,
   },
   // Configuración para manejar correctamente los archivos estáticos
-  base: '/',
+  base: './',
   publicDir: 'public',
+  // Configuración para el servidor de desarrollo
+  preview: {
+    port: 3000,
+    open: true,
+  },
 });
