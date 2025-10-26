@@ -1,0 +1,21 @@
+{
+  "short_name": "VoltBridge",
+  "name": "VoltBridge Energy Brokerage",
+  "description": "Corporate energy brokerage helping UK businesses reduce energy spend with strategic procurement and risk management.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#07070D",
+  "theme_color": "#0D76FA",
+  "icons": [
+    {
+      "src": "/favicon_32px.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/logotipo_sf.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

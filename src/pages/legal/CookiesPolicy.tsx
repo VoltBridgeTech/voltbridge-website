@@ -163,7 +163,7 @@ const CookiesPolicy = () => {
             <p className="mb-4">
               If you have any questions regarding this Cookie Policy, please contact us:<br/>
               📧 Email: <a href="mailto:legal@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">legal@voltbridge.co.uk</a><br/>
-              📍 Address: VoltBridge UK LTD, Flat 1, 67 Kingsland Road, London E2 8FN, United Kingdom
+              📍 Address: VoltBridge UK LTD, 124 City Road, London EC1V 2NX, United Kingdom
             </p>
           </section>
         </div>

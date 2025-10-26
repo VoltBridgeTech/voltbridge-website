@@ -16,10 +16,11 @@ interface FormData {
   monthlySpend: string;
   contractStatus: string;
   contractEndDate?: Date;
+  companyName: string;
   firstName: string;
   lastName: string;
   email: string;
-  whatsapp: string;
+  phone: string;
 }
 
 const ContactForm = () => {
@@ -30,10 +31,11 @@ const ContactForm = () => {
     postcode: "",
     monthlySpend: "",
     contractStatus: "",
+    companyName: "",
     firstName: "",
     lastName: "",
     email: "",
-    whatsapp: ""
+    phone: ""
   });
   const { toast } = useToast();
 
@@ -99,15 +101,15 @@ const ContactForm = () => {
   const isStep1Valid = () => {
     return formData.postcode?.trim() !== '' && 
            formData.monthlySpend?.trim() !== '' && 
-           formData.contractStatus &&
-           (formData.contractStatus === 'out-of-contract' || formData.contractEndDate);
+           formData.contractStatus;
   };
 
   const isStep2Valid = () => {
-    return formData.firstName?.trim() !== '' && 
+    return formData.companyName?.trim() !== '' && 
+           formData.firstName?.trim() !== '' && 
            formData.lastName?.trim() !== '' && 
            formData.email?.trim() !== '' && 
-           formData.whatsapp?.trim() !== '';
+           formData.phone?.trim() !== '';
   };
 
   const handleSubmit = async () => {
@@ -115,23 +117,16 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
     
-    // Format WhatsApp number: remove all non-digit characters and ensure it starts with 44
-    let formattedWhatsapp = formData.whatsapp.replace(/\D/g, '');
-    if (formattedWhatsapp.startsWith('0')) {
-      formattedWhatsapp = '44' + formattedWhatsapp.substring(1);
-    } else if (!formattedWhatsapp.startsWith('44')) {
-      formattedWhatsapp = '44' + formattedWhatsapp;
-    }
-    
     const submitData = {
       postcode: formData.postcode,
       monthlySpend: formData.monthlySpend,
       contractStatus: formData.contractStatus,
       contractEndDate: formData.contractEndDate ? format(formData.contractEndDate, 'yyyy-MM-dd') : null,
+      companyName: formData.companyName,
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
-      whatsapp: formattedWhatsapp,
+      phone: formData.phone,
       timestamp: new Date().toISOString()
     };
 
@@ -151,10 +146,11 @@ const ContactForm = () => {
           postcode: "",
           monthlySpend: "",
           contractStatus: "",
+          companyName: "",
           firstName: "",
           lastName: "",
           email: "",
-          whatsapp: ""
+          phone: ""
         };
         setFormData(resetData);
         setStep(1);
@@ -162,7 +158,7 @@ const ContactForm = () => {
         
         toast({
           title: "Thank you!",
-          description: "We'll reach out via WhatsApp or email shortly.",
+          description: "We'll reach out via phone or email shortly.",
         });
       } else {
         throw new Error('Submission failed');
@@ -350,6 +346,20 @@ const ContactForm = () => {
                   className="space-y-8"
                 >
                   <motion.div variants={itemVariants}>
+                    <Label htmlFor="companyName" className="block text-sm font-medium text-white/80 mb-2">
+                      Company Name
+                    </Label>
+                    <Input
+                      id="companyName"
+                      type="text"
+                      value={formData.companyName}
+                      onChange={(e) => handleInputChange('companyName', e.target.value)}
+                      placeholder="Your company"
+                      className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
                     <Label htmlFor="firstName" className="block text-sm font-medium text-white/80 mb-2">
                       First Name
                     </Label>
@@ -392,15 +402,15 @@ const ContactForm = () => {
                   </motion.div>
 
                   <motion.div variants={itemVariants}>
-                    <Label htmlFor="whatsapp" className="block text-sm font-medium text-white/80 mb-2">
-                      WhatsApp Number
+                    <Label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
+                      Phone Number
                     </Label>
                     <Input
-                      id="whatsapp"
-                      type="text"
-                      value={formData.whatsapp}
-                      onChange={(e) => handleInputChange('whatsapp', e.target.value)}
-                      placeholder="Your WhatsApp number"
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      placeholder="Your phone number"
                       className="w-full bg-vb-dark-3/50 border-white/10 text-white placeholder:text-white/40 h-14 px-5 text-base focus:ring-2 focus:ring-[#0D76FA]/50 focus:border-[#0D76FA]/30"
                     />
                   </motion.div>

@@ -8,10 +8,11 @@ const EnergyOmbudsmanSection = () => {
           <img 
             src="/Energy-Ombudsman-logo.png" 
             alt="Energy Ombudsman" 
+            loading="lazy"
             className="h-16 w-auto object-contain"
           />
           <p className="text-lg md:text-xl text-white leading-relaxed text-center md:text-left">
-            VoltBridge Ltd is proudly registered with the Energy Ombudsman, ensuring trust, transparency, and customer protection
+            VoltBridge Ltd is proudly registered with the Energy Ombudsman, ensuring trust, transparency, and customer protection for UK businesses.
           </p>
         </div>
       </div>

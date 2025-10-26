@@ -56,19 +56,19 @@ const Footer = () => {
       title: 'Contact',
       links: [
         { 
-          name: 'Flat 1, 67 Kingsland Road, London, E2 8FN', 
+          name: '124 City Road, London EC1V 2NX', 
           icon: <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />,
-          href: 'https://maps.google.com/?q=Flat+1+67+Kingsland+Road+London+E2+8FN' 
+          href: 'https://maps.google.com/?q=124+City+Road,+London+EC1V+2NX' 
         },
         { 
-          name: 'info@voltbridge.com', 
+          name: 'support@voltbridge.co.uk', 
           icon: <Mail className="w-4 h-4 mr-2 flex-shrink-0" />,
-          href: 'mailto:info@voltbridge.com' 
+          href: 'mailto:support@voltbridge.co.uk' 
         },
         { 
-          name: '+44 (0)7424 912117', 
+          name: '+44 2046 342585', 
           icon: <Phone className="w-4 h-4 mr-2 flex-shrink-0" />,
-          href: 'tel:+447424912117' 
+          href: 'tel:+442046342585' 
         },
       ],
     },

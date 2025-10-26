@@ -68,12 +68,12 @@ const ComplaintsPolicy = () => {
           <ol className="list-decimal pl-6 space-y-4">
             <li>
               <p className="font-medium">Initial Contact</p>
-              <p>The fastest way to discuss a complaint is to email <a href="mailto:support@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">support@voltbridge.co.uk</a>. Our team will investigate the details and try to help resolve the complaint in the first instance.</p>
+              <p>The fastest way to discuss a complaint is to email <a href="mailto:support@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">support@voltbridge.co.uk</a> or call <a href="tel:+442046342585" className="text-[#0D76FA] hover:underline">+44 2046 342585</a>. Our team will investigate the details and try to help resolve the complaint in the first instance.</p>
             </li>
             
             <li>
               <p className="font-medium">Escalation to Complaints Manager</p>
-              <p>If you feel the solution offered does not satisfy your complaint, the next step is to escalate the matter to the Complaints Manager at VoltBridge. To do so, you should email <a href="mailto:legal@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">legal@voltbridge.co.uk</a> or call <a href="tel:+447424912117" className="text-[#0D76FA] hover:underline">+44 (0)7424912117</a> providing your name, your business name, and a brief description of your complaint. We will issue a complaint reference number to ensure your complaint is registered and can be tracked.</p>
+              <p>If you feel the solution offered does not satisfy your complaint, the next step is to escalate the matter to the Complaints Manager at VoltBridge. To do so, you should email <a href="mailto:legal@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">legal@voltbridge.co.uk</a> or call <a href="tel:+442046342585" className="text-[#0D76FA] hover:underline">+44 2046 342585</a> providing your name, your business name, and a brief description of your complaint. We will issue a complaint reference number to ensure your complaint is registered and can be tracked.</p>
               <p className="mt-2">The Complaints Manager will contact you within 5 working days to discuss your complaint directly and will make every reasonable effort to agree a suitable solution within 10 working days.</p>
             </li>
             
@@ -113,8 +113,8 @@ const ComplaintsPolicy = () => {
           <div className="mt-12 pt-8 border-t border-vb-dark-3">
             <p className="text-[#0D76FA]/80 text-sm">
               If you have any questions about this document, please contact us at{' '}
-              <a href="mailto:legal@voltbridge.com" className="text-[#0D76FA] hover:underline">
-                legal@voltbridge.com
+              <a href="mailto:support@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">
+                support@voltbridge.co.uk
               </a>
             </p>
           </div>

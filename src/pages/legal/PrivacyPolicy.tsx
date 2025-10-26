@@ -67,8 +67,8 @@ const PrivacyPolicy = () => {
                 <span className="text-[#0D76FA] mr-2">•</span>
                 <span>
                   <span className="font-medium">Registered Office:</span> Voltbridge Ltd<br />
-                  Flat 1, 67 Kingsland Road<br />
-                  London E2 8FN<br />
+                  124 City Road<br />
+                  London EC1V 2NX<br />
                   United Kingdom
                 </span>
               </li>

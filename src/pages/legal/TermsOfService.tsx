@@ -85,8 +85,8 @@ const TermsOfService = () => {
             <h2 className="text-2xl font-semibold mb-4 text-[#0D76FA]">2. Company Information</h2>
             <p className="mb-4">
               VoltBridge UK LTD<br/>
-              Flat 1, 67 Kingsland Road<br/>
-              London E2 8FN<br/>
+              124 City Road<br/>
+              London EC1V 2NX<br/>
               United Kingdom<br/>
               📧 Email: legal@voltbridge.co.uk
             </p>
@@ -205,7 +205,7 @@ const TermsOfService = () => {
             <p className="mb-4">
               For any legal enquiries, please contact:<br/>
               📧 Email: <a href="mailto:legal@voltbridge.co.uk" className="text-[#0D76FA] hover:underline">legal@voltbridge.co.uk</a><br/>
-              📍 Address: VoltBridge UK LTD, Flat 1, 67 Kingsland Road, London E2 8FN, United Kingdom
+              📍 Address: VoltBridge UK LTD, 124 City Road, London EC1V 2NX, United Kingdom
             </p>
           </section>
         </div>

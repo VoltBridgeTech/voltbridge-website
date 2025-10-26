@@ -278,9 +278,9 @@ const Layout = () => {
 
           <main
             id="main-content"
-            className={`${isHome ? 'relative z-30 -mt-28 pb-24' : 'relative z-30 pt-24 pb-24'}`}
+            className={`${isHome ? 'relative z-30 -mt-12 sm:-mt-16 lg:-mt-20 pb-20 sm:pb-24' : 'relative z-30 pt-20 sm:pt-24 pb-20 sm:pb-24'}`}
           >
-            <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
+            <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
               <Outlet />
             </div>
           </main>

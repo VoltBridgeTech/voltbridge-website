@@ -25,11 +25,59 @@
     <link rel="apple-touch-icon" href="/favicon_32px.png" />
     <link rel="shortcut icon" href="/favicon_32px.png" type="image/x-icon" />
     <link rel="icon" href="/favicon_32px.png" type="image/x-icon" />
+    <link rel="manifest" href="/manifest.json" />
     
     <!-- n8n Chat CSS -->
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
     <!-- model-viewer web component -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "VoltBridge Ltd",
+        "url": "https://www.voltbridge.co.uk",
+        "logo": "https://www.voltbridge.co.uk/logotipo_sf.webp",
+        "email": "support@voltbridge.co.uk",
+        "telephone": "+44 2046 342585",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "124 City Road",
+          "addressLocality": "London",
+          "postalCode": "EC1V 2NX",
+          "addressCountry": "GB"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/voltbridge-uk"
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Business energy brokerage",
+        "provider": {
+          "@type": "Organization",
+          "name": "VoltBridge Ltd",
+          "url": "https://www.voltbridge.co.uk"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "United Kingdom"
+        },
+        "audience": {
+          "@type": "BusinessAudience",
+          "businessFunction": "procurement",
+          "audienceType": "CFOs and operations leaders"
+        },
+        "description": "Strategic procurement, energy risk management and ESG reporting for UK corporate energy buyers.",
+        "termsOfService": "https://www.voltbridge.co.uk/legal/terms-of-service",
+        "providerMobility": "static"
+      }
+    </script>
   </head>
 
   <body>

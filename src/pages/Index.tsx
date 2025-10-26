@@ -3,33 +3,51 @@ import { useState } from 'react';
 import { Building2, Leaf, ShieldCheck, LineChart, Users, CheckCircle2 } from 'lucide-react';
 
 const trustMetrics = [
-  { stat: '10,000+ satisfied clients', detail: 'Across the United Kingdom' },
-  { stat: '£5m+ saved on contracts', detail: 'Through smart energy switching' },
-  { stat: '4.9/5 customer rating', detail: 'Based on verified reviews' },
+  { stat: '£12.4m', detail: 'in negotiated savings for UK business portfolios' },
+  { stat: '1,300+', detail: 'commercial sites managed nationwide' },
+  { stat: '98%', detail: 'renewal retention achieved with our ongoing support' },
 ];
 
 const services = [
   {
     icon: <Building2 className="w-6 h-6 text-[#0D76FA]" />,
-    title: 'Business energy procurement',
-    description: 'Tailored tariffs and contract management for SMEs and large enterprises.',
+    title: 'Strategic procurement',
+    description: 'Tendering and negotiating multi-site energy contracts with leading UK suppliers.',
   },
   {
-    icon: <Leaf className="w-6 h-6 text-[#0D76FA]" />,
-    title: 'Sustainability advisory',
-    description: 'Forecast consumption, source renewables and plan your net-zero roadmap.',
+    icon: <ShieldCheck className="w-6 h-6 text-[#0D76FA]" />,
+    title: 'Energy risk management',
+    description: 'Hedging, staggered fixing and alerts to stay ahead of market volatility.',
   },
   {
     icon: <LineChart className="w-6 h-6 text-[#0D76FA]" />,
-    title: 'Usage analytics',
-    description: 'Real time dashboards that highlight savings opportunities month-on-month.',
+    title: 'Intelligence & ESG reporting',
+    description: 'Consumption dashboards, ESG reporting and advisory to accelerate your net-zero roadmap.',
+  },
+];
+
+const caseStudies = [
+  {
+    sector: 'National logistics group',
+    outcome: '£18,700 annual saving',
+    detail: 'Restructured a multi-site gas contract with price caps and consolidated billing.',
+  },
+  {
+    sector: 'Industrial manufacturing',
+    outcome: '21% tariff reduction',
+    detail: 'Implemented dual-fuel hedging with flex clauses to soften market spikes.',
+  },
+  {
+    sector: 'Hospitality & leisure',
+    outcome: '8-week onboarding',
+    detail: 'Integrated with finance systems to track consumption and avoid penalty charges.',
   },
 ];
 
 const steps = [
-  'Tell us your usage and postcode.',
-  'We compare trusted UK suppliers in seconds.',
-  'You choose, sign digitally and start saving.',
+  'Share your consumption profile and key contract dates.',
+  'We model scenarios with regulated suppliers and corporate tariffs.',
+  'Internal approval, digital signature and ongoing savings oversight.',
 ];
 
 const fadeUp = {
@@ -48,6 +66,7 @@ const MultiStepContactForm = () => {
     postCode: '',
     monthlySpend: '',
     contractStatus: '' as ContractStatus | '',
+    companyName: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -62,7 +81,7 @@ const MultiStepContactForm = () => {
   const next = () => {
     setError(null);
     if (!form.postCode || !form.monthlySpend || !form.contractStatus) {
-      setError('Please complete all fields to continue.');
+      setError('Please complete all Step 1 fields to continue.');
       return;
     }
     setStep(2);
@@ -73,12 +92,18 @@ const MultiStepContactForm = () => {
     setStep(1);
   };
 
-  const submit = async (e: React.FormEvent) => {
+  const readableStatus = form.contractStatus === 'out_of_contract'
+    ? 'Out of contract'
+    : form.contractStatus === 'in_contract_ending_soon'
+      ? 'In contract (ending soon)'
+      : 'Pending';
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setMessage(null);
-    if (!form.firstName || !form.lastName || !form.email || !form.phone) {
-      setError('Please complete all fields.');
+    if (!form.companyName || !form.firstName || !form.lastName || !form.email || !form.phone) {
+      setError('Please complete the required fields to send your request.');
       return;
     }
     const url = (import.meta as any).env?.VITE_N8N_WEBHOOK_URL as string | undefined;
@@ -94,8 +119,17 @@ const MultiStepContactForm = () => {
         body: JSON.stringify({ source: 'voltbridge-site', step: 'contact', payload: form }),
       });
       if (!res.ok) throw new Error('Request failed');
-      setMessage('Thanks! We will get back to you shortly.');
-      setForm({ postCode: '', monthlySpend: '', contractStatus: '', firstName: '', lastName: '', email: '', phone: '' });
+      setMessage('Thanks! Our consultants will reach out shortly with your tailored comparison.');
+      setForm({
+        postCode: '',
+        monthlySpend: '',
+        contractStatus: '',
+        companyName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+      });
       setStep(1);
     } catch (err) {
       setError('There was a problem sending your details. Please try again.');
@@ -106,15 +140,25 @@ const MultiStepContactForm = () => {
 
   return (
     <form className="relative space-y-4" onSubmit={submit}>
-      <div className="mb-2 flex items-center gap-2 text-xs text-white/60">
-        <span className={`h-2 w-2 rounded-full ${step === 1 ? 'bg-[#0D76FA]' : 'bg-white/30'}`} />
-        <span className={`h-2 w-2 rounded-full ${step === 2 ? 'bg-[#b100cd]' : 'bg-white/30'}`} />
+      <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60">
+        <span className={`flex items-center gap-2 ${step === 1 ? 'text-white' : ''}`}>
+          <span className={`h-2 w-2 rounded-full ${step === 1 ? 'bg-[#0D76FA]' : 'bg-white/30'}`} />
+          Step 1
+        </span>
+        <span className={`flex items-center gap-2 ${step === 2 ? 'text-white' : ''}`}>
+          <span className={`h-2 w-2 rounded-full ${step === 2 ? 'bg-[#b100cd]' : 'bg-white/30'}`} />
+          Step 2
+        </span>
       </div>
 
       {step === 1 && (
-        <div className="space-y-4">
+        <div className="space-y-5">
+          <div className="space-y-2 text-left">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-white/70">Usage details</h3>
+            <p className="text-sm text-white/60">Share your supply snapshot so we can model the right pricing scenarios.</p>
+          </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-white/75">Your post code</label>
+            <label className="mb-1 block text-sm font-medium text-white/75">Postal code</label>
             <input
               name="postCode"
               value={form.postCode}
@@ -126,20 +170,24 @@ const MultiStepContactForm = () => {
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-white/75">Your current monthly energy spend (£)</label>
-            <input
-              name="monthlySpend"
-              value={form.monthlySpend}
-              onChange={onChange}
-              type="number"
-              min="0"
-              className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#0D76FA]/60 focus:outline-none focus:ring-0"
-              placeholder="1000"
-            />
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 text-sm">£</span>
+              <input
+                name="monthlySpend"
+                value={form.monthlySpend}
+                onChange={onChange}
+                type="number"
+                min="0"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 pl-9 text-sm text-white placeholder:text-white/40 focus:border-[#0D76FA]/60 focus:outline-none focus:ring-0"
+                placeholder="2500"
+              />
+            </div>
           </div>
           <div>
             <label className="mb-2 block text-sm font-medium text-white/75">Your current contract status</label>
             <div className="grid gap-2 sm:grid-cols-2">
-              <label className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white/80">
+              <label className={`flex items-center gap-2 rounded-xl border ${form.contractStatus === 'out_of_contract' ? 'border-[#0D76FA]/70 bg-[#0D76FA]/10' : 'border-white/15 bg-white/5'} px-4 py-3 text-sm text-white/80 transition`}
+              >
                 <input
                   type="radio"
                   name="contractStatus"
@@ -149,7 +197,8 @@ const MultiStepContactForm = () => {
                 />
                 <span>Out of contract</span>
               </label>
-              <label className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white/80">
+              <label className={`flex items-center gap-2 rounded-xl border ${form.contractStatus === 'in_contract_ending_soon' ? 'border-[#0D76FA]/70 bg-[#0D76FA]/10' : 'border-white/15 bg-white/5'} px-4 py-3 text-sm text-white/80 transition`}
+              >
                 <input
                   type="radio"
                   name="contractStatus"
@@ -162,36 +211,64 @@ const MultiStepContactForm = () => {
             </div>
           </div>
           <div className="pt-2">
-            <button type="button" onClick={next} className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(177,0,205,0.6)] transition hover:scale-105">Next</button>
+            <button
+              type="button"
+              onClick={next}
+              disabled={!form.postCode || !form.monthlySpend || !form.contractStatus}
+              className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(177,0,205,0.6)] transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Continue
+            </button>
           </div>
         </div>
       )}
 
       {step === 2 && (
-        <div className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <label className="mb-1 block text-sm font-medium text-white/75">First Name</label>
-              <input name="firstName" value={form.firstName} onChange={onChange} type="text" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#b100cd]/60 focus:outline-none focus:ring-0" placeholder="John" />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm font-medium text-white/75">Last Name</label>
-              <input name="lastName" value={form.lastName} onChange={onChange} type="text" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#b100cd]/60 focus:outline-none focus:ring-0" placeholder="Doe" />
+        <div className="space-y-5">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/70">
+            <p className="font-semibold text-white">Summary</p>
+            <div className="mt-3 space-y-2 text-white/70">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs uppercase tracking-[0.2em] text-white/50">Postal code</span>
+                <span>{form.postCode || 'Pending'}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs uppercase tracking-[0.2em] text-white/50">Monthly spend</span>
+                <span>{form.monthlySpend ? `£${form.monthlySpend}` : 'Pending'}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs uppercase tracking-[0.2em] text-white/50">Contract status</span>
+                <span>{readableStatus}</span>
+              </div>
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm font-medium text-white/75">Email Address</label>
+              <label className="mb-1 block text-sm font-medium text-white/75">First name</label>
+              <input name="firstName" value={form.firstName} onChange={onChange} type="text" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#b100cd]/60 focus:outline-none focus:ring-0" placeholder="Jane" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-white/75">Last name</label>
+              <input name="lastName" value={form.lastName} onChange={onChange} type="text" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#b100cd]/60 focus:outline-none focus:ring-0" placeholder="Smith" />
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-white/75">Company name</label>
+              <input name="companyName" value={form.companyName} onChange={onChange} type="text" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#0D76FA]/60 focus:outline-none focus:ring-0" placeholder="VoltBridge Ltd" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-white/75">Email address</label>
               <input name="email" value={form.email} onChange={onChange} type="email" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#0D76FA]/60 focus:outline-none focus:ring-0" placeholder="you@company.co.uk" />
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium text-white/75">Phone number</label>
-              <input name="phone" value={form.phone} onChange={onChange} type="tel" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#0D76FA]/60 focus:outline-none focus:ring-0" placeholder="07123 456789" />
+              <input name="phone" value={form.phone} onChange={onChange} type="tel" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#0D76FA]/60 focus:outline-none focus:ring-0" placeholder="020 1234 5678" />
             </div>
           </div>
           <div className="flex items-center justify-between gap-3 pt-2">
             <button type="button" onClick={back} className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:border-[#b100cd]/40 hover:text-[#b100cd]">Back</button>
-            <button disabled={loading} type="submit" className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(177,0,205,0.6)] transition hover:scale-105 disabled:opacity-60">{loading ? 'Sending…' : 'Request my comparison'}</button>
+            <button disabled={loading} type="submit" className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(177,0,205,0.6)] transition hover:scale-105 disabled:opacity-60">{loading ? 'Sending…' : 'Send my comparison'}</button>
           </div>
         </div>
       )}
@@ -204,7 +281,7 @@ const MultiStepContactForm = () => {
 
 const Index = () => {
   return (
-    <div className="relative flex flex-col gap-24 pb-24 text-white">
+    <div className="relative flex flex-col gap-24 pb-24 pt-16 sm:pt-20 text-white">
 
       <motion.section
         initial="hidden"
@@ -247,18 +324,18 @@ const Index = () => {
         >
           <div className="space-y-4">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
-              Our services
+              UK corporate services
             </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-white">Our services</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Energy solutions engineered for CFOs and operations leaders</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              Everything you need to compare tariffs, secure better pricing and keep your estate aligned with sustainability goals.
+              We orchestrate procurement, risk cover and reporting so your finance team keeps energy spend under control without diverting internal resources.
             </p>
           </div>
           <a
             href="/services"
             className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:border-[#b100cd]/40 hover:text-[#b100cd]"
           >
-            Explore the full portfolio
+            View all services
           </a>
         </motion.div>
 
@@ -304,11 +381,11 @@ const Index = () => {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <motion.div variants={fadeUp} transition={{ duration: 0.6, ease: 'easeOut' }} className="space-y-4">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
-              How it works
+              Our process
             </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-white">How it works</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">How we safeguard long-term savings</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              Switching energy supplier with VoltBridge is refreshingly simple. We handle the details so you can focus on your business.
+              Our analysts and energy traders act as an extension of your team—from the initial audit through monthly consumption reviews and renewals.
             </p>
           </motion.div>
           <motion.a
@@ -339,6 +416,50 @@ const Index = () => {
         </div>
       </motion.section>
 
+      <section id="case-studies" className="relative mx-auto w-full max-w-6xl rounded-[36px] border border-white/12 bg-[#07070D]/88 px-8 py-14 shadow-[0_40px_130px_-80px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="flex flex-col gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left"
+        >
+          <div className="space-y-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
+              Success stories
+            </span>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Real-world results for real businesses</h2>
+            <p className="text-white/70 lg:max-w-2xl">
+              These outcomes are representative of the projects we manage—complex contracts, multi-site portfolios and aggressive savings targets.
+            </p>
+          </div>
+          <a
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(13,118,250,0.7)] transition hover:scale-105"
+          >
+            Request a discovery call
+          </a>
+        </motion.div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {caseStudies.map((study) => (
+            <motion.div
+              key={study.sector}
+              initial={{ opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
+              className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[#0D121F]/75 p-7 backdrop-blur-xl"
+            >
+              <div className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(circle at 25% 20%, rgba(13,118,250,0.16), transparent 70%)' }} />
+              <p className="relative text-xs uppercase tracking-[0.35em] text-white/50">{study.sector}</p>
+              <h3 className="relative mt-4 text-2xl font-semibold text-white">{study.outcome}</h3>
+              <p className="relative mt-3 text-sm leading-relaxed text-white/75">{study.detail}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       <section className="relative mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -347,9 +468,12 @@ const Index = () => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="space-y-6"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white">Ready for a personalised quote?</h2>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
+            Ready to support
+          </span>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white">Let’s talk about your corporate energy spend</h2>
           <p className="text-white/70 lg:max-w-xl">
-            Share a few details and our consultants will prepare a bespoke energy comparison tailored to your premises. No obligation, no hidden fees.
+            Share a snapshot of your current situation and we’ll prepare a comparison report with the most competitive, regulated UK market scenarios.
           </p>
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex items-center gap-2">
@@ -358,7 +482,7 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-[#b100cd]" />
-              <span className="text-sm text-white/70">UK-wide supplier network</span>
+              <span className="text-sm text-white/70">Coverage across leading UK suppliers</span>
             </div>
           </div>
         </motion.div>
