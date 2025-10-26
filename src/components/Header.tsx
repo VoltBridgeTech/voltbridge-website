@@ -59,30 +59,37 @@ const Header = () => {
       initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed inset-x-0 top-0 z-40 flex justify-center px-4 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 flex justify-center px-4 py-1 transition-all duration-300 ${
         scrolled ? 'backdrop-blur-xl' : 'backdrop-blur-0'
       }`}
     >
       <div className="relative w-full max-w-6xl">
         <div
-          className={`relative mt-2 flex items-center justify-between rounded-full border border-white/10 bg-[#090912]/80 px-5 py-3 text-white shadow-[0_25px_80px_-40px_rgba(0,0,0,0.65)] transition-all duration-500 ${
-            scrolled ? 'shadow-[0_20px_70px_-40px_rgba(0,0,0,0.7)]' : ''
+          className={`relative flex items-center justify-between rounded-full border border-white/10 bg-[#090912]/80 px-4 py-2 text-white shadow-[0_10px_30px_-15px_rgba(0,0,0,0.3)] transition-all duration-500 ${
+            scrolled ? 'shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]' : ''
           }`}
         >
-          <Link to="/" className="flex items-center gap-3">
-            <picture>
+          <Link to="/" className="flex items-center gap-1">
+            <picture className="flex-shrink-0">
               <source srcSet="/isotipo_SF.webp" type="image/webp" />
-              <img src="/isotipo_SF.png" alt="VoltBridge isotipo" loading="eager" className="h-8 w-auto" />
+              <img 
+                src="/isotipo_SF.png" 
+                alt="VoltBridge" 
+                loading="eager" 
+                className="h-4 w-auto" 
+                width="16"
+                height="16"
+              />
             </picture>
-            <picture className="hidden sm:inline">
+            <picture className="hidden sm:inline-block flex-shrink-0">
               <source srcSet="/logotipo_sf.webp" type="image/webp" />
               <img 
                 src="/logotipo_sf.png" 
-                alt="VoltBridge logotipo" 
+                alt="VoltBridge" 
                 loading="eager" 
-                width="180"
-                height="40"
-                className="h-auto w-auto max-w-[180px] object-contain" 
+                width="90"
+                height="20"
+                className="h-auto w-auto max-w-[90px] object-contain" 
               />
             </picture>
           </Link>
