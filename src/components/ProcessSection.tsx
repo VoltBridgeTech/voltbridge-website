@@ -5,31 +5,45 @@ const ProcessSection = () => {
   const processSteps = [
     {
       id: 1,
-      title: "Initial Consultation",
-      description: "We'll discuss your energy needs and analyze your current usage patterns.",
+      title: "Select your service",
+      description: "Choose electricity, gas, or a dual fuel comparison.",
       icon: <Zap className="w-6 h-6" />,
       color: "from-vb-electric-1 to-vb-electric-2"
     },
     {
       id: 2,
-      title: "Market Analysis",
-      description: "Our team compares thousands of tariffs to find the best match for you.",
-      icon: <BarChart className="w-6 h-6" />,
+      title: "Choose your start date",
+      description: "Set when you would like your new supply to begin.",
+      icon: <Clock className="w-6 h-6" />,
       color: "from-purple-500 to-indigo-600"
     },
     {
       id: 3,
-      title: "Personalized Options",
-      description: "We present you with tailored energy solutions that fit your requirements.",
-      icon: <CheckCircle className="w-6 h-6" />,
+      title: "Add your usage",
+      description: "Enter your estimated electricity and gas consumption.",
+      icon: <BarChart className="w-6 h-6" />,
       color: "from-amber-500 to-orange-500"
     },
     {
       id: 4,
-      title: "Smooth Transition",
-      description: "We handle the entire switching process with no service interruption.",
+      title: "Confirm company type",
+      description: "Select Limited, Sole Trader, or Charity so we can tailor the tariffs.",
       icon: <Handshake className="w-6 h-6" />,
       color: "from-emerald-500 to-teal-600"
+    },
+    {
+      id: 5,
+      title: "Enter your business name",
+      description: "We automatically verify your registration details for accuracy.",
+      icon: <CheckCircle className="w-6 h-6" />,
+      color: "from-pink-500 to-rose-500"
+    },
+    {
+      id: 6,
+      title: "Get tailored live tariffs",
+      description: "Review the most competitive business energy & gas rates in real time.",
+      icon: <Zap className="w-6 h-6" />,
+      color: "from-cyan-500 to-blue-600"
     }
   ];
 
@@ -138,11 +152,16 @@ const ProcessSection = () => {
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-r from-vb-dark-2/80 to-vb-dark-3/80 rounded-2xl border border-white/5 backdrop-blur-sm">
             <div className="text-left">
               <h3 className="text-2xl font-bold text-white mb-2">Ready to start saving?</h3>
-              <p className="text-white/70">Begin your energy switch journey today with our simple process.</p>
+              <p className="text-white/70">Launch our digital portal to view live business energy & gas quotes in minutes.</p>
             </div>
-            <button className="px-8 py-4 bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap">
-              Get Started Now
-            </button>
+            <a
+              href="https://voltbridge.tickd.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
+              Go to quoting portal
+            </a>
           </div>
         </motion.div>
       </div>

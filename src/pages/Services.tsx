@@ -1,30 +1,24 @@
 import { motion } from 'framer-motion';
-import { Zap, Shield, Clock, Settings, ArrowRight } from 'lucide-react';
+import { Zap, Flame, Plug, ArrowRight } from 'lucide-react';
 
 const services = [
   {
-    title: "Energy Procurement",
-    description: "Strategic energy sourcing with access to exclusive market rates and flexible contracts.",
+    title: "Electricity procurement",
+    description: "Secure fixed or flexible business electricity tariffs, manage renewals, and align contracts with your fiscal planning.",
     icon: <Zap className="w-8 h-8 text-[#0D76FA]" />,
     color: "from-vb-electric-1/20 to-vb-electric-1/5"
   },
   {
-    title: "Risk Management",
-    description: "Advanced strategies to protect your business from market volatility and price spikes.",
-    icon: <Shield className="w-8 h-8 text-[#0D76FA]" />,
+    title: "Gas sourcing & balancing",
+    description: "Negotiate wholesale gas supply, implement seasonal hedging, and monitor consumption to avoid imbalance charges.",
+    icon: <Flame className="w-8 h-8 text-[#0D76FA]" />,
     color: "from-vb-electric-2/20 to-vb-electric-2/5"
   },
   {
-    title: "24/7 Support",
-    description: "Round-the-clock expert assistance for all your energy management needs.",
-    icon: <Clock className="w-8 h-8 text-[#0D76FA]" />,
+    title: "Dual fuel coordination",
+    description: "Combine electricity and gas into a unified strategy with aligned end dates, consolidated billing, and ongoing portfolio governance.",
+    icon: <Plug className="w-8 h-8 text-[#0D76FA]" />,
     color: "from-vb-electric-4/20 to-vb-electric-4/5"
-  },
-  {
-    title: "Custom Solutions",
-    description: "Tailored energy solutions designed for your specific business requirements.",
-    icon: <Settings className="w-8 h-8 text-[#0D76FA]" />,
-    color: "from-vb-electric-6/20 to-vb-electric-6/5"
   }
 ];
 
@@ -38,19 +32,30 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0D121F]/80 px-8 py-12 text-center shadow-[0_45px_140px_-60px_rgba(13,118,250,0.6)] backdrop-blur-2xl"
+          className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[#070812]/90 px-8 py-14 text-center shadow-[0_45px_140px_-60px_rgba(13,118,250,0.6)] backdrop-blur-2xl"
         >
-          <div className="absolute inset-0 opacity-40" style={{ background: 'radial-gradient(circle at top, rgba(13,118,250,0.2), transparent 65%)' }} />
-          <div className="relative mx-auto max-w-3xl space-y-5">
+          <div className="absolute inset-0 opacity-60" style={{ background: 'radial-gradient(60% 60% at 20% 15%, rgba(13,118,250,0.25), transparent 70%), radial-gradient(70% 70% at 80% 85%, rgba(177,0,205,0.18), transparent 75%)' }} />
+          <div className="relative mx-auto max-w-3xl space-y-6">
             <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
-              Our services
+              Ready to start?
             </span>
             <h1 className="text-4xl md:text-5xl font-semibold">
-              Comprehensive <span className="bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Energy Solutions</span>
+              Transform Your <span className="bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Energy Strategy</span>
             </h1>
-            <p className="text-lg text-white/70">
-              We deliver end-to-end energy management services designed to optimize costs, ensure compliance, and drive sustainability for your business.
+            <p className="text-lg text-white/75">
+              Connect with our energy & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
             </p>
+            <div className="flex justify-center">
+              <a
+                href="https://voltbridge.tickd.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-8 py-4 text-sm font-semibold text-white shadow-[0_35px_120px_-50px_rgba(13,118,250,0.65)] transition hover:scale-105"
+              >
+                Launch digital quoting portal
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -80,10 +85,6 @@ const Services = () => {
               </div>
               <h3 className="relative text-xl font-semibold text-white">{service.title}</h3>
               <p className="relative mt-3 text-sm leading-relaxed text-white/70">{service.description}</p>
-              <div className="relative mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/40">
-                <span>Learn more</span>
-                <ArrowRight className="h-4 w-4" />
-              </div>
             </motion.article>
           ))}
         </div>
@@ -106,13 +107,18 @@ const Services = () => {
               Transform Your <span className="bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Energy Strategy</span>
             </h2>
             <p className="text-lg text-white/70">
-              Get in touch with our energy experts today and discover how we can help you achieve significant cost savings and sustainability goals.
+              Connect with our energy & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-8 py-4 text-sm font-semibold text-white shadow-[0_30px_90px_-40px_rgba(13,118,250,0.6)] transition hover:scale-105">
-                Get a Free Consultation
+              <a
+                href="https://voltbridge.tickd.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-8 py-4 text-sm font-semibold text-white shadow-[0_30px_90px_-40px_rgba(13,118,250,0.6)] transition hover:scale-105"
+              >
+                Launch digital quoting portal
                 <ArrowRight className="h-5 w-5" />
-              </button>
+              </a>
             </div>
           </div>
         </motion.div>

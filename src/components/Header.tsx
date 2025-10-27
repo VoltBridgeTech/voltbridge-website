@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ type NavItem = {
 
 const navLinks: NavItem[] = [
   { label: 'Services', href: '/services', type: 'route' },
-  { label: 'Case Studies', href: 'case-studies', type: 'anchor' },
+  { label: 'About Us', href: '/about', type: 'route' },
   { label: 'Our Process', href: 'how-it-works', type: 'anchor' },
   { label: 'Contact', href: '/contact', type: 'route' },
 ];
@@ -29,11 +29,23 @@ const Header = () => {
   }, []);
 
   const handleContact = () => {
-    navigate('/contact');
     setMobileOpen(false);
-    setTimeout(() => {
-      document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+    window.open('https://voltbridge.tickd.co.uk', '_blank', 'noopener');
+  };
+
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMobileOpen(false);
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 200);
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAnchorNavigation = (targetId: string) => {
@@ -54,6 +66,20 @@ const Header = () => {
     }
   };
 
+  const handleRouteNavigation = (href: string) => {
+    setMobileOpen(false);
+
+    if (location.pathname === href) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    navigate(href);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 200);
+  };
+
   return (
     <motion.header
       initial={{ y: -32, opacity: 0 }}
@@ -69,7 +95,7 @@ const Header = () => {
             scrolled ? 'shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]' : ''
           }`}
         >
-          <Link to="/" className="flex items-center gap-1">
+          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-1">
             <picture className="flex-shrink-0">
               <source srcSet="/isotipo_SF.webp" type="image/webp" />
               <img 
@@ -104,6 +130,10 @@ const Header = () => {
                   <Link
                     key={item.label}
                     to={item.href}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      handleRouteNavigation(item.href);
+                    }}
                     className={`group relative text-sm font-medium uppercase tracking-[0.3em] transition duration-300 ${
                       active ? 'text-white' : 'text-white/45 hover:text-white'
                     }`}
@@ -136,7 +166,7 @@ const Header = () => {
               onClick={handleContact}
               className="hidden rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-5 py-2 text-sm font-semibold text-white shadow-[0_20px_60px_-30px_rgba(177,0,205,0.6)] transition hover:scale-105 sm:inline-flex"
             >
-              Request energy audit
+              Get a free quote
             </button>
             <button
               className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 md:hidden"
@@ -164,7 +194,10 @@ const Header = () => {
                       <Link
                         key={item.label}
                         to={item.href}
-                        onClick={() => setMobileOpen(false)}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          handleRouteNavigation(item.href);
+                        }}
                         className="rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium uppercase tracking-[0.35em] text-white/70"
                       >
                         {item.label}
@@ -187,7 +220,7 @@ const Header = () => {
                   onClick={handleContact}
                   className="rounded-full bg-gradient-to-r from-[#2F6BFF] via-[#7F5CFF] to-[#9DFF00] px-5 py-3 text-sm font-semibold text-[#05050A]"
                 >
-                  Request energy audit
+                  Get a free quote
                 </button>
               </div>
             </motion.div>

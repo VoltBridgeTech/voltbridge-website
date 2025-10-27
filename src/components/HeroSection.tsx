@@ -73,17 +73,17 @@ const HeroSection = () => {
       >
         <div className="flex w-full flex-1 flex-col justify-center gap-10 text-center lg:text-left">
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80">
-            B2B energy brokerage
+            B2B ENERGY & GAS BORKERAGE
           </div>
           <div className="space-y-6">
             <h1 ref={headlineRef} className="text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-              <span className="bg-gradient-to-r from-[#4c00b0] via-[#8900d5] to-[#b100cd] bg-clip-text text-transparent">Smart Moves, Low Bills</span> for business energy.
+              <span className="bg-gradient-to-r from-[#4c00b0] via-[#8900d5] to-[#b100cd] bg-clip-text text-transparent">Smart Moves, Low Bills.</span>
             </h1>
             <p ref={subHeadlineRef} className="mx-auto max-w-xl text-lg text-[#B0B0C0] lg:mx-0">
-              VoltBridge negotiates and manages corporate energy contracts for CFOs and operations leaders across the UK, delivering measurable savings without adding workload to your team.
+              VoltBridge negotiates and manages corporate energy & gas contracts across the UK, delivering measurable savings without adding workload to your team.
             </p>
             <ul className="mx-auto grid max-w-xl gap-3 text-left text-base text-white/75 lg:mx-0">
-              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-[#0D76FA]"></span> Corporate-only pricing and renewal management for multi-site estates.</li>
+              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-[#0D76FA]"></span> Corporate only pricing and renewal management for multi site estates.</li>
               <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-[#b100cd]"></span> Hedging strategies to shield your budget from market volatility.</li>
               <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-white/80"></span> Dedicated analysts that integrate with your finance and procurement processes.</li>
             </ul>
@@ -91,10 +91,12 @@ const HeroSection = () => {
           <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
             <a
               ref={ctaRef}
-              href="/contact"
+              href="https://voltbridge.tickd.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-8 py-4 text-base font-semibold text-white shadow-[0_25px_70px_-20px_rgba(13,118,250,0.5)] transition duration-300 hover:scale-105 hover:shadow-[0_35px_80px_-25px_rgba(177,0,205,0.55)]"
             >
-              Request an energy audit
+              Get a free quote
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a

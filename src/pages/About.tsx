@@ -1,189 +1,157 @@
 import { motion } from 'framer-motion';
 
+const stats = [
+  { label: 'Clients advised', value: '250+' },
+  { label: 'Average savings delivered', value: '22%' },
+  { label: 'Tariffs compared', value: '50+' },
+  { label: 'Renewal retention', value: '92%' },
+];
+
+const pillars = [
+  {
+    title: 'Energy expertise',
+    description: 'Hybrid team of energy analysts and traders who negotiate corporate contracts and manage risk all year round.',
+  },
+  {
+    title: 'Digital operations',
+    description: 'Onboarding, validation and centralised reporting on our portal, reducing paperwork by up to 80%.',
+  },
+  {
+    title: 'Client advocacy',
+    description: 'Full transparency on tariffs, clauses and commissions. We handle claims and regulatory audits on your behalf.',
+  },
+];
+
+const values = [
+  {
+    icon: '🔍',
+    title: 'Transparency first',
+    description: 'We share every tariff detail and explain future scenarios with complete clarity.',
+  },
+  {
+    icon: '⚡',
+    title: 'Operational agility',
+    description: 'We monitor the market daily to adjust hedges, lock in prices and avoid penalties.',
+  },
+  {
+    icon: '🌱',
+    title: 'Sustainable thinking',
+    description: 'We design net-zero roadmaps and prioritise suppliers with certified renewable components.',
+  },
+  {
+    icon: '🤝',
+    title: 'Long-term trust',
+    description: '92% of our clients renew with us thanks to measurable outcomes and ongoing support.',
+  },
+];
+
 const About = () => {
-  const teamMembers = [
-    {
-      id: 1,
-      name: 'Alex Johnson',
-      role: 'CEO & Founder',
-      bio: 'Fintech expert with 15+ years in blockchain and payment systems.',
-      img: '/images/team/alex.jpg'
-    },
-    {
-      id: 2,
-      name: 'Sarah Williams',
-      role: 'CTO',
-      bio: 'Software architect specializing in secure financial platforms.',
-      img: '/images/team/sarah.jpg'
-    },
-    {
-      id: 3,
-      name: 'Michael Chen',
-      role: 'Head of Compliance',
-      bio: 'Regulatory expert ensuring all operations meet financial standards.',
-      img: '/images/team/michael.jpg'
-    }
-  ];
-
-  const values = [
-    {
-      title: 'Innovation',
-      description: 'Constantly pushing boundaries in fintech solutions',
-      icon: '💡'
-    },
-    {
-      title: 'Security',
-      description: 'Military-grade encryption for all transactions',
-      icon: '🔒'
-    },
-    {
-      title: 'Transparency',
-      description: 'Clear processes with no hidden fees',
-      icon: '🔍'
-    },
-    {
-      title: 'Customer Focus',
-      description: 'Solutions designed around user needs',
-      icon: '❤️'
-    }
-  ];
-
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      {/* Hero tarjeta (sin imagen) */}
+    <div className="relative mx-auto flex max-w-6xl flex-col gap-20 px-6 py-20 text-white lg:px-8">
       <motion.section
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[#07070D]/88 px-8 py-12 text-center shadow-[0_40px_130px_-80px_rgba(0,0,0,0.85)] backdrop-blur-xl mb-16"
+        className="relative overflow-hidden rounded-[36px] border border-white/12 bg-[#07070D]/88 px-10 py-16 text-center shadow-[0_45px_150px_-70px_rgba(0,0,0,0.85)] backdrop-blur-2xl"
       >
-        <div className="absolute inset-0 opacity-60" style={{ background: 'radial-gradient(60% 60% at 20% 15%, rgba(13,118,250,0.18), transparent 70%), radial-gradient(70% 70% at 80% 85%, rgba(177,0,205,0.12), transparent 75%)' }} />
-        <div className="relative mx-auto max-w-3xl space-y-4">
-          <h1 className="text-4xl md:text-5xl font-semibold text-white">About VoltBridge</h1>
-          <p className="text-[#0D76FA]">Pioneering the future of cross-border financial solutions</p>
+        <div className="absolute inset-0 opacity-45" style={{ background: 'radial-gradient(120% 120% at 20% 0%, rgba(13,118,250,0.25), transparent 65%), radial-gradient(90% 90% at 80% 100%, rgba(177,0,205,0.2), transparent 70%)' }} />
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6">
+          <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-xs uppercase tracking-[0.35em] text-white/65">
+            Our team
+          </span>
+          <h1 className="text-4xl font-semibold md:text-5xl">Bridging energy strategy with digital execution</h1>
+          <p className="text-lg text-white/75">
+            VoltBridge combines energy analytics, corporate negotiation and automation so organisations reduce costs, mitigate risk and advance towards ESG goals without operational friction.
+          </p>
         </div>
       </motion.section>
 
-      {/* Our Story */}
-      <section className="mb-20">
-        <motion.h2 
-          className="text-3xl font-bold text-white mb-8 text-center"
-        >
-          Our Story
-        </motion.h2>
-        <div className="grid grid-cols-1">
-          <motion.div>
-            <div className="bg-gray-900 rounded-2xl p-8 shadow-lg border border-vb-electric-1/20">
-              <p className="text-lg text-gray-300 mb-4">
-                VoltBridge emerged at a pivotal moment in the UK energy market, born from a clear vision: to transform energy from a confusing, costly expense into a strategic asset for businesses. Our founder recognised that enterprises of all sizes - from local cafés to large chains - were consistently overpaying by 15-30% due to opaque pricing structures and lack of transparent market information.
-              </p>
-              <p className="text-lg text-gray-300 mb-4">
-                After experiencing firsthand the frustration of navigating complex energy contracts, our founder assembled a diverse team of energy market specialists, data scientists, and customer experience experts. This multidisciplinary approach allowed us to build a unique platform that combines cutting-edge technology with deep industry knowledge.
-              </p>
-              <p className="text-lg text-gray-300 mb-4">
-                What began as a solution to simplify energy procurement has evolved into a comprehensive service that empowers businesses to take control of their energy strategy. We've grown rapidly by focusing on the core challenges our clients face: understanding complex tariffs, identifying hidden savings opportunities, and navigating an ever-changing regulatory landscape.
-              </p>
-              <p className="text-lg text-gray-300">
-                Today, VoltBridge serves a growing community of businesses across the UK, helping them achieve significant savings while providing the clarity and support needed to make confident energy decisions. Our journey continues as we develop new tools and services to address emerging energy challenges in the UK market.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Value Proposition */}
-      <section className="mb-12 text-center max-w-3xl mx-auto">
+      <section className="grid gap-6 md:grid-cols-2">
         <motion.div
-          className="bg-gradient-to-r from-vb-electric-1/20 to-vb-navy/50 rounded-2xl p-8 border border-vb-electric-1/30"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="rounded-[32px] border border-white/12 bg-[#080812]/85 p-8 shadow-[0_35px_120px_-60px_rgba(0,0,0,0.75)] backdrop-blur-xl"
         >
-          <h3 className="text-2xl font-bold text-[#0D76FA] mb-4">Trust to Choose, Savings to Grow</h3>
-          <p className="text-lg text-gray-300 mb-4">
-            At VoltBridge, we empower businesses to pay the right price for their energy through:
+          <h2 className="text-3xl font-semibold">Our story</h2>
+          <p className="mt-6 text-white/75">
+            We were founded amid the UK’s energy volatility with a clear mission: to give businesses transparency and control. We identified that 70% of SMEs were overpaying due to limited information and manual processes.
           </p>
-          <ul className="text-left text-gray-300 space-y-2 max-w-xl mx-auto">
-            <li className="flex items-start">
-              <span className="text-[#0D76FA] mr-2">✓</span>
-              <span>Comprehensive market analysis comparing 50+ suppliers</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-[#0D76FA] mr-2">✓</span>
-              <span>Streamlined digital onboarding with 80% faster contract setup</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-[#0D76FA] mr-2">✓</span>
-              <span>Dedicated account managers providing personalised support</span>
-            </li>
+          <p className="mt-4 text-white/70">
+            We brought together traders, data analysts and regulatory specialists to design a digital model that simplifies tenders, contracts and reporting. Today we manage multisite portfolios and energy transition programmes that deliver sustainable savings.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+          className="rounded-[32px] border border-white/12 bg-[#080812]/85 p-8 shadow-[0_35px_120px_-60px_rgba(0,0,0,0.75)] backdrop-blur-xl"
+        >
+          <h2 className="text-3xl font-semibold">What sets us apart</h2>
+          <ul className="mt-6 space-y-4 text-white/75">
+            {pillars.map((pillar) => (
+              <li key={pillar.title} className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
+                <h3 className="text-lg font-semibold text-white">{pillar.title}</h3>
+                <p className="mt-1 text-sm text-white/70">{pillar.description}</p>
+              </li>
+            ))}
           </ul>
-          <p className="text-lg text-gray-300 mt-4">
-            This unique approach saves our clients an average of 22% on energy costs while freeing up valuable time to focus on their core business.
-          </p>
         </motion.div>
       </section>
 
-      {/* Our Mission */}
-      <section className="mb-20">
-        <motion.h2 className="text-3xl font-bold text-white mb-8 text-center">
-          Our Mission & Vision
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-vb-dark-2 rounded-xl p-6 border border-vb-dark-3">
-            <h3 className="text-xl font-bold text-[#0D76FA] mb-4">Mission</h3>
-            <p className="text-gray-400 mb-3">
-              To help businesses reduce energy costs and make confident decisions through transparent, technology-driven services.
-            </p>
-            <p className="text-gray-400">
-              We achieve this by demystifying energy procurement, providing actionable insights through our analytics platform, and offering ongoing support to ensure optimal energy management throughout the contract lifecycle.
-            </p>
-          </div>
-          <div className="bg-vb-dark-2 rounded-xl p-6 border border-vb-dark-3">
-            <h3 className="text-xl font-bold text-[#0D76FA] mb-4">Vision</h3>
-            <p className="text-gray-400 mb-3">
-              To become the UK's leading energy broker, recognised for transparency, trustworthiness, and digital solutions that simplify business operations.
-            </p>
-            <p className="text-gray-400">
-              By 2027, we aim to serve 15% of UK SMEs while expanding our renewable energy offerings to help businesses achieve both cost savings and sustainability goals.
-            </p>
-          </div>
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="rounded-[36px] border border-white/12 bg-[#07070D]/85 px-8 py-14 shadow-[0_40px_140px_-70px_rgba(0,0,0,0.85)] backdrop-blur-xl"
+      >
+        <div className="grid gap-6 md:grid-cols-4">
+          {stats.map((stat) => (
+            <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 px-6 py-8 text-center">
+              <p className="text-3xl font-semibold text-white">{stat.value}</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.35em] text-white/50">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <section className="space-y-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="text-center"
+        >
+          <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
+            Our values
+          </span>
+          <h2 className="mt-4 text-3xl font-semibold">Principles guiding every project</h2>
+          <p className="mt-3 text-white/70 max-w-2xl mx-auto">
+            We build long-term relationships by combining technical precision, commercial transparency and continuous support.
+          </p>
+        </motion.div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {values.map((value) => (
+            <motion.div
+              key={value.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="rounded-[28px] border border-white/10 bg-[#090912]/85 p-6 text-center shadow-[0_30px_100px_-60px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            >
+              <div className="text-4xl">{value.icon}</div>
+              <h3 className="mt-4 text-lg font-semibold text-white">{value.title}</h3>
+              <p className="mt-2 text-sm text-white/70">{value.description}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
-
-      {/* Core Values */}
-      <section className="mb-20">
-        <motion.h2 className="text-3xl font-bold text-white mb-12 text-center">
-          Our Core Values
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-vb-dark-2 rounded-xl p-6 text-center border border-vb-dark-3 hover:border-vb-electric-1/50 transition-colors">
-            <div className="text-4xl mb-4">🔍</div>
-            <h3 className="text-xl font-bold text-white mb-2">Transparency</h3>
-            <p className="text-gray-400">
-              We present all options with clear, jargon-free explanations of contract terms, fees, and potential savings. No hidden clauses, no surprises - just straightforward information to empower your decisions.
-            </p>
-          </div>
-          <div className="bg-vb-dark-2 rounded-xl p-6 text-center border border-vb-dark-3 hover:border-vb-electric-1/50 transition-colors">
-            <div className="text-4xl mb-4">⚡</div>
-            <h3 className="text-xl font-bold text-white mb-2">Agility</h3>
-            <p className="text-gray-400">
-              In a rapidly changing energy market, we maintain flexibility to adapt to new regulations and market conditions. Our digital-first approach reduces paperwork by 90% and accelerates processes.
-            </p>
-          </div>
-          <div className="bg-vb-dark-2 rounded-xl p-6 text-center border border-vb-dark-3 hover:border-vb-electric-1/50 transition-colors">
-            <div className="text-4xl mb-4">🌱</div>
-            <h3 className="text-xl font-bold text-white mb-2">Responsibility</h3>
-            <p className="text-gray-400">
-              We balance cost efficiency with environmental stewardship, helping clients reduce carbon footprints while saving money. 65% of our recommended contracts include renewable energy components.
-            </p>
-          </div>
-          <div className="bg-vb-dark-2 rounded-xl p-6 text-center border border-vb-dark-3 hover:border-vb-electric-1/50 transition-colors">
-            <div className="text-4xl mb-4">🤝</div>
-            <h3 className="text-xl font-bold text-white mb-2">Trust</h3>
-            <p className="text-gray-400">
-              We build long-term partnerships based on consistent results. 92% of our clients renew with us, citing our reliable service and measurable savings as key factors in their decision.
-            </p>
-          </div>
-        </div>
-      </section>
-
     </div>
   );
 };

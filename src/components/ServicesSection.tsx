@@ -5,38 +5,38 @@ const ServicesSection = () => {
   const services = [
     {
       icon: Building2,
-      title: "Business Energy Comparison",
-      description: "Save money with commercial energy switching tailored to your business needs. We analyze your usage patterns to find the best rates.",
+      title: "Business Energy & Gas Comparison",
+      description: "Save money with commercial energy & gas switching tailored to your business needs. We analyze your energy & gas usage patterns to find the best rates.",
       color: "from-vb-electric-1 to-vb-electric-2"
     },
     {
       icon: Home,
-      title: "Home Energy Switching",
-      description: "Residential users can easily find better rates and switch hassle-free. No hidden fees, no service interruptions.",
+      title: "Home Energy & Gas Switching",
+      description: "Residential users can easily find better energy & gas rates and switch hassle free. No hidden fees, no service interruptions.",
       color: "from-purple-500 to-indigo-600"
     },
     {
       icon: FileText,
       title: "Contract Monitoring & Renewal",
-      description: "We track your contract end dates and help you renew at better terms. Never overpay for your energy again.",
+      description: "We track your contract end dates and help you renew at better terms. Never overpay for your energy & gas again.",
       color: "from-amber-500 to-orange-500"
     },
     {
       icon: Zap,
-      title: "Renewable Energy Solutions",
-      description: "Transition to green energy with our eco-friendly power options. Reduce your carbon footprint and energy costs.",
+      title: "Renewable Energy & Gas Solutions",
+      description: "Transition to green energy & gas with our eco friendly power options. Reduce your carbon footprint and energy & gas costs.",
       color: "from-emerald-500 to-teal-600"
     },
     {
       icon: ShieldCheck,
-      title: "Energy Efficiency Audits",
-      description: "Our experts analyze your energy usage and recommend ways to improve efficiency and reduce waste.",
+      title: "Energy & Gas Efficiency Audits",
+      description: "Our experts analyze your energy & gas usage and recommend ways to improve efficiency and reduce waste.",
       color: "from-rose-500 to-pink-600"
     },
     {
       icon: BarChart2,
       title: "Usage Analytics",
-      description: "Gain insights into your energy consumption with our detailed analytics and reporting tools.",
+      description: "Gain insights into your energy & gas consumption with our detailed analytics and reporting tools.",
       color: "from-cyan-500 to-blue-600"
     }
   ];
@@ -65,10 +65,6 @@ const ServicesSection = () => {
     },
   };
 
-  const scrollToForm = () => {
-    document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section id="services" className="relative py-24 overflow-hidden">
       {/* Background elements */}
@@ -91,7 +87,7 @@ const ServicesSection = () => {
             Powering Your <span className="bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 bg-clip-text text-transparent">Future</span>
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Comprehensive energy solutions designed to optimize costs, enhance efficiency, and support your sustainability goals.
+            Comprehensive energy & gas solutions designed to optimize costs, enhance efficiency, and support your sustainability goals.
           </p>
         </motion.div>
 
@@ -124,8 +120,6 @@ const ServicesSection = () => {
                 {service.description}
               </p>
               
-              <></>
-              
               {/* Decorative elements */}
               <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-vb-electric-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute bottom-4 left-4 w-1 h-1 rounded-full bg-white/20 group-hover:bg-vb-electric-1 transition-colors duration-300"></div>
@@ -143,12 +137,17 @@ const ServicesSection = () => {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-r from-vb-dark-2/80 to-vb-dark-3/80 rounded-2xl border border-white/5 backdrop-blur-sm">
             <div className="text-left">
-              <h3 className="text-2xl font-bold text-white mb-2">Ready to save on your energy bills?</h3>
-              <p className="text-white/70">Get a free, no-obligation quote in just 2 minutes.</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Ready to save on your energy & gas bills?</h3>
+              <p className="text-white/70">Get a free, no obligation quote in just 2 minutes.</p>
             </div>
-            <button onClick={scrollToForm} className="px-8 py-4 bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap">
+            <a
+              href="https://voltbridge.tickd.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gradient-to-r from-vb-electric-1 to-vb-electric-2 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
               Get Started Now
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
