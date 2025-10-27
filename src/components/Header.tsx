@@ -95,7 +95,7 @@ const Header = () => {
             scrolled ? 'shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]' : ''
           }`}
         >
-          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-1">
+          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2">
             <picture className="flex-shrink-0">
               <source srcSet="/isotipo_SF.webp" type="image/webp" />
               <img 
@@ -119,6 +119,12 @@ const Header = () => {
               />
             </picture>
           </Link>
+
+          <div className="flex flex-1 justify-center md:hidden">
+            <span className="text-[0.62rem] font-semibold uppercase tracking-[0.35em] text-white/70">
+              Smart Moves, Low Bills
+            </span>
+          </div>
 
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((item) => {
@@ -218,7 +224,7 @@ const Header = () => {
                 })}
                 <button
                   onClick={handleContact}
-                  className="rounded-full bg-gradient-to-r from-[#2F6BFF] via-[#7F5CFF] to-[#9DFF00] px-5 py-3 text-sm font-semibold text-[#05050A]"
+                  className="rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] px-5 py-3 text-sm font-semibold text-white shadow-[0_20px_60px_-30px_rgba(177,0,205,0.6)]"
                 >
                   Get a free quote
                 </button>

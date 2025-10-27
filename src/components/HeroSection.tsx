@@ -21,6 +21,7 @@ const HeroSection = () => {
   const calloutRef = useRef<HTMLParagraphElement>(null);
   const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -28,6 +29,14 @@ const HeroSection = () => {
     updatePreference();
     mediaQuery.addEventListener('change', updatePreference);
     return () => mediaQuery.removeEventListener('change', updatePreference);
+  }, []);
+
+  useEffect(() => {
+    const viewportQuery = window.matchMedia('(min-width: 640px)');
+    const updateViewport = () => setIsDesktop(viewportQuery.matches);
+    updateViewport();
+    viewportQuery.addEventListener('change', updateViewport);
+    return () => viewportQuery.removeEventListener('change', updateViewport);
   }, []);
 
   useGSAP(
@@ -91,6 +100,25 @@ const HeroSection = () => {
       gsap.set(calloutRef.current, { opacity: 0, y: 24 });
     }
 
+    if (!isDesktop) {
+      const tl = gsap.timeline();
+      tl.to(optionRefs.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        stagger: 0.12,
+      }).to(
+        calloutRef.current,
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+        '-=0.2'
+      );
+      return () => {
+        tl.kill();
+      };
+    }
+
     const tl = gsap.timeline();
     tl.fromTo(
       orbit,
@@ -119,7 +147,7 @@ const HeroSection = () => {
     return () => {
       tl.kill();
     };
-  }, [prefersReducedMotion]);
+  }, [isDesktop, prefersReducedMotion]);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -181,10 +209,14 @@ const HeroSection = () => {
 
       <div
         ref={contentRef}
-        className="relative z-20 mx-auto flex w-[min(1200px,92%)] flex-col-reverse items-center gap-16 pb-16 pt-24 lg:flex-row lg:items-stretch lg:gap-20 lg:pt-36"
+        className="relative z-20 mx-auto flex w-full max-w-[1200px] flex-col items-center gap-4 px-4 pb-16 pt-20 sm:gap-14 lg:flex-row lg:items-stretch lg:gap-20 lg:px-8 lg:pt-36"
       >
-        <div className="flex w-full flex-1 flex-col justify-center gap-10 text-center lg:text-left">
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80">
+        <div className="order-1 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80 lg:hidden">
+          B2B ENERGY & GAS BROKERAGE
+        </div>
+
+        <div className="order-3 flex w-full flex-1 flex-col justify-center gap-10 text-center lg:order-1 lg:text-left">
+          <div className="hidden w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80 lg:inline-flex">
             B2B ENERGY & GAS BROKERAGE
           </div>
           <div className="space-y-6">
@@ -222,9 +254,9 @@ const HeroSection = () => {
 
         <div
           ref={splineWrapperRef}
-          className="relative flex w-full flex-1 items-center justify-center"
+          className="order-2 relative flex w-full flex-1 items-center justify-center pt 2 lg:order-2 lg:pt-0"
         >
-          <div className="relative aspect-[4/5] w-full max-w-lg overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#0D76FA]/15 via-[#0A0A10]/40 to-[#b100cd]/15 p-4 shadow-[0_40px_120px_-50px_rgba(13,118,250,0.8)]">
+          <div className="relative aspect-[4/5] w-full max-w-[400px] overflow-visible rounded-[36px] border border-white/10 bg-gradient-to-br from-[#0D76FA]/15 via-[#0A0A10]/40 to-[#b100cd]/15 p-4 shadow-[0_40px_120px_-50px_rgba(13,118,250,0.8)] mx-auto sm:max-w-lg sm:overflow-hidden">
             <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 to-transparent mix-blend-overlay" />
             <img
               src="/volt-removebg.png"
@@ -233,10 +265,10 @@ const HeroSection = () => {
               style={{ background: 'transparent' }}
             />
             <div className="pointer-events-none absolute inset-0 rounded-[32px] border border-white/10" />
-            <div className="absolute bottom-16 left-1/2 flex w-[94%] max-w-[410px] -translate-x-1/2 flex-col items-center gap-5 px-2 sm:px-0">
-              <div
+            <div className="absolute bottom-8 left-1/2 w-full max-w-[420px] -translate-x-1/2 transform px-4 sm:bottom-12 lg:bottom-24">
+              <div 
                 ref={orbitRef}
-                className="flex w-full flex-col gap-4 sm:flex-row"
+                className="flex w-full flex-row justify-center gap-3 sm:gap-4"
                 style={{ transformStyle: 'preserve-3d', perspective: 1100 }}
               >
                 {energyOptions.map((option, index) => {
@@ -250,28 +282,30 @@ const HeroSection = () => {
                       href="https://voltbridge.tickd.co.uk"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex flex-1 flex-col items-center gap-3 rounded-[22px] border border-[#5ad0ff]/70 bg-[#041836]/35 px-6 py-6 text-center backdrop-blur-xl"
+                      className="group relative flex h-24 w-24 flex-col items-center justify-center rounded-xl border border-[#5ad0ff]/70 bg-[#041836]/25 text-center backdrop-blur-xl transition-all duration-300 hover:border-[#7de1ff] hover:bg-[#05264d]/40 sm:h-28 sm:w-28"
                       style={{
                         boxShadow: '0 26px 80px -60px rgba(80,205,255,0.95)',
                       }}
                     >
-                      <div className="option-glow pointer-events-none absolute -inset-3 rounded-[26px] bg-gradient-to-br from-[#1d7cff]/45 via-[#28caf7]/25 to-transparent blur-2xl opacity-65 transition-opacity duration-300" />
-                      <div className="absolute inset-[1px] rounded-[20px] border border-[#81e5ff]/25" />
-                      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#052b5a]/80">
-                        <Icon className="h-7 w-7 text-[#7de1ff]" />
-                      </span>
-                      <span className="relative text-sm font-semibold uppercase tracking-[0.38em] text-[#7de1ff]">
-                        {option.label}
-                      </span>
+                      <div className="option-glow pointer-events-none absolute -inset-1 rounded-lg bg-gradient-to-br from-[#1d7cff]/45 via-[#28caf7]/25 to-transparent blur-lg opacity-70 transition-opacity duration-300" />
+                      <div className="absolute inset-[1px] rounded-lg border border-[#81e5ff]/25" />
+                      <div className="flex flex-col items-center gap-1">
+                        <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#052b5a]/80 sm:h-12 sm:w-12">
+                          <Icon className="h-5 w-5 text-[#7de1ff] sm:h-6 sm:w-6" />
+                        </span>
+                        <span className="text-xs font-semibold uppercase tracking-wider text-[#7de1ff] sm:text-sm">
+                          {option.label}
+                        </span>
+                      </div>
                     </a>
                   );
                 })}
               </div>
               <p
                 ref={calloutRef}
-                className="px-4 text-center text-xs font-semibold uppercase tracking-[0.45em] text-[#7de1ff] drop-shadow-[0_0_12px_rgba(125,225,255,0.65)] sm:text-sm"
+                className="mt-3 text-center text-xs font-semibold uppercase tracking-widest text-[#7de1ff] drop-shadow-[0_0_12px_rgba(125,225,255,0.65)] sm:mt-4 sm:text-sm"
               >
-                Find out your potential savings
+                Find out your potential business savings
               </p>
             </div>
           </div>
