@@ -73,7 +73,7 @@ const HeroSection = () => {
       >
         <div className="flex w-full flex-1 flex-col justify-center gap-10 text-center lg:text-left">
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80">
-            B2B ENERGY & GAS BORKERAGE
+            B2B ENERGY & GAS BROKERAGE
           </div>
           <div className="space-y-6">
             <h1 ref={headlineRef} className="text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
