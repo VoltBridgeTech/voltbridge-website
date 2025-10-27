@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Zap, Flame, Droplets } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 gsap.registerPlugin(useGSAP);
 
- 
+const energyOptions = [
+  { label: 'Energy', icon: Zap },
+  { label: 'Gas', icon: Flame },
+  { label: 'Both', icon: Droplets },
+];
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -13,6 +17,9 @@ const HeroSection = () => {
   const subHeadlineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const splineWrapperRef = useRef<HTMLDivElement>(null);
+  const orbitRef = useRef<HTMLDivElement>(null);
+  const calloutRef = useRef<HTMLParagraphElement>(null);
+  const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -45,18 +52,123 @@ const HeroSection = () => {
       const xRatio = (event.clientX - bounds.left) / bounds.width - 0.5;
       gsap.to(wrapper, {
         rotateY: xRatio * 14,
+        x: xRatio * 30,
         duration: 0.6,
         ease: 'power2.out',
       });
     };
     const resetPosition = () => {
-      gsap.to(wrapper, { rotateY: 0, duration: 0.8, ease: 'power3.out' });
+      gsap.to(wrapper, { rotateY: 0, x: 0, duration: 0.8, ease: 'power3.out' });
     };
     window.addEventListener('mousemove', handleMouseMove);
     wrapper.addEventListener('mouseleave', resetPosition);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       wrapper.removeEventListener('mouseleave', resetPosition);
+    };
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      optionRefs.current.forEach((el) => {
+        if (!el) return;
+        gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+      });
+      if (orbitRef.current) {
+        gsap.set(orbitRef.current, { opacity: 1, rotateY: 0, rotateX: 0, z: 0 });
+      }
+      if (calloutRef.current) {
+        gsap.set(calloutRef.current, { opacity: 1, y: 0 });
+      }
+      return;
+    }
+
+    const orbit = orbitRef.current;
+    if (!orbit) return;
+
+    gsap.set(optionRefs.current, { opacity: 0, y: 26, scale: 0.9 });
+    if (calloutRef.current) {
+      gsap.set(calloutRef.current, { opacity: 0, y: 24 });
+    }
+
+    const tl = gsap.timeline();
+    tl.fromTo(
+      orbit,
+      { opacity: 0, rotateY: -540, rotateX: 28, z: -160, transformPerspective: 900 },
+      { opacity: 1, rotateY: 180, rotateX: 10, z: -40, duration: 1.4, ease: 'power2.inOut' }
+    )
+      .to(orbit, { rotateY: 0, rotateX: 0, z: 0, duration: 0.8, ease: 'power3.out' }, '>-0.05')
+      .to(
+        optionRefs.current,
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.55,
+          ease: 'power3.out',
+          stagger: 0.12,
+        },
+        '-=0.4'
+      )
+      .to(
+        calloutRef.current,
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        '-=0.2'
+      );
+
+    return () => {
+      tl.kill();
+    };
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const cards = optionRefs.current.filter(Boolean) as HTMLAnchorElement[];
+    const enterHandlers: Array<() => void> = [];
+    const leaveHandlers: Array<() => void> = [];
+
+    cards.forEach((card) => {
+      const handleEnter = () => {
+        gsap.to(card, {
+          y: -14,
+          scale: 1.06,
+          duration: 0.32,
+          ease: 'power2.out',
+        });
+        gsap.to(card.querySelector('.option-glow'), {
+          opacity: 1,
+          scale: 1.05,
+          duration: 0.32,
+          ease: 'power2.out',
+        });
+      };
+
+      const handleLeave = () => {
+        gsap.to(card, {
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: 'power3.out',
+        });
+        gsap.to(card.querySelector('.option-glow'), {
+          opacity: 0.65,
+          scale: 1,
+          duration: 0.4,
+          ease: 'power3.out',
+        });
+      };
+
+      card.addEventListener('mouseenter', handleEnter);
+      card.addEventListener('mouseleave', handleLeave);
+      enterHandlers.push(handleEnter);
+      leaveHandlers.push(handleLeave);
+    });
+
+    return () => {
+      cards.forEach((card, index) => {
+        card.removeEventListener('mouseenter', enterHandlers[index]);
+        card.removeEventListener('mouseleave', leaveHandlers[index]);
+      });
     };
   }, [prefersReducedMotion]);
 
@@ -113,14 +225,55 @@ const HeroSection = () => {
           className="relative flex w-full flex-1 items-center justify-center"
         >
           <div className="relative aspect-[4/5] w-full max-w-lg overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#0D76FA]/15 via-[#0A0A10]/40 to-[#b100cd]/15 p-4 shadow-[0_40px_120px_-50px_rgba(13,118,250,0.8)]">
-            <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
+            <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 to-transparent mix-blend-overlay" />
             <img
               src="/volt-removebg.png"
               alt="VoltBridge mascot"
               className="h-full w-full object-contain select-none pointer-events-none"
               style={{ background: 'transparent' }}
             />
-            <div className="absolute inset-0 rounded-[32px] border border-white/5" />
+            <div className="pointer-events-none absolute inset-0 rounded-[32px] border border-white/10" />
+            <div className="absolute bottom-16 left-1/2 flex w-[94%] max-w-[410px] -translate-x-1/2 flex-col items-center gap-5 px-2 sm:px-0">
+              <div
+                ref={orbitRef}
+                className="flex w-full flex-col gap-4 sm:flex-row"
+                style={{ transformStyle: 'preserve-3d', perspective: 1100 }}
+              >
+                {energyOptions.map((option, index) => {
+                  const Icon = option.icon;
+                  return (
+                    <a
+                      key={option.label}
+                      ref={(el) => {
+                        optionRefs.current[index] = el;
+                      }}
+                      href="https://voltbridge.tickd.co.uk"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex flex-1 flex-col items-center gap-3 rounded-[22px] border border-[#5ad0ff]/70 bg-[#041836]/35 px-6 py-6 text-center backdrop-blur-xl"
+                      style={{
+                        boxShadow: '0 26px 80px -60px rgba(80,205,255,0.95)',
+                      }}
+                    >
+                      <div className="option-glow pointer-events-none absolute -inset-3 rounded-[26px] bg-gradient-to-br from-[#1d7cff]/45 via-[#28caf7]/25 to-transparent blur-2xl opacity-65 transition-opacity duration-300" />
+                      <div className="absolute inset-[1px] rounded-[20px] border border-[#81e5ff]/25" />
+                      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#052b5a]/80">
+                        <Icon className="h-7 w-7 text-[#7de1ff]" />
+                      </span>
+                      <span className="relative text-sm font-semibold uppercase tracking-[0.38em] text-[#7de1ff]">
+                        {option.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+              <p
+                ref={calloutRef}
+                className="px-4 text-center text-xs font-semibold uppercase tracking-[0.45em] text-[#7de1ff] drop-shadow-[0_0_12px_rgba(125,225,255,0.65)] sm:text-sm"
+              >
+                Find out your potential savings
+              </p>
+            </div>
           </div>
         </div>
       </div>
