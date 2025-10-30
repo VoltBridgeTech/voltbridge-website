@@ -1,18 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Zap, Flame, BatteryFull } from 'lucide-react';
+import { ArrowRight, Zap, Flame, Droplets } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 gsap.registerPlugin(useGSAP);
 
 const energyOptions = [
-  { label: 'Electricity', icon: Zap },
+  { label: 'Energy', icon: Zap },
   { label: 'Gas', icon: Flame },
-  { 
-    label: 'Both', 
-    icon: ({ className }: { className?: string }) => (
-      <BatteryFull className={className} strokeWidth={2} />
-    )
-  },
+  { label: 'Both', icon: Droplets },
 ];
 
 const HeroSection = () => {
@@ -217,19 +212,19 @@ const HeroSection = () => {
         className="relative z-20 mx-auto flex w-full max-w-[1200px] flex-col items-center gap-4 px-4 pb-16 pt-20 sm:gap-14 lg:flex-row lg:items-stretch lg:gap-20 lg:px-8 lg:pt-36"
       >
         <div className="order-1 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80 lg:hidden">
-          B2B ELECTRICITY & GAS BROKERAGE
+          B2B ENERGY & GAS BROKERAGE
         </div>
 
         <div className="order-3 flex w-full flex-1 flex-col justify-center gap-10 text-center lg:order-1 lg:text-left">
           <div className="hidden w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#B0B0C0]/80 lg:inline-flex">
-            B2B ELECTRICITY & GAS BROKERAGE
+            B2B ENERGY & GAS BROKERAGE
           </div>
           <div className="space-y-6">
             <h1 ref={headlineRef} className="text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
               <span className="bg-gradient-to-r from-[#4c00b0] via-[#8900d5] to-[#b100cd] bg-clip-text text-transparent">Smart Moves, Low Bills.</span>
             </h1>
             <p ref={subHeadlineRef} className="mx-auto max-w-xl text-lg text-[#B0B0C0] lg:mx-0">
-              VoltBridge negotiates and manages corporate electricity & gas contracts across the UK, delivering measurable savings without adding workload to your team.
+              VoltBridge negotiates and manages corporate energy & gas contracts across the UK, delivering measurable savings without adding workload to your team.
             </p>
             <ul className="mx-auto grid max-w-xl gap-3 text-left text-base text-white/75 lg:mx-0">
               <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-[#0D76FA]"></span> Corporate only pricing and renewal management for multi site estates.</li>

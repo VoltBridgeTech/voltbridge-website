@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Building2, ShieldCheck, LineChart, CheckCircle2 } from 'lucide-react';
 
 const trustMetrics = [
-  { stat: '£150,000', detail: 'in negotiated electricity & gas savings for UK business portfolios' },
+  { stat: '£150,000', detail: 'in negotiated energy & gas savings for UK business portfolios' },
   { stat: '250+', detail: 'commercial sites managed nationwide' },
   { stat: '92%', detail: 'renewal retention achieved with our ongoing support' },
 ];
@@ -11,17 +11,17 @@ const services = [
   {
     icon: <Building2 className="w-6 h-6 text-[#0D76FA]" />,
     title: 'Strategic procurement',
-    description: 'Tendering and negotiating multi site electricity & gas contracts with leading UK suppliers.',
+    description: 'Tendering and negotiating multi site energy & gas contracts with leading UK suppliers.',
   },
   {
     icon: <ShieldCheck className="w-6 h-6 text-[#0D76FA]" />,
-    title: 'Electricity & gas risk management',
+    title: 'Energy & gas risk management',
     description: 'Hedging, staggered fixing and alerts to stay ahead of market volatility.',
   },
   {
     icon: <LineChart className="w-6 h-6 text-[#0D76FA]" />,
     title: 'Intelligence & ESG reporting',
-    description: 'Consumption dashboards, ESG reporting and advisory to accelerate your net zero electricity & gas roadmap.',
+    description: 'Consumption dashboards, ESG reporting and advisory to accelerate your net zero energy & gas roadmap.',
   },
 ];
 
@@ -103,7 +103,7 @@ const Index = () => {
       <section className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         <div className="flex items-center justify-center gap-5 text-center">
           <img src="/Energy-Ombudsman-logo.png" alt="Energy Ombudsman" className="h-12 w-auto md:h-14" />
-          <p className="text-base md:text-lg font-semibold text-white/90">VoltBridge Ltd is proudly registered with the Electricity Ombudsman, ensuring trust, transparency, and customer protection across electricity & gas services</p>
+          <p className="text-base md:text-lg font-semibold text-white/90">VoltBridge Ltd is proudly registered with the Energy Ombudsman, ensuring trust, transparency, and customer protection across energy & gas services</p>
         </div>
       </section>
 
@@ -119,9 +119,9 @@ const Index = () => {
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
               UK corporate services
             </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-white">Electricity & gas solutions engineered for CFOs and operations leaders</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Energy & gas solutions engineered for CFOs and operations leaders</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              We orchestrate procurement, risk cover and reporting so your finance team keeps electricity & gas spend under control without diverting internal resources.
+              We orchestrate procurement, risk cover and reporting so your finance team keeps energy & gas spend under control without diverting internal resources.
             </p>
           </div>
           <a
@@ -175,9 +175,9 @@ const Index = () => {
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
               Our process
             </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-white">How we safeguard long term electricity & gas savings</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">How we safeguard long term energy & gas savings</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              Our analysts and electricity & gas traders act as an extension of your team—from the initial audit through monthly electricity & gas consumption reviews and renewals.
+              Our analysts and energy & gas traders act as an extension of your team—from the initial audit through monthly energy & gas consumption reviews and renewals.
             </p>
           </motion.div>
           <motion.a
@@ -259,9 +259,9 @@ const Index = () => {
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
               Success stories
             </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-white">Real world electricity & gas results for real businesses</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Real world energy & gas results for real businesses</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              These outcomes are representative of the projects we manage: complex electricity & gas contracts, multi site portfolios and ambitious savings targets.
+              These outcomes are representative of the projects we manage: complex energy & gas contracts, multi site portfolios and ambitious savings targets.
             </p>
           </div>
         </motion.div>
@@ -296,7 +296,7 @@ const Index = () => {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/60">
             Ready to support
           </span>
-          <h2 className="text-3xl md:text-4xl font-semibold text-white">Let’s talk about your corporate electricity & gas spend</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white">Let’s talk about your corporate energy & gas spend</h2>
           <p className="text-white/70 lg:max-w-xl">
             Share a snapshot of your current situation and we’ll prepare a comparison report with the most competitive, regulated UK market scenarios.
           </p>
@@ -323,7 +323,7 @@ const Index = () => {
           <div className="relative z-10 flex flex-col gap-4 text-left">
             <h3 className="text-2xl font-semibold text-white">Launch our digital quoting portal</h3>
             <p className="text-white/70">
-              Access live business electricity & gas tariffs, compare suppliers in minutes and complete your switch with guided support from our team.
+              Access live business energy & gas tariffs, compare suppliers in minutes and complete your switch with guided support from our team.
             </p>
             <a
               href="https://voltbridge.tickd.co.uk"

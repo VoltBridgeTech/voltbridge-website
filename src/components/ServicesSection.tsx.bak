@@ -1,16 +1,11 @@
-import { Building2, Home, FileText, Zap, ShieldCheck, BarChart2, Plug, Flame } from "lucide-react";
+import { Building2, Home, FileText, Zap, ShieldCheck, BarChart2 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
 const ServicesSection = () => {
   const services = [
     {
-      icon: ({ className }: { className?: string }) => (
-        <div className="relative">
-          <Plug className={className} />
-          <Flame className={`absolute -bottom-1 -right-1 h-3 w-3 ${className?.includes('text-') ? '' : 'text-orange-500'}`} />
-        </div>
-      ),
-      title: "Business Electricity & Gas Comparison",
+      icon: Building2,
+      title: "Business Energy & Gas Comparison",
       description: "Save money with commercial energy & gas switching tailored to your business needs. We analyze your energy & gas usage patterns to find the best rates.",
       color: "from-vb-electric-1 to-vb-electric-2"
     },

@@ -43,7 +43,7 @@ const Services = () => {
               Transform Your <span className="bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Energy Strategy</span>
             </h1>
             <p className="text-lg text-white/75">
-              Connect with our electricity & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
+              Connect with our energy & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
             </p>
             <div className="flex justify-center">
               <a
@@ -107,7 +107,7 @@ const Services = () => {
               Transform Your <span className="bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Energy Strategy</span>
             </h2>
             <p className="text-lg text-white/70">
-              Connect with our electricity & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
+              Connect with our energy & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
