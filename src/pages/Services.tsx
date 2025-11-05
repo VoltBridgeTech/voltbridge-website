@@ -3,20 +3,20 @@ import { Zap, Flame, Plug, ArrowRight } from 'lucide-react';
 
 const services = [
   {
-    title: "Electricity procurement",
-    description: "Secure fixed or flexible business electricity tariffs, manage renewals, and align contracts with your fiscal planning.",
+    title: "Business Electricity Supply",
+    description: "Compare and switch business electricity suppliers to secure the best commercial electricity rates. We analyze your usage patterns to find optimal fixed or flexible tariffs that match your business needs and budget.",
     icon: <Zap className="w-8 h-8 text-[#0D76FA]" />,
     color: "from-vb-electric-1/20 to-vb-electric-1/5"
   },
   {
-    title: "Gas sourcing & balancing",
-    description: "Negotiate wholesale gas supply, implement seasonal hedging, and monitor consumption to avoid imbalance charges.",
+    title: "Commercial Gas Supply",
+    description: "Access competitive business gas prices from leading UK suppliers. Our energy brokers negotiate on your behalf to secure cost-effective gas contracts with flexible terms and transparent pricing.",
     icon: <Flame className="w-8 h-8 text-[#0D76FA]" />,
     color: "from-vb-electric-2/20 to-vb-electric-2/5"
   },
   {
-    title: "Dual fuel coordination",
-    description: "Combine electricity and gas into a unified strategy with aligned end dates, consolidated billing, and ongoing portfolio governance.",
+    title: "Dual Fuel Business Energy",
+    description: "Simplify your energy management with combined electricity and gas contracts. Align contract end dates, reduce admin, and potentially unlock additional savings by bundling your business energy requirements.",
     icon: <Plug className="w-8 h-8 text-[#0D76FA]" />,
     color: "from-vb-electric-4/20 to-vb-electric-4/5"
   }
@@ -40,10 +40,10 @@ const Services = () => {
               Ready to start?
             </span>
             <h1 className="text-4xl md:text-5xl font-semibold">
-              Transform Your <span className="bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Energy Strategy</span>
+              Business Energy Broker Services | Compare & Switch Suppliers <span className="block bg-gradient-to-r from-[#4c00b0] to-[#b100cd] bg-clip-text text-transparent">Save up to 45% on Energy Bills</span>
             </h1>
             <p className="text-lg text-white/75">
-              Connect with our electricity & gas experts today and discover how we can help you achieve significant cost savings and sustainability goals.
+              As independent business energy brokers, we help UK companies compare and switch commercial gas and electricity suppliers. Our free comparison service finds you the best energy deals from our panel of trusted suppliers.
             </p>
             <div className="flex justify-center">
               <a

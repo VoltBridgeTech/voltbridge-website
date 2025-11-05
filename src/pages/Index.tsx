@@ -79,13 +79,13 @@ const Index = () => {
       <section className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         <div className="text-center space-y-6">
           <h1 className="text-3xl md:text-5xl font-bold">
-            Stop overpaying. Expert business energy broker delivering maximum savings across the UK.
+            UK's Leading Business Energy Broker | Compare & Save on Commercial Energy
           </h1>
           <a
             href="/contact"
             className="inline-flex items-center justify-center rounded-full bg-[#0D76FA] px-8 py-4 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(13,118,250,0.7)] transition hover:scale-105"
           >
-            Get your free savings analysis (5 minutes)
+Compare Business Energy Suppliers
           </a>
         </div>
       </section>
@@ -145,7 +145,7 @@ const Index = () => {
             </span>
             <h2 className="text-3xl md:text-4xl font-semibold text-white">Electricity & gas solutions engineered for CFOs and operations leaders</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              We orchestrate procurement, risk cover and reporting so your finance team keeps electricity & gas spend under control without diverting internal resources.
+              As an independent energy broker, we connect your business with the UK's leading commercial energy suppliers. Our free comparison service helps you find the best business gas and electricity deals with no obligation to switch.
             </p>
           </div>
           <a
@@ -212,7 +212,7 @@ const Index = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-[#0D76FA] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(13,118,250,0.7)] transition hover:scale-105"
           >
-            Get your free savings analysis (5 minutes)
+Compare Business Energy Suppliers
           </motion.a>
         </div>
 
@@ -250,8 +250,8 @@ const Index = () => {
               About VoltBridge
             </span>
             <h2 className="text-3xl md:text-4xl font-semibold text-white">We connect energy strategy with digital execution</h2>
-            <p className="text-white/70 lg:max-w-2xl">
-              We blend analytics, negotiation and automation so your business controls costs, meets ESG goals and removes paperwork from energy contracts. See how we partner with finance, operations and procurement teams.
+            <p className="text-white/70">
+              We specialize in helping UK businesses compare and switch energy suppliers. Our free broker service provides access to exclusive commercial energy tariffs not available directly from suppliers. No hidden fees - we're paid by suppliers, not you.
             </p>
             <a
               href="/about"
