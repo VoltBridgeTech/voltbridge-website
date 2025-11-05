@@ -76,6 +76,20 @@ const Index = () => {
   return (
     <div className="relative flex flex-col gap-24 pb-24 pt-16 sm:pt-20 text-white">
 
+      <section className="mx-auto w-full max-w-6xl px-6 lg:px-8">
+        <div className="text-center space-y-6">
+          <h1 className="text-3xl md:text-5xl font-bold">
+            Stop overpaying. Expert business energy broker delivering maximum savings across the UK.
+          </h1>
+          <a
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full bg-[#0D76FA] px-8 py-4 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(13,118,250,0.7)] transition hover:scale-105"
+          >
+            Get your free savings analysis (5 minutes)
+          </a>
+        </div>
+      </section>
+
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -102,8 +116,18 @@ const Index = () => {
 
       <section className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         <div className="flex items-center justify-center gap-5 text-center">
-          <img src="/Energy-Ombudsman-logo.png" alt="Energy Ombudsman" className="h-12 w-auto md:h-14" />
+          <picture>
+            <source srcSet="/Energy-Ombudsman-logo.webp" type="image/webp" />
+            <img src="/Energy-Ombudsman-logo.png" alt="Energy Ombudsman" className="h-12 w-auto md:h-14" loading="lazy" />
+          </picture>
           <p className="text-base md:text-lg font-semibold text-white/90">VoltBridge Ltd is proudly registered with the Electricity Ombudsman, ensuring trust, transparency, and customer protection across electricity & gas services</p>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 lg:px-8">
+        <div className="rounded-3xl border border-white/10 bg-[#0D121F]/70 p-6 text-center">
+          <p className="text-lg font-semibold">Trusted by UK businesses</p>
+          <p className="text-white/80">Case studies: average savings of £18,700 per year.</p>
         </div>
       </section>
 
@@ -188,7 +212,7 @@ const Index = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-[#0D76FA] px-6 py-3 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(13,118,250,0.7)] transition hover:scale-105"
           >
-            Start your switch
+            Get your free savings analysis (5 minutes)
           </motion.a>
         </div>
 

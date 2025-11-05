@@ -5,6 +5,8 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import InsightPost from "./pages/InsightPost";
 import ComplaintsPolicy from "./pages/legal/CompliancePolicy";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
@@ -18,6 +20,8 @@ const App = () => (
       {/* Main Pages */}
       <Route path="about" element={<About />} />
       <Route path="services" element={<Services />} />
+      <Route path="insights" element={<Blog />} />
+      <Route path="insights/:slug" element={<InsightPost />} />
       <Route path="contact" element={<Contact />} />
       {/* Legal Pages */}
       <Route path="complaints-policy" element={<ComplaintsPolicy />} />

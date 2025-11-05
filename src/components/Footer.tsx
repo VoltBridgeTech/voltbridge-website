@@ -41,6 +41,8 @@ const Footer = () => {
       title: 'Quick Links',
       links: [
         { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Insights', href: '/insights' },
         { name: 'About Us', href: '/about' },
       ],
     },
@@ -56,9 +58,9 @@ const Footer = () => {
       title: 'Contact',
       links: [
         { 
-          name: '124 City Road, London EC1V 2NX', 
+          name: '124 City Road, City Road, London, England, EC1V 2NX', 
           icon: <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />,
-          href: 'https://maps.google.com/?q=124+City+Road,+London+EC1V+2NX' 
+          href: 'https://maps.google.com/?q=124+City+Road,+City+Road,+London,+England,+EC1V+2NX' 
         },
         { 
           name: 'support@voltbridge.co.uk', 

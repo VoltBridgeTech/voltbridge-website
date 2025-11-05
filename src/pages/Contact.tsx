@@ -61,11 +61,11 @@ const Contact = () => {
               Prefer email? Drop us a line and an analyst will respond within one working day.
             </p>
             <a
-              href="mailto:hello@voltbridge.co.uk"
+              href="mailto:support@voltbridge.co.uk"
               className="mt-4 inline-flex items-center gap-3 text-sm font-semibold text-[#0D76FA] transition hover:text-[#b100cd]"
             >
               <Mail className="h-5 w-5" />
-              hello@voltbridge.co.uk
+              support@voltbridge.co.uk
             </a>
           </div>
 

@@ -1,4 +1,4 @@
-import { Building2, Home, FileText, Zap, ShieldCheck, BarChart2, Plug, Flame } from "lucide-react";
+import { Building2, FileText, Zap, ShieldCheck, BarChart2, Plug, Flame } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
 const ServicesSection = () => {
@@ -13,12 +13,6 @@ const ServicesSection = () => {
       title: "Business Electricity & Gas Comparison",
       description: "Save money with commercial energy & gas switching tailored to your business needs. We analyze your energy & gas usage patterns to find the best rates.",
       color: "from-vb-electric-1 to-vb-electric-2"
-    },
-    {
-      icon: Home,
-      title: "Home Energy & Gas Switching",
-      description: "Residential users can easily find better energy & gas rates and switch hassle free. No hidden fees, no service interruptions.",
-      color: "from-purple-500 to-indigo-600"
     },
     {
       icon: FileText,
