@@ -9,8 +9,10 @@ import { lazy, Suspense } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import HeroSection from './HeroSection';
+import CookieConsentBanner from './CookieConsentBanner';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { analytics } from '@/lib/analytics';
 gsap.registerPlugin(useGSAP);
 
 // Cargar el componente Chatbot dinámicamente
@@ -193,6 +195,22 @@ const Layout = () => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  // Track page views when location changes
+  const { pathname, search } = useLocation();
+  
+  useEffect(() => {
+    // Track page view after a small delay to ensure the title is updated
+    const timer = setTimeout(() => {
+      analytics.trackPageView({
+        page_title: document.title,
+        page_path: pathname + search,
+        page_location: window.location.href
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [pathname, search]);
+
   // Smooth scroll behavior for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
@@ -202,8 +220,14 @@ const Layout = () => {
         const anchor = target as HTMLAnchorElement;
         const href = anchor.getAttribute('href');
         
-        // Only handle internal hash links
+        // Track internal anchor link clicks
         if (href?.startsWith('#')) {
+          analytics.trackEvent({
+            category: 'Navigation',
+            action: 'Anchor Link Click',
+            label: href
+          });
+          
           e.preventDefault();
           const id = href;
           if (id && id !== '#') {
@@ -293,6 +317,7 @@ const Layout = () => {
           
           {/* Footer */}
           <Footer />
+          <CookieConsentBanner />
         </div>
       </TooltipProvider>
     </QueryClientProvider>

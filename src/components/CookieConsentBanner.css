@@ -1,0 +1,39 @@
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #3b82f6; /* blue-500 */
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #3b82f6; /* blue-500 */
+}
+
+.toggle-checkbox {
+  transition: all 0.2s ease-in-out;
+  right: 1.5rem;
+  border-color: #9ca3af; /* gray-400 */
+}
+
+.toggle-label {
+  transition: all 0.2s ease-in-out;
+  background-color: #d1d5db; /* gray-300 */
+}
+
+.dark .toggle-label {
+  background-color: #4b5563; /* gray-700 */
+}
+
+/* Animation for the banner */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}

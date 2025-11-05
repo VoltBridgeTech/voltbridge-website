@@ -12,13 +12,37 @@
     <base href="/" />
     <link rel="canonical" href="https://www.voltbridge.co.uk/" />
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5Z4PXZ9X');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (cargado condicionalmente) -->
+    <script>
+      // Inicializar dataLayer si no existe
+      window.dataLayer = window.dataLayer || [];
+      
+      // Función para cargar GTM cuando se dé el consentimiento
+      window.loadGTM = function() {
+        // Cargar el script de GTM
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5Z4PXZ9X');
+        
+        // Cargar GA4 con el ID proporcionado
+        window.gtag=function(){window.dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-J2XT9YDFE6');
+      };
+      
+      // Verificar si ya hay consentimiento guardado
+      document.addEventListener('DOMContentLoaded', function() {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent) {
+          const consentData = JSON.parse(consent);
+          if (consentData.analytics) {
+            window.loadGTM();
+          }
+        }
+      });
+    </script>
 
     <meta property="og:title" content="Business Energy Broker UK | Compare Commercial Energy Suppliers | VoltBridge" />
     <meta property="og:description" content="Switch business energy suppliers and save up to 45% on your commercial gas and electricity bills. Free, no-obligation comparison service for UK businesses." />
@@ -149,10 +173,13 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Z4PXZ9X"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) - Solo se muestra si el usuario tiene JavaScript deshabilitado -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Z4PXZ9X"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      <!-- Google tag (gtag.js) para usuarios sin JavaScript -->
+      <img src="https://www.googletagmanager.com/gtag/js?id=G-J2XT9YDFE6" style="display:none;" />
+    </noscript>
     <noscript>
       <img
         height="1"
