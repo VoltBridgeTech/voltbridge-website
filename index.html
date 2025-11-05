@@ -12,10 +12,25 @@
     <base href="/" />
     <link rel="canonical" href="https://www.voltbridge.co.uk/" />
 
-    <!-- Google Tag Manager (cargado condicionalmente) -->
+    <!-- Google Tag Manager y Consent Mode v2 -->
     <script>
       // Inicializar dataLayer si no existe
       window.dataLayer = window.dataLayer || [];
+      
+      // Configuración básica de gtag
+      window.gtag = function() { window.dataLayer.push(arguments); };
+      
+      // Configuración por defecto del Consent Mode v2 (denegar todo por defecto)
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'personalization_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
       
       // Función para cargar GTM cuando se dé el consentimiento
       window.loadGTM = function() {
@@ -26,19 +41,50 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-5Z4PXZ9X');
         
-        // Cargar GA4 con el ID proporcionado
-        window.gtag=function(){window.dataLayer.push(arguments);};
-        window.gtag('js', new Date());
-        window.gtag('config', 'G-J2XT9YDFE6');
+        // Inicializar GA4 con anonimización de IP
+        gtag('js', new Date());
+        gtag('config', 'G-J2XT9YDFE6', {
+          'anonymize_ip': true,
+          'allow_google_signals': false,
+          'allow_ad_personalization_signals': false
+        });
+        
+        // Registrar la versión actual de la política de consentimiento
+        gtag('set', 'ads_data_redaction', true);
       };
       
-      // Verificar si ya hay consentimiento guardado
+      // Función para actualizar el consentimiento
+      window.updateConsent = function(consentData) {
+        if (!consentData) return;
+        
+        // Actualizar el consentimiento en GTM
+        const analyticsGranted = consentData.analytics ? 'granted' : 'denied';
+        const marketingGranted = consentData.marketing ? 'granted' : 'denied';
+        
+        gtag('consent', 'update', {
+          'analytics_storage': analyticsGranted,
+          'ad_storage': marketingGranted,
+          'ad_user_data': marketingGranted,
+          'ad_personalization': marketingGranted,
+          'personalization_storage': marketingGranted,
+          'functionality_storage': 'granted'
+        });
+        
+        // Si se da consentimiento para analíticas, cargar GTM
+        if (consentData.analytics && !window.dataLayer.some(i => i['gtm.start'])) {
+          window.loadGTM();
+        }
+      };
+      
+      // Verificar si ya hay consentimiento guardado al cargar la página
       document.addEventListener('DOMContentLoaded', function() {
         const consent = localStorage.getItem('cookieConsent');
         if (consent) {
-          const consentData = JSON.parse(consent);
-          if (consentData.analytics) {
-            window.loadGTM();
+          try {
+            const consentData = JSON.parse(consent);
+            window.updateConsent(consentData);
+          } catch (e) {
+            console.error('Error al analizar el consentimiento guardado:', e);
           }
         }
       });

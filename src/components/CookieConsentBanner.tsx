@@ -39,15 +39,20 @@ export const CookieConsentBanner = () => {
     saveConsent(allConsent);
     setShowBanner(false);
     
-    // Cargar GTM solo si el usuario acepta las cookies analíticas
-    if (typeof window !== 'undefined' && window.loadGTM) {
-      window.loadGTM();
+    // Actualizar el consentimiento usando la función global
+    if (typeof window !== 'undefined' && window.updateConsent) {
+      window.updateConsent(allConsent);
     }
   };
 
   const handleSavePreferences = () => {
     saveConsent(consent);
     setShowBanner(false);
+    
+    // Actualizar el consentimiento usando la función global
+    if (typeof window !== 'undefined' && window.updateConsent) {
+      window.updateConsent(consent);
+    }
     
     // Cargar GTM solo si el usuario acepta las cookies analíticas
     if ((consent.analytics || consent.marketing) && typeof window !== 'undefined' && window.loadGTM) {
@@ -56,9 +61,19 @@ export const CookieConsentBanner = () => {
   };
 
   const saveConsent = (consent: CookieConsent) => {
-    localStorage.setItem('cookieConsent', JSON.stringify(consent));
-    // Dispatch event that other components can listen to
-    window.dispatchEvent(new Event('cookieConsentUpdated'));
+    try {
+      localStorage.setItem('cookieConsent', JSON.stringify(consent));
+      // Disparar evento personalizado para otros componentes
+      const event = new CustomEvent('cookieConsentUpdated', { detail: consent });
+      window.dispatchEvent(event);
+      
+      // Registrar en la consola en desarrollo
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('Consentimiento actualizado:', consent);
+      }
+    } catch (e) {
+      console.error('Error al guardar el consentimiento:', e);
+    }
   };
 
   // Función para inicializar GTM (ya no es necesaria aquí, se maneja desde index.html)
