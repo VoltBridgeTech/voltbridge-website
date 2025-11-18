@@ -23,7 +23,16 @@ export const CookieConsentBanner = () => {
   useEffect(() => {
     // Check if user has already made a choice
     const consentGiven = localStorage.getItem('cookieConsent');
-    if (!consentGiven) {
+    if (consentGiven) {
+      try {
+        const storedConsent: CookieConsent = JSON.parse(consentGiven);
+        setConsent(storedConsent);
+        setShowBanner(false);
+      } catch (error) {
+        console.error('Error al cargar el consentimiento almacenado:', error);
+        setShowBanner(true);
+      }
+    } else {
       setShowBanner(true);
     }
   }, []);
@@ -52,11 +61,6 @@ export const CookieConsentBanner = () => {
     // Actualizar el consentimiento usando la función global
     if (typeof window !== 'undefined' && window.updateConsent) {
       window.updateConsent(consent);
-    }
-    
-    // Cargar GTM solo si el usuario acepta las cookies analíticas
-    if ((consent.analytics || consent.marketing) && typeof window !== 'undefined' && window.loadGTM) {
-      window.loadGTM();
     }
   };
 

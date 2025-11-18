@@ -56,22 +56,28 @@
       // Función para actualizar el consentimiento
       window.updateConsent = function(consentData) {
         if (!consentData) return;
-        
+
         // Actualizar el consentimiento en GTM
         const analyticsGranted = consentData.analytics ? 'granted' : 'denied';
         const marketingGranted = consentData.marketing ? 'granted' : 'denied';
-        
+        const functionalityGranted = (consentData.preferences || consentData.necessary) ? 'granted' : 'denied';
+        const shouldLoadGTM = consentData.analytics || consentData.marketing;
+
         gtag('consent', 'update', {
           'analytics_storage': analyticsGranted,
           'ad_storage': marketingGranted,
           'ad_user_data': marketingGranted,
           'ad_personalization': marketingGranted,
-          'personalization_storage': marketingGranted,
-          'functionality_storage': 'granted'
+          'personalization_storage': functionalityGranted,
+          'functionality_storage': functionalityGranted,
+          'security_storage': 'granted'
         });
         
+        // Redacción de datos publicitarios cuando se rechaza marketing
+        gtag('set', 'ads_data_redaction', marketingGranted !== 'granted');
+
         // Si se da consentimiento para analíticas, cargar GTM
-        if (consentData.analytics && !window.dataLayer.some(i => i['gtm.start'])) {
+        if (shouldLoadGTM && !window.dataLayer.some(i => i['gtm.start'])) {
           window.loadGTM();
         }
       };

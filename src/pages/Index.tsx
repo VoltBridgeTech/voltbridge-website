@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Building2, ShieldCheck, LineChart, CheckCircle2 } from 'lucide-react';
+import LogoCarousel from '@/components/LogoCarousel';
 
 const trustMetrics = [
   { stat: '£150,000', detail: 'in negotiated electricity & gas savings for UK business portfolios' },
@@ -85,10 +86,13 @@ const Index = () => {
             href="/contact"
             className="inline-flex items-center justify-center rounded-full bg-[#0D76FA] px-8 py-4 text-sm font-semibold text-white shadow-[0_30px_80px_-40px_rgba(13,118,250,0.7)] transition hover:scale-105"
           >
-Compare Business Energy Suppliers
+            Compare Business Energy Suppliers
           </a>
         </div>
       </section>
+
+      {/* Logo carousel: placed directly under hero content for social proof */}
+      <LogoCarousel />
 
       <motion.section
         initial="hidden"
