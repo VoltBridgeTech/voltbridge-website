@@ -4,6 +4,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 gsap.registerPlugin(useGSAP);
 
+const heroBullets = [
+  'Corporate electricity and gas procurement handled end-to-end.',
+  'Hedging strategies that cushion market volatility.',
+  'Analysts embedded with your finance and procurement team.',
+];
+
 const energyOptions = [
   { label: 'Electricity', icon: Zap },
   { label: 'Gas', icon: Flame },
@@ -19,7 +25,6 @@ const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subHeadlineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const splineWrapperRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
@@ -51,7 +56,6 @@ const HeroSection = () => {
       timeline
         .from(contentRef.current, { opacity: 0, y: -24 })
         .from(headlineRef.current, { opacity: 0, y: 32 }, '-=0.4')
-        .from(subHeadlineRef.current, { opacity: 0, y: 28 }, '-=0.45')
         .from(ctaRef.current, { opacity: 0, y: 20 }, '-=0.4')
         .from(splineWrapperRef.current, { opacity: 0, scale: 0.85 }, '-=0.5');
     },
@@ -228,13 +232,13 @@ const HeroSection = () => {
             <h1 ref={headlineRef} className="text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
               <span className="bg-gradient-to-r from-[#4c00b0] via-[#8900d5] to-[#b100cd] bg-clip-text text-transparent">Smart Moves, Low Bills.</span>
             </h1>
-            <p ref={subHeadlineRef} className="mx-auto max-w-xl text-lg text-[#B0B0C0] lg:mx-0">
-              VoltBridge negotiates and manages corporate electricity & gas contracts across the UK, delivering measurable savings without adding workload to your team.
-            </p>
-            <ul className="mx-auto grid max-w-xl gap-3 text-left text-base text-white/75 lg:mx-0">
-              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-[#0D76FA]"></span> Corporate only pricing and renewal management for multi site estates.</li>
-              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-[#b100cd]"></span> Hedging strategies to shield your budget from market volatility.</li>
-              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-white/80"></span> Dedicated analysts that integrate with your finance and procurement processes.</li>
+            <ul className="mx-auto flex flex-col gap-2 text-left text-sm text-white/70 sm:max-w-xl lg:mx-0">
+              {heroBullets.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-1 h-2 w-2 flex-none rounded-full bg-[#0D76FA]" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
@@ -247,12 +251,6 @@ const HeroSection = () => {
             >
               Get a free quote
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a
-              className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm font-medium text-white/80 transition hover:border-[#b100cd]/40 hover:text-[#b100cd]"
-              href="#case-studies"
-            >
-              View case studies
             </a>
           </div>
         </div>

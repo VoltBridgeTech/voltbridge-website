@@ -3,26 +3,26 @@ import { Building2, ShieldCheck, LineChart, CheckCircle2 } from 'lucide-react';
 import LogoCarousel from '@/components/LogoCarousel';
 
 const trustMetrics = [
-  { stat: '£150,000', detail: 'in negotiated electricity & gas savings for UK business portfolios' },
-  { stat: '250+', detail: 'commercial sites managed nationwide' },
-  { stat: '92%', detail: 'renewal retention achieved with our ongoing support' },
+  { stat: '£150k', label: 'Negotiated savings', detail: '12 months of results across multi-site portfolios.' },
+  { stat: '250+', label: 'Sites managed', detail: 'Commercial estates supported across the UK.' },
+  { stat: '92%', label: 'Renewal retention', detail: 'Clients who renew after a full contract cycle.' },
 ];
 
 const services = [
   {
     icon: <Building2 className="w-6 h-6 text-[#0D76FA]" />,
     title: 'Strategic procurement',
-    description: 'Tendering and negotiating multi site electricity & gas contracts with leading UK suppliers.',
+    description: 'Tendering and negotiating multi-site electricity and gas contracts with access to exclusive tariffs.',
   },
   {
     icon: <ShieldCheck className="w-6 h-6 text-[#0D76FA]" />,
     title: 'Electricity & gas risk management',
-    description: 'Hedging, staggered fixing and alerts to stay ahead of market volatility.',
+    description: 'Layered hedging and proactive alerts that keep you ahead of market volatility.',
   },
   {
     icon: <LineChart className="w-6 h-6 text-[#0D76FA]" />,
     title: 'Intelligence & ESG reporting',
-    description: 'Consumption dashboards, ESG reporting and advisory to accelerate your net zero electricity & gas roadmap.',
+    description: 'Consumption dashboards and ESG reporting to accelerate your net-zero roadmap.',
   },
 ];
 
@@ -45,27 +45,39 @@ const caseStudies = [
 ];
 
 const steps = [
-  'Select your service: Electricity, Gas, or both.',
-  'Choose your start date: Set when you’d like your supply to begin.',
-  'Add your usage: Enter your estimated electricity and gas consumption.',
-  'Confirm your company type: Limited, Sole Trader, or Charity.',
-  'Enter your business name: We’ll verify your registration automatically.',
-  'Get tailored live tariffs: Access the most competitive business energy rates.',
+  {
+    title: '1. Rapid diagnosis',
+    summary: 'Share recent bills and choose electricity, gas or both so we can size your usage.'
+  },
+  {
+    title: '2. Live tariff scan',
+    summary: 'We verify your business and surface commercial rates in real time with no obligation to switch.'
+  },
+  {
+    title: '3. Execution & support',
+    summary: 'Contracts, renewals and monthly reviews delivered as an extension of your team.'
+  },
 ];
 
 const aboutHighlights = [
   {
     title: 'Energy expertise',
-    description: 'Energy analysts and corporate traders who negotiate tariffs and shield your portfolio from market swings.',
+    description: 'Senior traders negotiate cover and secure competitive corporate pricing.',
   },
   {
     title: 'Digital operations',
-    description: 'Single portal for onboarding, document validation and consumption reporting without internal friction.',
+    description: 'A single portal for onboarding, document control and consumption tracking.',
   },
   {
     title: 'Client advocacy',
-    description: 'Full transparency on renewals, regulatory audits handled on your behalf and ongoing support.',
+    description: 'Full transparency on renewals and regulatory support whenever you need it.',
   },
+];
+
+const solutionBullets = [
+  'Corporate-only tariffs from 15+ UK suppliers.',
+  'Analysts that plug into your finance and operations teams.',
+  'Clear reporting so you can move quickly without extra workload.',
 ];
 
 const fadeUp = {
@@ -109,9 +121,11 @@ const Index = () => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[#0F172A]/60 p-6 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.55)]"
             >
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <p className="text-xl font-semibold text-white">{item.stat}</p>
-              <p className="mt-2 text-sm text-white/70">{item.detail}</p>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.25em] text-white/55">
+                {item.label}
+              </span>
+              <p className="mt-4 text-2xl font-semibold text-white">{item.stat}</p>
+              <p className="mt-1 text-sm text-white/70">{item.detail}</p>
               <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             </motion.div>
           ))}
@@ -120,9 +134,14 @@ const Index = () => {
 
       <section className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         <div className="flex items-center justify-center gap-5 text-center">
-          <picture>
+          <picture className="flex items-center">
             <source srcSet="/Energy-Ombudsman-logo.webp" type="image/webp" />
-            <img src="/Energy-Ombudsman-logo.png" alt="Energy Ombudsman" className="h-12 w-auto md:h-14" loading="lazy" />
+            <img
+              src="/Energy-Ombudsman-logo.png"
+              alt="Energy Ombudsman"
+              className="h-12 w-auto md:h-14 object-contain"
+              loading="lazy"
+            />
           </picture>
           <p className="text-base md:text-lg font-semibold text-white/90">VoltBridge Ltd is proudly registered with the Electricity Ombudsman, ensuring trust, transparency, and customer protection across electricity & gas services</p>
         </div>
@@ -149,8 +168,16 @@ const Index = () => {
             </span>
             <h2 className="text-3xl md:text-4xl font-semibold text-white">Electricity & gas solutions engineered for CFOs and operations leaders</h2>
             <p className="text-white/70 lg:max-w-2xl">
-              As an independent energy broker, we connect your business with the UK's leading commercial energy suppliers. Our free comparison service helps you find the best business gas and electricity deals with no obligation to switch.
+              As an independent broker we connect your business with market-leading commercial tariffs without adding operational overhead. A dedicated team guides you from tender through day-to-day management.
             </p>
+            <ul className="grid gap-2 text-left text-sm text-white/65 sm:grid-cols-2 lg:max-w-2xl">
+              {solutionBullets.map((bullet) => (
+                <li key={bullet} className="flex items-start gap-2">
+                  <span className="mt-1 h-2 w-2 flex-none rounded-full bg-[#0D76FA]" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <a
             href="/services"
@@ -223,7 +250,7 @@ Compare Business Energy Suppliers
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {steps.map((step, index) => (
             <motion.div
-              key={step}
+              key={step.title}
               variants={fadeUp}
               transition={{ duration: 0.55, delay: index * 0.1, ease: 'easeOut' }}
               className="relative overflow-hidden rounded-[24px] border border-white/12 bg-[#07070D]/80 p-6 backdrop-blur-xl"
@@ -233,9 +260,9 @@ Compare Business Energy Suppliers
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#0D76FA] to-[#b100cd] text-sm font-semibold text-white">
                   {index + 1}
                 </span>
-                <p className="text-base font-semibold text-white">{step.split(':')[0]}</p>
+                <p className="text-base font-semibold text-white">{step.title}</p>
               </div>
-              <p className="relative mt-3 text-sm text-white/70">{step.split(':').slice(1).join(':').trim()}</p>
+              <p className="relative mt-3 text-sm text-white/70">{step.summary}</p>
             </motion.div>
           ))}
         </div>
@@ -255,7 +282,7 @@ Compare Business Energy Suppliers
             </span>
             <h2 className="text-3xl md:text-4xl font-semibold text-white">We connect energy strategy with digital execution</h2>
             <p className="text-white/70">
-              We specialize in helping UK businesses compare and switch energy suppliers. Our free broker service provides access to exclusive commercial energy tariffs not available directly from suppliers. No hidden fees - we're paid by suppliers, not you.
+              We help UK businesses compare and switch energy suppliers with full transparency. Our service is free of hidden fees and we are paid by suppliers once you go live.
             </p>
             <a
               href="/about"
