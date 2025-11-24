@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">UK business energy savings strategies 2025</title>
+  <desc id="desc">Abstract chart showing multiple levers contributing to business energy savings in the UK in 2025.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816" />
+      <stop offset="100%" stop-color="#10142a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <g transform="translate(120,80)">
+    <rect x="0" y="40" width="960" height="390" rx="18" fill="#0b1020" stroke="#1f2940" />
+    <g transform="translate(80,100)">
+      <rect x="0" y="180" width="120" height="120" fill="#0D76FA" />
+      <rect x="200" y="140" width="120" height="160" fill="#22c55e" />
+      <rect x="400" y="110" width="120" height="190" fill="#a855f7" />
+      <rect x="600" y="80" width="120" height="220" fill="#f97316" />
+      <text x="6" y="320" fill="#e5e7eb" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Contract</text>
+      <text x="210" y="320" fill="#e5e7eb" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Audit</text>
+      <text x="405" y="320" fill="#e5e7eb" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Efficiency</text>
+      <text x="608" y="320" fill="#e5e7eb" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Monitoring</text>
+    </g>
+    <text x="0" y="20" fill="#e5e7eb" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      UK business energy savings strategies 2025
+    </text>
+  </g>
+</svg>

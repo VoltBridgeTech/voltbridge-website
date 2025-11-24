@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Peak demand reduction for commercial electricity</title>
+  <desc id="desc">Load curve illustration showing reduced peaks for commercial electricity demand.</desc>
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816" />
+      <stop offset="100%" stop-color="#10142a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg3)" />
+  <g transform="translate(120,80)">
+    <rect x="0" y="40" width="960" height="390" rx="18" fill="#0b1020" stroke="#1f2937" />
+    <path d="M40 360 C 200 200 260 180 360 220 C 460 260 520 180 640 200 C 760 220 820 180 920 190" fill="none" stroke="#4b5563" stroke-width="3" />
+    <path d="M40 360 C 200 260 260 240 360 260 C 460 280 520 230 640 240 C 760 250 820 230 920 235" fill="none" stroke="#0D76FA" stroke-width="3" />
+    <text x="40" y="30" fill="#e5e7eb" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      Peak demand reduction for commercial electricity
+    </text>
+    <text x="40" y="450" fill="#9ca3af" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Day</text>
+    <text x="960" y="450" fill="#9ca3af" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" text-anchor="end">Evening</text>
+  </g>
+</svg>

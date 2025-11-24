@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">UK electricity network upgrades impacting business energy prices</title>
+  <desc id="desc">Stylised illustration of transmission towers and network lines representing UK grid upgrades.</desc>
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg4)" />
+  <g transform="translate(80,80)">
+    <rect x="0" y="40" width="1040" height="390" rx="18" fill="#020617" stroke="#1f2937" />
+    <g stroke="#4b5563" stroke-width="2">
+      <line x1="80" y1="140" x2="320" y2="260" />
+      <line x1="320" y1="140" x2="560" y2="260" />
+      <line x1="560" y1="140" x2="800" y2="260" />
+      <line x1="800" y1="140" x2="1040" y2="260" />
+    </g>
+    <g stroke="#9ca3af" stroke-width="3">
+      <line x1="80" y1="140" x2="80" y2="320" />
+      <line x1="320" y1="140" x2="320" y2="320" />
+      <line x1="560" y1="140" x2="560" y2="320" />
+      <line x1="800" y1="140" x2="800" y2="320" />
+    </g>
+    <g fill="#0D76FA">
+      <polygon points="60,140 100,140 80,100" />
+      <polygon points="300,140 340,140 320,100" />
+      <polygon points="540,140 580,140 560,100" />
+      <polygon points="780,140 820,140 800,100" />
+    </g>
+    <g fill="#b100cd">
+      <circle cx="320" cy="260" r="8" />
+      <circle cx="560" cy="260" r="8" />
+      <circle cx="800" cy="260" r="8" />
+      <circle cx="1040" cy="260" r="8" />
+    </g>
+    <text x="0" y="0" fill="#e5e7eb" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      UK electricity network upgrades impacting business energy prices
+    </text>
+  </g>
+</svg>

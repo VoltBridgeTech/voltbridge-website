@@ -1,4 +1,5 @@
 import { useParams, Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { posts } from '@/lib/posts';
@@ -13,7 +14,7 @@ const generateArticleSchema = (post: any) => ({
   "dateModified": post.date,
   "author": {
     "@type": "Organization",
-    "name": "VoltBridge",
+    "name": "Voltbridge UK Ltd",
     "url": "https://www.voltbridge.co.uk"
   },
   "publisher": {
@@ -60,6 +61,7 @@ const InsightPost = () => {
   const location = useLocation();
   const post = posts.find((p) => p.slug === slug);
   const canonicalUrl = `https://www.voltbridge.co.uk${location.pathname}`;
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
 
   if (!post) {
     return (
@@ -161,16 +163,85 @@ const InsightPost = () => {
             </motion.div>
           </header>
 
+          {/* Hero Image (optional, clickable to expand) */}
+          {post.heroImageSrc && (
+            <button
+              type="button"
+              className="mb-10 block w-full rounded-2xl overflow-hidden border border-white/10 bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#0D76FA]"
+              onClick={() =>
+                setLightboxImage({
+                  src: post.heroImageSrc!,
+                  alt: post.heroImageAlt || post.title,
+                })
+              }
+            >
+              <img
+                src={post.heroImageSrc}
+                alt={post.heroImageAlt || post.title}
+                className="w-full h-64 md:h-80 object-cover cursor-zoom-in"
+                loading="lazy"
+              />
+            </button>
+          )}
+
           {/* Article Content */}
           <div className="prose prose-invert max-w-none text-white/90">
             {post.content.map((para, idx) => {
-              // Check if paragraph is a heading (starts with **)
+              // Inline image markers like [[image:key]]
+              if (para.startsWith('[[image:') && para.endsWith(']]')) {
+                const key = para.slice(8, -2);
+                const imageMap: Record<string, string> = {
+                  'uk-energy-price-volatility-2026': '/images/insights/uk-energy-price-volatility-2026.svg',
+                  'non-commodity-costs-2026': '/images/insights/non-commodity-costs-2026.svg',
+                  'business-reviewing-electricity-costs': '/images/insights/business-reviewing-electricity-costs.svg',
+                  'network-upgrades-impacting-prices': '/images/insights/network-upgrades-impacting-prices.svg',
+                  'uk-business-energy-savings-2025': '/images/insights/uk-business-energy-savings-2025.svg',
+                  'energy-audit-uk-smes': '/images/insights/energy-audit-uk-smes.svg',
+                  'peak-demand-reduction': '/images/insights/peak-demand-reduction.svg',
+                  'smart-energy-monitoring-dashboard': '/images/insights/smart-energy-monitoring-dashboard.svg',
+                  'tcr-explained-diagram': '/images/insights/ofgem-tcr-explained.svg',
+                  'uk-business-network-charges-overview': '/images/insights/uk-business-network-charges.svg',
+                  'tcr-banding-structure': '/images/insights/tcr-banding-structure.svg',
+                  'tcr-duos-tnuos-reform-2026': '/images/insights/tcr-duos-tnuos-reform-2026.svg',
+                };
+                const src = imageMap[key];
+                const alt = post.images?.find((img) => img.src === src)?.alt || post.title;
+
+                if (!src) return null;
+
+                return (
+                  <figure
+                    key={idx}
+                    className="my-10 rounded-2xl overflow-hidden border border-white/10 bg-white/5 cursor-zoom-in"
+                  >
+                    <button
+                      type="button"
+                      className="block w-full text-left"
+                      onClick={() => setLightboxImage({ src, alt })}
+                    >
+                      <img src={src} alt={alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+                    </button>
+                    <figcaption className="px-4 py-3 text-xs text-white/70">{alt}</figcaption>
+                  </figure>
+                );
+              }
+              // Check if paragraph is a H2 heading (wrapped in **text**)
               if (para.startsWith('**') && para.endsWith('**')) {
                 const headingText = para.replace(/\*\*/g, '');
                 return (
                   <h2 key={idx} className="text-2xl font-bold text-white mt-10 mb-4">
                     {headingText}
                   </h2>
+                );
+              }
+
+              // Check if paragraph is a H3 subheading (starts with "### ")
+              if (para.startsWith('### ')) {
+                const headingText = para.replace('### ', '');
+                return (
+                  <h3 key={idx} className="text-xl font-semibold text-white mt-8 mb-3">
+                    {headingText}
+                  </h3>
                 );
               }
               
@@ -205,6 +276,34 @@ const InsightPost = () => {
                 </p>
               );
             })}
+            
+            {/* Related Images Gallery (optional, also expandable) */}
+            {post.images && post.images.length > 0 && (
+              <div className="mt-12 grid gap-6 md:grid-cols-2">
+                {post.images.map((image, index) => (
+                  <figure
+                    key={index}
+                    className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 cursor-zoom-in"
+                  >
+                    <button
+                      type="button"
+                      className="block w-full text-left"
+                      onClick={() => setLightboxImage({ src: image.src, alt: image.alt })}
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-56 object-cover"
+                        loading="lazy"
+                      />
+                    </button>
+                    <figcaption className="px-4 py-3 text-xs text-white/70">
+                      {image.alt}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
             
             {/* Call to Action */}
             <div className="mt-16 bg-gradient-to-r from-[#0D1A2F] to-[#0D1A2F]/50 p-8 rounded-2xl border border-white/10">

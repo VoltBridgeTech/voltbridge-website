@@ -35,6 +35,13 @@ const Blog = () => {
     el.scrollBy({ left: (dir === 'left' ? -1 : 1) * cardW * 1.1, behavior: 'smooth' });
   };
 
+  // Sort posts so the most recent articles appear first in the carousel
+  const sortedPosts = [...posts].sort((a, b) => {
+    const aTime = new Date(a.date).getTime();
+    const bTime = new Date(b.date).getTime();
+    return bTime - aTime;
+  });
+
   // Verificar si hay posts disponibles
   if (!posts || posts.length === 0) {
     console.log('No hay posts disponibles');
@@ -96,7 +103,7 @@ const Blog = () => {
             ref={scrollerRef}
             className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {posts.map((post) => {
+            {sortedPosts.map((post) => {
               const words = post.content.join(' ').split(' ').length;
               const minutes = Math.max(2, Math.ceil(words / 200));
               return (

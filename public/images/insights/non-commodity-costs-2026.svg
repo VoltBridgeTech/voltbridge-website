@@ -1,0 +1,58 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Non-commodity electricity cost breakdown for UK businesses 2026</title>
+  <desc id="desc">Stacked bar chart style illustration showing transmission, distribution, balancing and policy costs for UK businesses.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816" />
+      <stop offset="100%" stop-color="#10142a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg2)" />
+  <g transform="translate(120,80)">
+    <rect x="0" y="0" width="960" height="430" rx="16" fill="#0b1020" stroke="#1f2940" />
+    <!-- Y axis label -->
+    <text x="10" y="220" fill="#9ca3af" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" transform="rotate(-90 10 220)">% of typical bill</text>
+    <g transform="translate(80,40)">
+      <rect x="0" y="200" width="120" height="160" fill="#0D76FA" />
+      <rect x="0" y="140" width="120" height="60" fill="#2563eb" />
+      <rect x="0" y="100" width="120" height="40" fill="#38bdf8" />
+      <rect x="0" y="70" width="120" height="30" fill="#22c55e" />
+      <rect x="220" y="180" width="120" height="180" fill="#0D76FA" />
+      <rect x="220" y="120" width="120" height="60" fill="#2563eb" />
+      <rect x="220" y="80" width="120" height="40" fill="#38bdf8" />
+      <rect x="220" y="50" width="120" height="30" fill="#22c55e" />
+      <rect x="440" y="160" width="120" height="200" fill="#0D76FA" />
+      <rect x="440" y="110" width="120" height="50" fill="#2563eb" />
+      <rect x="440" y="70" width="120" height="40" fill="#38bdf8" />
+      <rect x="440" y="40" width="120" height="30" fill="#22c55e" />
+      <rect x="660" y="140" width="120" height="220" fill="#0D76FA" />
+      <rect x="660" y="90" width="120" height="50" fill="#2563eb" />
+      <rect x="660" y="50" width="120" height="40" fill="#38bdf8" />
+      <rect x="660" y="20" width="120" height="30" fill="#22c55e" />
+    </g>
+    <g transform="translate(80,320)" fill="#e5e7eb" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      <text x="20" y="150">2023</text>
+      <text x="240" y="150">2024</text>
+      <text x="460" y="150">2025</text>
+      <text x="680" y="150">2026</text>
+    </g>
+    <!-- Approximate percentage labels -->
+    <g fill="#9ca3af" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      <text x="100" y="220">~55%</text>
+      <text x="740" y="200">~70%</text>
+    </g>
+    <g transform="translate(720,60)" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      <rect x="0" y="0" width="14" height="14" fill="#0D76FA" />
+      <text x="22" y="12" fill="#e5e7eb">Transmission (TNUoS)</text>
+      <rect x="0" y="24" width="14" height="14" fill="#2563eb" />
+      <text x="22" y="36" fill="#e5e7eb">Distribution (DUoS)</text>
+      <rect x="0" y="48" width="14" height="14" fill="#38bdf8" />
+      <text x="22" y="60" fill="#e5e7eb">Balancing (BSUoS)</text>
+      <rect x="0" y="72" width="14" height="14" fill="#22c55e" />
+      <text x="22" y="84" fill="#e5e7eb">Policy and other</text>
+    </g>
+    <text x="0" y="-20" fill="#e5e7eb" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      Non-commodity electricity cost breakdown for UK businesses 2026
+    </text>
+  </g>
+</svg>

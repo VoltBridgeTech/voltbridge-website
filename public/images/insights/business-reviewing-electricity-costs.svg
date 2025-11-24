@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Business reviewing rising electricity costs in the UK</title>
+  <desc id="desc">Stylised illustration of two business people looking at a dashboard with rising electricity cost graphs.</desc>
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816" />
+      <stop offset="100%" stop-color="#10142a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg3)" />
+  <g transform="translate(120,80)">
+    <rect x="0" y="40" width="720" height="390" rx="18" fill="#0b1020" stroke="#1f2940" />
+    <rect x="40" y="80" width="640" height="40" rx="8" fill="#020617" />
+    <rect x="40" y="140" width="300" height="210" rx="12" fill="#020617" />
+    <rect x="380" y="140" width="300" height="210" rx="12" fill="#020617" />
+    <polyline fill="none" stroke="#0D76FA" stroke-width="3" points="60,320 120,280 180,290 240,240 300,210 340,220" />
+    <polyline fill="none" stroke="#b100cd" stroke-width="3" points="400,320 450,300 500,260 550,250 600,220 640,210" />
+    <g transform="translate(800,80)">
+      <circle cx="60" cy="140" r="60" fill="#0D76FA" />
+      <rect x="10" y="190" width="100" height="10" rx="5" fill="#1e293b" />
+      <rect x="10" y="210" width="80" height="10" rx="5" fill="#1e293b" />
+    </g>
+    <g transform="translate(780,260)">
+      <rect x="0" y="0" width="120" height="180" rx="24" fill="#020617" stroke="#1f2937" />
+      <circle cx="60" cy="40" r="26" fill="#0D76FA" />
+      <rect x="24" y="84" width="72" height="10" rx="5" fill="#1e293b" />
+      <rect x="24" y="106" width="64" height="10" rx="5" fill="#1e293b" />
+    </g>
+    <text x="0" y="0" fill="#e5e7eb" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      Business reviewing rising electricity costs in the UK
+    </text>
+  </g>
+</svg>

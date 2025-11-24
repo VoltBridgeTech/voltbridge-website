@@ -1,0 +1,32 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Energy audit process for SMEs in the UK</title>
+  <desc id="desc">Stylised flow diagram representing the steps of an energy audit for UK SMEs.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816" />
+      <stop offset="100%" stop-color="#10142a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg2)" />
+  <g transform="translate(100,120)">
+    <rect x="0" y="40" width="220" height="120" rx="16" fill="#0b1020" stroke="#1f2937" />
+    <rect x="280" y="40" width="220" height="120" rx="16" fill="#0b1020" stroke="#1f2937" />
+    <rect x="560" y="40" width="220" height="120" rx="16" fill="#0b1020" stroke="#1f2937" />
+    <rect x="840" y="40" width="220" height="120" rx="16" fill="#0b1020" stroke="#1f2937" />
+    <text x="30" y="95" fill="#e5e7eb" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Bills &amp; data</text>
+    <text x="320" y="95" fill="#e5e7eb" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Profile analysis</text>
+    <text x="595" y="95" fill="#e5e7eb" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Site review</text>
+    <text x="890" y="95" fill="#e5e7eb" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">Actions &amp; savings</text>
+    <g stroke="#0D76FA" stroke-width="3" fill="none">
+      <line x1="220" y1="100" x2="280" y2="100" />
+      <polygon points="270,92 280,100 270,108" fill="#0D76FA" />
+      <line x1="500" y1="100" x2="560" y2="100" />
+      <polygon points="550,92 560,100 550,108" fill="#0D76FA" />
+      <line x1="780" y1="100" x2="840" y2="100" />
+      <polygon points="830,92 840,100 830,108" fill="#0D76FA" />
+    </g>
+    <text x="0" y="0" fill="#e5e7eb" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+      Energy audit process for SMEs in the UK
+    </text>
+  </g>
+</svg>
